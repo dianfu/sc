@@ -37,7 +37,7 @@ CREATE TABLE rds_output(
 |参数|说明|备注|
 |--|--|--|
 |url|地址|地址请参见： -   [RDS的URL地址](https://help.aliyun.com/document_detail/26128.html?spm=5176.doc43185.6.581.rxQuNz)
--   [DRDS的URL地址](https://help.aliyun.com/document_detail/50084.html?spm=a2c4g.11186623.6.553.wR7Itn)
+-   [DRDS的URL地址](https://help.aliyun.com/document_detail/56494.html)
 
  |
 |tableName|表名|无|
