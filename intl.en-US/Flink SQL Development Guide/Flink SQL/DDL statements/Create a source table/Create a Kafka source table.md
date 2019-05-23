@@ -52,7 +52,35 @@ create table kafka_stream(
     |group.id|The name of the consumer group.|The ID of the consumer group.|
     |zookeeper.connect|The ZooKeeper URL.|The ZooKeeper connection ID.|
 
--   \(Optional\) Key `"consumer.id","socket.timeout.ms","fetch.message.max.bytes","num.consumer.fetchers","auto.commit.enable","auto.commit.interval.ms","queued.max.message.chunks", "rebalance.max.retries","fetch.min.bytes","fetch.wait.max.ms","rebalance.backoff.ms","refresh.leader.backoff.ms","auto.offset.reset","consumer.timeout.ms","exclude.internal.topics","partition.assignment.strategy","client.id","zookeeper.session.timeout.ms","zookeeper.connection.timeout.ms","zookeeper.sync.time.ms","offsets.storage","offsets.channel.backoff.ms","offsets.channel.socket.timeout.ms","offsets.commit.max.retries","dual.commit.enabled","partition.assignment.strategy","socket.receive.buffer.bytes","fetch.min.bytes"`
+-   \(Optional\) Key
+    -   consumer.id
+    -   socket.timeout.ms
+    -   fetch.message.max.bytes
+    -   num.consumer.fetchers
+    -   auto.commit.enable
+    -   auto.commit.interval.ms
+    -   queued.max.message.chunks
+    -   rebalance.max.retries
+    -   fetch.min.bytes
+    -   fetch.wait.max.ms
+    -   rebalance.backoff.ms
+    -   refresh.leader.backoff.ms
+    -   auto.offset.reset
+    -   consumer.timeout.ms
+    -   exclude.internal.topics
+    -   partition.assignment.strategy
+    -   client.id
+    -   zookeeper.session.timeout.ms
+    -   zookeeper.connection.timeout.ms
+    -   zookeeper.sync.time.ms
+    -   offsets.storage
+    -   offsets.channel.backoff.ms
+    -   offsets.channel.socket.timeout.ms
+    -   offsets.commit.max.retries
+    -   dual.commit.enabled
+    -   partition.assignment.strategy
+    -   socket.receive.buffer.bytes
+    -   fetch.min.bytes
 -   Required configuration for Kafka09, Kafka010, and Kafka011
 
     |Name|Description|Remarks|
@@ -179,7 +207,7 @@ create table kafka_stream(
 
         -   UDTF
 
-            **Note:** The Flink version of the following Maven dependencies is determined by the Realtime Compute version of your job. For example, when you run a job in Realtime Compute V2.2.4, the Flink version of Maven dependencies is blink-2.2.4-SNAPSHOT. For more information about the download addresses of the dependency packages, see the [Build the environment](https://help.aliyun.com/document_detail/69463.html?spm=a2c4g.11174283.6.663.56f51e49xcZv8U#h2-u73AFu5883u642Du5EFA2) section of the UDX overview topic. Maven dependencies:
+            **Note:** The Flink version of the following Maven dependencies is determined by the Realtime Compute version of your job. For example, when you run a job in Realtime Compute V2.2.4, the Flink version of Maven dependencies is blink-2.2.4-SNAPSHOT. For more information about the download addresses of the dependency packages, see the [Build the development environment](intl.en-US/Flink SQL Development Guide/Flink SQL/UDX/UDX overview.md#section_ck2_gcm_cgb) section of the UDX overview topic. Maven dependencies:
 
             ```language-java
                 <dependencies>
@@ -354,12 +382,11 @@ create table kafka_stream(
               SELECT 
                   cnt,sex
               from view2;
-            										
             ```
 
         -   UDF&UDTF
 
-            **Note:** The Flink version of the following Maven dependencies is determined by the Realtime Compute version of your job. For example, when you run a job in Realtime Compute V2.2.4, the Flink version of Maven dependencies is blink-2.2.4-SNAPSHOT. For more information about the download addresses of the dependency packages, see the [Build the environment](https://help.aliyun.com/document_detail/69463.html?spm=a2c4g.11174283.6.663.56f51e49xcZv8U#h2-u73AFu5883u642Du5EFA2) section of the UDX overview topic. Maven dependencies:
+            **Note:** The Flink version of the following Maven dependencies is determined by the Realtime Compute version of your job. For example, when you run a job in Realtime Compute V2.2.4, the Flink version of Maven dependencies is blink-2.2.4-SNAPSHOT. For more information about the download addresses of the dependency packages, see the [Build the development environment](intl.en-US/Flink SQL Development Guide/Flink SQL/UDX/UDX overview.md#section_ck2_gcm_cgb) section of the UDX overview topic. Maven dependencies:
 
             ```language-java
               <dependencies> 
@@ -387,7 +414,6 @@ create table kafka_stream(
                         <version>1.2.9</version>
                     </dependency> 
                 </dependencies>
-            										
             ```
 
             -   UDTF
@@ -482,7 +508,6 @@ create table kafka_stream(
                     public void close() {
                         }
                 }
-                											
                 ```
 
 
@@ -503,7 +528,6 @@ Self-built Kafka
       `group.id` = 'CID_blink',
       bootstrap.servers = '192.168.0.251:****'
     );
-    					
     ```
 
 -   WITH parameters
