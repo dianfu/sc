@@ -22,14 +22,14 @@ CREATE TABLE rds_output(
  tableName='yourDatabaseTable',
  userName='yourDatabaseUserName',
  password='yourDatabasePassword'
-);		
+);        
 ```
 
 **说明：** 
 
 -   实时计算写入RDS/DRDS数据库结果表原理：针对实时计算每行结果数据，拼接成一行SQL语句，输入至目标端数据库，进行执行。如果使用批量写，需要在URL后面加上参数 `?rewriteBatchedStatements=true`，以提高系统性能。
 -   RDS MySQL数据库支持自增主键。如果需要让实时计算写入数据支持自增主键，在DDL中不声明该自增字段即可。例如，ID是自增字段，实时计算DDL不写出该自增字段，则数据库在一行数据写入过程中会自动填补相关的自增字段。
--   如果DRDS有分区表，拆分键必须在实时计算DDL里`primary key（）`中声明，否则拆分的表无法写入。关于DRDS分库分表的概念可参见[DRDS分库分表](https://help.aliyun.com/document_detail/29679.html?spm=a2c4g.11186623.6.554.WAuKX8)。
+-   如果DRDS有分区表，拆分键必须在实时计算DDL里`primary key（）`中声明，否则拆分的表无法写入。
 -   建议使用数据存储注册方式，参见[注册云数据库（RDS）](cn.zh-CN/Flink SQL开发指南/数据存储/注册数据存储/注册云数据库（RDS）.md#)。
 
 ## WITH参数 {#section_l5t_1yf_cgb .section}
