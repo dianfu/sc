@@ -4,18 +4,18 @@
 
 ## 云数据库RDS版 {#section_awk_yfn_cgb .section}
 
-阿里云关系型数据库（Relational Database Service，简称 RDS）是一种稳定可靠、可弹性伸缩的在线数据库服务。基于阿里云分布式文件系统和高性能存储，RDS支持MySQL、SQL Server、PostgreSQL和PPAS（Postgre Plus Advanced Server，一种高度兼容 Oracle 的数据库）引擎，并且提供了容灾、备份、恢复、监控、迁移等方面的全套解决方案，彻底解决数据库运维的烦恼。
+阿里云关系型数据库（Relational Database Service）简称RDS，是一种稳定可靠、可弹性伸缩的在线数据库服务。基于阿里云分布式文件系统和高性能存储，RDS支持MySQL、SQL Server、PostgreSQL和PPAS（Postgre Plus Advanced Server，一种高度兼容Oracle的数据库）引擎，并且提供了容灾、备份、恢复、监控、迁移等方面的全套解决方案，彻底解决数据库运维的烦恼。
 
-**说明：** 云数据库\(RDS/DRDS\)插件中的WITH参数一致，可以通用。 在使用云数据库\(RDS和DRDS\)作为维表时，RDS或DRDS中必须要有真实的表存在。
+**说明：** 云数据库（RDS和DRDS）插件中的WITH参数一致，可以通用。 在使用云数据库（RDS和DRDS）作为维表时，RDS或DRDS中必须要有真实的表存在。
 
 ## 示例 {#section_vm1_2gn_cgb .section}
 
-实时计算支持使用RDS或DRDS作为维表（注意：目前仅支持MySQL数据存储类型），示例代码如下。
+实时计算支持使用RDS或DRDS作为维表（目前仅支持MySQL数据存储类型），示例代码如下。
 
 ```language-sql
 CREATE TABLE rds_dim_table(
- id int,
- len int,
+ id INT,
+ len INT,
  content VARCHAR,
  PRIMARY KEY (id),
  PERIOD FOR SYSTEM_TIME--定义维表的变化周期，表明该表是一张会变化的表。
@@ -34,8 +34,10 @@ CREATE TABLE rds_dim_table(
 
 |参数|注释说明|备注|
 |--|----|--|
-|url|地址|地址请参见 -   [RDS的URL地址](https://help.aliyun.com/document_detail/26128.html?spm=5176.doc43185.6.581.rxQuNz)
--   [DRDS的URL地址](https://help.aliyun.com/document_detail/56494.html)
+|url|jdbc连接地址|url的格式为：`jdbc:mysql://<内网地址>/<databaseName>`，其中databaseName为对应的数据库名称。内网地址参见如下链接： -   [RDS的内网地址](https://help.aliyun.com/document_detail/26128.html?spm=5176.doc43185.6.581.rxQuNz)
+-   [DRDS的内网地址](https://help.aliyun.com/document_detail/56494.html)
+
+ **说明：** 若访问通过VPC访问授权过的RDS，对应的url配置请参见[VPC访问授权](cn.zh-CN/Flink SQL开发指南/数据存储/VPC访问授权.md#)。
 
  |
 |tableName|表名|无|
