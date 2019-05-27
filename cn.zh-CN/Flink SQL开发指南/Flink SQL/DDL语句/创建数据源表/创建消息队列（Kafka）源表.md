@@ -11,8 +11,6 @@ Kafka源表的实现迁移自社区的Kafka版本实现。Kafka源表数据解�
 Kafka源表定义DDL部分必须与以下SQL完全一致，with参数中设置可改。
 
 ```language-sql
-
-
 create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
   messageKey VARBINARY,
   `message`    VARBINARY,
@@ -21,8 +19,8 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
   `offset`     BIGINT        
 ) with (
   type ='kafka010',
-  topic = 'yourTopicName',
-  `group.id` = 'yourGroupId',
+  topic = '<yourTopicName>',
+  `group.id` = '<yourGroupId>',
   ...
 );
 ```
@@ -107,8 +105,8 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
           `offset` bigint
         ) with (
           type ='kafka010',
-          topic = '******',
-          `group.id` = '*******',
+          topic = '<yourTopicName>',
+          `group.id` = '<yourGroupId>',
           ...,
           `security.protocol`=SASL_PLAINTEXT,
           `sasl.mechanism`=PLAIN,
@@ -174,7 +172,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
              url='jdbc:mysql://localhost:3306/test',
              tableName='test4',
              userName='test',
-             password='*******'
+             password='<yourDatabasePassword>'
             );
             
             -- 使用UDTF，将二进制数据解析成格式化数据。
@@ -205,8 +203,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
                   age,
                   grade,
                   updateTime
-              FROM input_view;
-            									
+              FROM input_view;                                
             ```
 
         -   UDTF
@@ -239,7 +236,6 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
                         <version>1.2.9</version>
                     </dependency>
                 </dependencies>
-            										
             ```
 
             ```language-java
@@ -379,8 +375,6 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
                 input_view
             Group BY sex, TUMBLE(ctime, INTERVAL '1' MINUTE);
             
-            
-            
             -- 使用解析出的格式化数据进行计算，并将结果输出到RDS。
             insert into rds_sink
               SELECT 
@@ -482,7 +476,6 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
                     }
                 
                 }
-                											
                 ```
 
             -   UDF
