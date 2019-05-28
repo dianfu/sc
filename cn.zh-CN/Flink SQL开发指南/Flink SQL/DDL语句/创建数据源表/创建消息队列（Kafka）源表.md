@@ -2,6 +2,8 @@
 
 本文为您介绍如何创建实时计算消息队列（Kafka）源表以及Kafka版本对应关系和Kafka消息解析示例。
 
+**说明：** 本文档仅适用于独享模式。
+
 ## 什么是Kafka源表 {#section_mqr_zmz_bgb .section}
 
 Kafka源表的实现迁移自社区的Kafka版本实现。Kafka源表数据解析流程：Kafka Source Table -\> UDTF -\>Realtime Compute -\> Sink。从Kakfa读入的数据，都是VARBINARY（二进制）格式，对读入的每条数据，都需要用[自定义表值函数（UDTF）](cn.zh-CN/Flink SQL开发指南/Flink SQL/自定义函数（UDX）/自定义表值函数（UDTF）.md#)将其解析成格式化数据。
