@@ -1,6 +1,6 @@
 # 创建日志服务（LogService）源表 {#concept_62521_zh .concept}
 
-本文为您介绍如何为实时计算创建日志服务（Log Service）源表以及创建过程涉及到的属性字段、with参数和类型映射。
+本文为您介绍如何为实时计算创建日志服务（Log Service）源表以及创建过程涉及到的属性字段、WITH参数和类型映射。
 
 ## 什么是日志服务 {#section_qr1_2wy_bgb .section}
 
@@ -8,11 +8,10 @@
 
 ```language-json
 {
-	"a": 1000,
-	"b": 1234,
-	"c": "li"
+    "a": 1000,
+    "b": 1234,
+    "c": "li"
 }
-			
 ```
 
 对于实时计算而言，我们需要定义的DDL如下（代码中的sls代表LogService）。
@@ -32,7 +31,6 @@ create table sls_stream(
   logStore ='yourLogStoreName',
   consumerGroup ='yourConsumerGroupName'
 );
-			
 ```
 
 ## 属性字段 {#section_xhx_xxy_bgb .section}
@@ -92,7 +90,7 @@ create table sls_stream(
     |ens\_altar\_flow|ems0a|0.0.1|
 
 
-## W参数 {#section_uz1_zxy_bgb .section}
+## WITH参数 {#section_uz1_zxy_bgb .section}
 
 |参数|注释说明|备注|
 |--|----|--|
@@ -101,7 +99,7 @@ create table sls_stream(
 |accessKey|LogService读取的密钥|无|
 |project|读取的LogService项目|无|
 |logStore|Project下的具体的LogStore名称|无|
-|consumerGroup|消费组名|用户可以自定义消费组名（没有固定格式）|
+|consumerGroup|消费组名|您可以自定义消费组名（没有固定格式）|
 |startTime|消费日志开始的时间点|无|
 |heartBeatIntervalMills|可选，消费客户端心跳间隔时间|默认为10s|
 |maxRetryTimes|读取最大尝试次数|可选，默认为5。|
@@ -126,7 +124,7 @@ create table sls_stream(
 -   输入数据源为JSON形式时，注意定义分隔符，并且需要采用内置函数[JSON\_VALUE](cn.zh-CN/Flink SQL开发指南/Flink SQL/内置函数/字符串函数/JSON_VALUE.md#)分析，否则就会解析失败。报错如下:
 
     ```
-    2017-12-25 15:24:43,467 WARN [Topology-0 (1/1)] com.alibaba.blink.streaming.connectors.common.source.parse.DefaultSourceCollector - Field missing error, table column number: 3, data column number: 3, data filed number: 1, data: [{"lg_order_code":"LP00000005","activity_code":"TEST_CODE1","occur_time":"2017-12-10 00:00:01"}]				
+    2017-12-25 15:24:43,467 WARN [Topology-0 (1/1)] com.alibaba.blink.streaming.connectors.common.source.parse.DefaultSourceCollector - Field missing error, table column number: 3, data column number: 3, data filed number: 1, data: [{"lg_order_code":"LP00000005","activity_code":"TEST_CODE1","occur_time":"2017-12-10 00:00:01"}]                
     ```
 
 -   batchGetSize设置不能超过1000，否则会报错。
