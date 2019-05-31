@@ -1,6 +1,6 @@
 # AutoScale自动配置调试 {#concept_nc3_3qd_2hb .concept}
 
-为了解决您使用AutoConf自动配置调优功能时需频繁的启停作业的问题，实时计算3.0及以上版本提供了AutoScale自动配置调优功能。作业启动后，系统会根据资源配置规则，自动进行作业的调优，直到满足设定的调优目标，全程无需人工介入。
+为了解决您使用AutoConf自动配置调优功能时频繁启停作业的问题，实时计算3.0及以上版本提供了AutoScale自动配置调优功能。作业启动后，系统会根据资源配置规则，自动进行作业的调优，直到满足设定的调优目标，全程无需人工介入。
 
 **说明：** 
 
@@ -11,16 +11,16 @@
 
 作业上线时，需要选择作业初始的资源方法。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860746751_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968746751_zh-CN.png)
 
 -   系统分配：使用上一次AutoScale自动生成的方法。新增作业，或者作业逻辑没有修改且实时计算版本兼容时，可以选择系统分配。
 -   手动资源配置：使用手动生成的资源配置方法。手动重新生成或者修改过AutoScale时，需要选择手动资源配置。
 
 ## 开启AutoScale {#section_u5f_ky2_2hb .section}
 
-作业上线时，在**资源配置**步骤，选择**开启**自动调优，即可设置自动调优参数， 如下图所示。
+作业上线时，在**资源配置**步骤，选择**开启**自动调优，即可设置自动调优参数。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860746762_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968746762_zh-CN.png)
 
 -   最大CU数
 
@@ -41,7 +41,7 @@
 
 启动作业时，如果开启了AutoScale，可以在作业运行期间，动态暂停AutoScale。在作业**运维**页面，单击暂停按钮即可。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860746765_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968746765_zh-CN.png)
 
 **说明：** 作业在上线时启动了AutoScale后，**运维**界面**自动调优**列下的操作按键才能生效。
 
@@ -51,13 +51,19 @@
 
     作业的数据曲线页面可以看到AutoScale的历史信息，包括：AutoScale成功和失败的次数，运行期间作业实际申请的CPU和内存变化曲线等。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860746778_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968746778_zh-CN.png)
+
+    |曲线名称|说明|
+    |----|--|
+    |Auto Scaling Successes and Failures|AutoScale成功和未成功执行的次数。|
+    |CPUs Consumed By Auto Scaling|执行AutoScale时消耗的CPU量。|
+    |Memory Consumed By Auto Scaling|执行AutoScale时消耗的内存量。|
 
 -   AutoScale生成的PlanJson
 
     作业的**属性参数**页面可以看到AutoScale的生成的PlanJson的信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860846779_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968746779_zh-CN.png)
 
 
 ## FAQ {#section_psn_fcf_2hb .section}
@@ -66,18 +72,18 @@ Q：作业启动时，资源文件校验报错节点不存在或者节点不匹�
 
 -   节点不存在
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860846782_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968746782_zh-CN.png)
 
 -   节点不匹配
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860846783_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968846783_zh-CN.png)
 
 
-A：该问题产生的原因是因为作业的plan发生了改变（sql修改了，或者blink版本升级不兼容），此时，需要重新手动生成一次资源配置，上线时初始资源选择手动资源配置。
+A：该问题产生的原因是因为作业的plan发生了改变（SQL修改了或blink版本升级不兼容），此时，需要重新手动生成一次资源配置，上线时初始资源选择手动资源配置。
 
 Q：上线时，参数校验报错：`resource validate failed`，该如何处理？
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155731860846784_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/147766/155926968846784_zh-CN.png)
 
 A：
 
