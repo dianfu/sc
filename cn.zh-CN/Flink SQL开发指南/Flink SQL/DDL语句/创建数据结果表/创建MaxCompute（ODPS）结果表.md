@@ -6,7 +6,7 @@
 
 实时计算支持使用ODPS作为结果输出，示例代码如下。
 
-```language-sql
+``` {#codeblock_jau_xv8_4zk .language-sql}
 create table odps_output(
     id INT,
     user_name VARCHAR,
@@ -40,16 +40,12 @@ create table odps_output(
 -   3.2.2及以后的版本会创建ds=NULL的分区。
 
  |
-|isOverwrite|写入sink之前会把结果表或者结果表的数据清空。| -   blink-3.2以下版本默认参数值为true。
+|isOverwrite|写入Sink之前会把结果表或者结果表的数据清空。| -   blink-3.2以下版本默认参数值为true。
 -   blink-3.2版本默认参数值为false。
 
  **说明：** isOverwrite参数不支持版本内修改。如果需要修改，请升级或回滚blink版本。
 
  |
-
-**说明：** 
-
-实时计算数据写入ODPS的方式是每次做checkPoint的时候将缓存数据进行输入。
 
 ## 常见问题 {#section_lsc_fgz_lgb .section}
 
@@ -78,6 +74,6 @@ create table odps_output(
 
     **说明：** 
 
-    -   其他MaxCompute类型，ODPS connector暂时还不支持转换。
-    -   VARCHAR是ODPS新增加的类型，Blink connectors暂不支持，建议您将ODPS的Schema中的VARCHAR类型设置为STRING类型。
+    -   其他MaxCompute类型，ODPS Connector暂时还不支持转换。
+    -   VARCHAR是ODPS新增加的类型，Blink Connectors暂不支持，建议您将ODPS的Schema中的VARCHAR类型设置为STRING类型。
 
