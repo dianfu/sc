@@ -24,7 +24,7 @@ DEMO中已经分别有3个简单的UDF、UDAF和UDTF的实现，供参考。
 
 以上DEMO主要使用的依赖JAR包如下，如您需要单独使用，可以直接下载：
 
--   基于实时计算3.0以下版本
+-   基于实时计算3.2.1以下版本
 
     -   [flink-streaming-java\_2.11](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1543327398632/flink-streaming-java_2.11-blink-2.2.4.jar)
     -   [flink-table\_2.11](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1543327437386/flink-table_2.11-blink-2.2.4.jar)
@@ -66,47 +66,59 @@ DEMO中已经分别有3个简单的UDF、UDAF和UDTF的实现，供参考。
     </dependency> 
     ```
 
--   基于实时计算3.0及以上版本
+-   基于实时计算3.2.1及以上版本
 
-    -   [flink-core-blink-3.2.1.jar](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1557279822540/flink-core-blink-3.2.1.jar)
-    -   [flink-streaming-java\_2.11-blink-3.2.1.jar](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1557279865869/flink-streaming-java_2.11-blink-3.2.1.jar)
-    -   [flink-table\_2.11-blink-3.2.1.jar](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1557279936582/flink-table_2.11-blink-3.2.1.jar)
-    **说明：** 上文中的DEMO包下载后，要将`pom.xml`按照下边示例进行更改。
+    请根据需求自行添加开源版本所支持的[POM依赖包](https://search.maven.org/search?q=com.alibaba.blink)。Blink 3.2.1版本的POM文件，示例如下。
 
-    ``` {#codeblock_lj9_1sg_sqq .language-java}
-    <dependency>
-      <groupId>com.alibaba.blink</groupId>
-      <artifactId>flink-core</artifactId>
-      <version>blink-3.2.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba.blink</groupId>
-      <artifactId>flink-table_2.11</artifactId>
-      <version>blink-3.2.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba.blink</groupId>
-      <artifactId>flink-streaming-java_2.11</artifactId>
-      <version>blink-3.2.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>     
-    
-    <!-- 单例测试使用 -->
-    <!-- https://mvnrepository.com/artifact/junit/junit -->
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.8.1</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.scala-lang</groupId>
-        <artifactId>scala-library</artifactId>
-        <version>2.11.12</version>
-    </dependency> 
+    ``` {#codeblock_4li_hly_1n8 .language-java}
+    <properties>
+        <scala.version>2.11.12</scala.version>
+        <scala.binary.version>2.11</scala.binary.version>
+        <blink.version>blink-3.2.2</blink.version>
+        <java.version>1.8</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.blink</groupId>
+            <artifactId>flink-core</artifactId>
+            <version>${blink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.blink</groupId>
+            <artifactId>flink-java</artifactId>
+            <version>${blink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.blink</groupId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+            <version>${blink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.blink</groupId>
+            <artifactId>flink-table_2.11</artifactId>
+            <version>${blink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.11.12</version>
+        </dependency>
+    </dependencies>
     ```
+
+    下载查看[完整依赖包示例](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/111995/cn_zh/1553501574644/pom.xml)。
+
+    **说明：** 如果您需要依赖Snapshot版本，可以自行添加Snapshot版本所支持的[POM依赖包](https://oss.sonatype.org/content/repositories/snapshots/com/alibaba/blink/flink-core/)。
 
 
 ## 注册使用 {#section_5q4_9pi_lny .section}
@@ -163,14 +175,14 @@ DEMO中已经分别有3个简单的UDF、UDAF和UDTF的实现，供参考。
 
 假设需要在作业中添加如下2个参数。
 
-```language-java
+``` {#codeblock_xmy_32z_36o .language-java}
 testKey1=lincoln
 test.key2=todd
 ```
 
 以UDTF为例，在open方法中通过`context.getJobParameter`即可获取。示例如下。
 
-```language-java
+``` {#codeblock_8mf_er1_urb .language-java}
 public void open(FunctionContext context) throws Exception {
       String key1 = context.getJobParameter("testKey1", "empty");
       String key2 = context.getJobParameter("test.key2", "empty");
