@@ -6,57 +6,54 @@
 
 消息队列（Message Queue）简称MQ，是阿里云商用的专业消息中间件，是企业级互联网架构的核心产品。消息列队是基于高可用分布式集群技术，搭建了包括发布订阅、消息轨迹、资源统计、定时（延时）、监控报警等一套完整的消息云服务。 实时计算可以将消息队列作为流式数据输出，如下所示。
 
-```language-sql
+``` {#codeblock_0uh_mlh_xfs .language-sql}
 CREATE TABLE stream_test_hotline_agent (
 id INTEGER,
 len BIGINT,
 content VARCHAR
 ) WITH (
 type='mq',
-endpoint='******',
-accessID='******',
-accessKey='******',
-topic='******',
-producerGroup='******',
-tag='******',
+endpoint='<yourEndpoint>',
+accessID='<yourAccessId>',
+accessKey='<yourAccessSecret>',
+topic='<yourTopicName>',
+producerGroup='<yourGroupName>',
+tag='<yourTagName>',
 encoding='utf-8',
 fieldDelimiter=',',
 retryTimes='5',
 sleepTimeMs='500'
 );
-
+				
 ```
 
 ## CSV类格式 {#section_tvd_lqg_chb .section}
 
-```language-sql
-
+``` {#codeblock_3l5_tqa_3q6 .language-sql}
 CREATE TABLE stream_test_hotline_agent (
 id INTEGER,
 len BIGINT,
-content varchar
+content VARCHAR
 ) WITH (
 type='mq',
-endpoint='******',
-accessID='******',
-accessKey='******',
-topic='******',
-producerGroup='******',
-tag='******',
+endpoint='<yourEndpoint>',
+accessID='<yourAccessId>',
+accessKey='<yourAccessSecret>',
+topic='<yourTopicName>',
+producerGroup='<yourGroupName>',
+tag='<yourTagName>',
 encoding='utf-8',
 fieldDelimiter=',',
 retryTimes='5',
 sleepTimeMs='500'
 );
-
 ```
 
 ## 二进制格式 {#section_xw5_5qg_chb .section}
 
 二进制格式测试代码如下。
 
-```language-sql
-
+``` {#codeblock_ov6_noy_vcu .language-sql}
 CREATE TABLE source_table (
   commodity VARCHAR
 )WIHT(
@@ -67,18 +64,17 @@ CREATE TABLE result_table (
   mess VARBINARY
 ) WITH (
   type = 'mq',
-  topic = '******',
-  endpoint = '******',
-  accessId='******',
-  accessKey='******',
-  producerGroup='******'
+  endpoint='<yourEndpoint>',
+  accessID='<yourAccessId>',
+  accessKey='<yourAccessSecret>',
+  topic='<yourTopicName>',
+  producerGroup='<yourGroupName>'
 );
 
 INSERT INTO result_table
 SELECT 
 CAST(SUBSTRING(commodity,0,5) AS VARBINARY) AS mess   
 FROM source_table
-
 ```
 
 **说明：** 
@@ -95,7 +91,7 @@ FROM source_table
 -   公共云公网接入地址为`http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet`。
 
  |
-|accessID|填写阿里云accessID|无　|
+|accessID|填写阿里云accessID|无|
 |accessKey|填写阿里云accessKey|无|
 |producerGroup|写入的群组|无|
 |tag|写入的标签|可选，默认为空。|
@@ -103,4 +99,5 @@ FROM source_table
 |encoding|编码类型|可选，默认为`utf-8`。|
 |retryTimes|写入的重试次数|可选，默认为10。|
 |sleepTimeMs|重试间隔时间|可选，默认为1000（毫秒）。|
+|instanceID|Topic所属的分组|实时计算3.2及以上版本必须。|
 
