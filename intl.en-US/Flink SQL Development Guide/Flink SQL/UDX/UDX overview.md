@@ -39,7 +39,7 @@ The demo depends on the following JAR packages. If you need to use a package sep
 
 **Note:** After the demo package is downloaded, modify the `pom. xml` file by referring to the following example:
 
-```language-java
+``` {#codeblock_9lb_6a3_sk3 .language-java}
     <dependency>
         <groupId>org.apache.flink</groupId>
         <artifactId>flink-core</artifactId>
@@ -67,11 +67,11 @@ After a UDX is developed, compress it into a JAR package. On the Development pag
 
 After the JAR package is uploaded, select a job and declare the UDX in the job as follows:
 
-```language-SQL
+``` {#codeblock_fjh_ot2_jnr .language-SQL}
 CREATE FUNCTION stringLengthUdf AS 'com.hjc.test.blink.sql.udx.StringLengthUdf';
 ```
 
-1.  [登录实时计算控制台](https://stream.console.aliyun.com).
+1.  [Login Realtime Compute Console](https://stream.console.aliyun.com).
 2.  Click **Development** at the top menu .
 3.  Click **Resources** at the left side navigation bar.
 4.  Click **➕Create Resource** on the **Resources** Tab.
