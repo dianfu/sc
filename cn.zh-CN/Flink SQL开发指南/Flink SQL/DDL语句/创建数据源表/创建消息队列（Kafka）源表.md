@@ -12,7 +12,7 @@ Kafka源表的实现迁移自社区的Kafka版本实现。Kafka源表数据解�
 
 Kafka源表定义DDL部分必须与以下SQL完全一致，with参数中设置可改。
 
-```language-sql
+``` {#codeblock_7mm_wfp_udt .language-sql}
 create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
   messageKey VARBINARY,
   `message`    VARBINARY,
@@ -98,7 +98,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
         -   [Kafka011](https://kafka.apache.org/0102/documentation.html#newconsumerconfigs)
         当需要配置某选项时，在DDL中的with部分增加对应的参数即可。例如，配置SASL登录，需增加3个参数``security.protocol``，``sasl.mechanism``和``sasl.jaas.config``，示例如下。
 
-        ```language-SQL
+        ``` {#codeblock_u0a_va6_kh8 .language-SQL}
         create table kafka_stream(
           messageKey varbinary,
           `message` varbinary,
@@ -134,7 +134,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
 
     -   Kafka中保存了JSON格式数据，需要用Realtime Compute进行计算，消息格式为：
 
-        ```language-json
+        ``` {#codeblock_vq9_o11_hjn .language-json}
         {
           "name":"Alice",
           "age":13,
@@ -147,13 +147,13 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
     -   示例代码
         -   SQL
 
-            ```language-sql
+            ``` {#codeblock_gqd_bqj_g8a .language-sql}
             -- 定义解析Kakfa message的UDTF。
             CREATE FUNCTION kafkaparser AS 'com.alibaba.kafkaUDTF';
             
             -- 定义源表。注意：Kafka源表DDL字段必须与以下示例完全一致。WITH中参数可以修改。
             CREATE TABLE kafka_src (
-                messageKey  ARBINARY,
+                messageKey  VARBINARY,
                 `message`   VARBINARY,
                 topic       VARCHAR,
                 `partition` INT,
@@ -212,7 +212,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
 
             **说明：** UDTF创建步骤请参见[自定义表值函数（UDTF）](cn.zh-CN/Flink SQL开发指南/Flink SQL/自定义函数（UDX）/自定义表值函数（UDTF）.md#)。实时计算2.2.4版本Maven依赖，示例如下。
 
-            ```language-java
+            ``` {#codeblock_tss_sf7_9p1 .language-java}
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.flink</groupId>
@@ -240,7 +240,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
                 </dependencies>
             ```
 
-            ```language-java
+            ``` {#codeblock_dtb_fsm_su1 .language-java}
             package com.alibaba;
             
             import com.alibaba.fastjson.JSONObject;
@@ -248,7 +248,6 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
             import org.apache.flink.table.types.DataType;
             import org.apache.flink.table.types.DataTypes;
             import org.apache.flink.types.Row;
-            
             import java.io.UnsupportedEncodingException;
             import java.sql.Timestamp;
             
@@ -307,7 +306,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
     -   示例代码
         -   SQL
 
-            ```language-sql
+            ``` {#codeblock_q8q_a2l_6kz .language-sql}
             -- 定义解析Kakfa message的UDTF。
             CREATE FUNCTION kafkapaser AS 'com.alibaba.kafkaUDTF';
             CREATE FUNCTION kafkaUDF AS 'com.alibaba.kafkaUDF';
@@ -388,7 +387,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
 
             **说明：** UDF和UDTF创建步骤请参见[自定义标量函数（UDF）](cn.zh-CN/Flink SQL开发指南/Flink SQL/自定义函数（UDX）/自定义标量函数（UDF）.md#)和[自定义表值函数（UDTF）](cn.zh-CN/Flink SQL开发指南/Flink SQL/自定义函数（UDX）/自定义表值函数（UDTF）.md#)。实时计算2.2.4版本Maven依赖，示例如下。
 
-            ```language-java
+            ``` {#codeblock_0nj_avf_chy .language-java}
               <dependencies>
                     <dependency>
                         <groupId>org.apache.flink</groupId>
@@ -418,7 +417,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
 
             -   UDTF
 
-                ```
+                ``` {#codeblock_qjj_gsx_avh}
                 package com.alibaba;
                 
                 import com.alibaba.fastjson.JSONObject;
@@ -426,7 +425,6 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
                 import org.apache.flink.table.types.DataType;
                 import org.apache.flink.table.types.DataTypes;
                 import org.apache.flink.types.Row;
-                
                 import java.io.UnsupportedEncodingException;
                 
                 /**
@@ -452,12 +450,10 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
                                     row.setField(2, grade);
                                     row.setField(3, updateTime);
                 
-                
                                     System.out.println("Kafka message str ==>" + row.toString());
                 
                                     // 输出一行
                                     collect(row);
-                
                 
                             } catch (ClassCastException e) {
                                 System.out.println("Input data format error. Input data " + msg + "is not json string");
@@ -482,12 +478,11 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
 
             -   UDF
 
-                ```language-java
+                ``` {#codeblock_opn_gjh_c7h .language-java}
                 package com.alibaba;
                 package com.hjc.test.blink.sql.udx;
                 import org.apache.flink.table.functions.FunctionContext;
                 import org.apache.flink.table.functions.ScalarFunction;
-                
                 
                 public class KafkaUDF extends ScalarFunction {
                     // 可选，open方法可以不写。
@@ -514,7 +509,7 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
 
 -   示例
 
-    ```language-sql
+    ``` {#codeblock_2lw_kou_rdd .language-sql}
     create table kafka_stream(
       messageKey VARBINARY,
       `message` VARBINARY, 
