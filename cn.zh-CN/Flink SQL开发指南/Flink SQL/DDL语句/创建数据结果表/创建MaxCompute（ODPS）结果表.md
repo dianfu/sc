@@ -14,10 +14,10 @@ create table odps_output(
 ) with (
     type = 'odps',
     endPoint = 'http://service.cn.maxcompute.aliyun-inc.com/api',
-    project = 'projectName',
-    tableName = 'tableName',
-    accessId = 'yourAccessKeyId',
-    accessKey = 'yourAccessKeySecret',
+    project = '<projectName>',
+    tableName = '<tableName>',
+    accessId = '<yourAccessKeyId>',
+    accessKey = '<yourAccessKeySecret>',
     `partition` = 'ds=2018****'
 );
 ```
@@ -40,19 +40,23 @@ create table odps_output(
 -   3.2.2及以后的版本会创建ds=NULL的分区。
 
  |
-|isOverwrite|写入Sink之前会把结果表或者结果表的数据清空。| -   blink-3.2以下版本默认参数值为true。
--   blink-3.2版本默认参数值为false。
+|isOverwrite|写入Sink前，是否将结果表或者结果表的数据清空。| -   实时计算3.2以下版本默认参数值为true。
+-   实时计算3.2及以上版本默认参数值为false。声明MaxCompute的流式作业结果表时，isOverwrite参数必须为false，否则在编译时会抛出异常。
 
- **说明：** isOverwrite参数不支持版本内修改。如果需要修改，请升级或回滚blink版本。
+ **说明：** 实时计算3.2及以上版本支持isOverwrite参数值变更。实时计算3.2以下版本如需变更isOverwrite参数值，请升级版本。
 
  |
 
 ## 常见问题 {#section_lsc_fgz_lgb .section}
 
-1.  Q: Stream模式的ODPS Sink是否支持`isOverwrite`为`true`的情况？
+1.  Q: Stream模式的MaxCompute结果表是否支持`isOverwrite`为`true`？
 
-    A：`isOverwrite`为`true`功能默认开启，即写入sink之前会把结果表或者结果数据清空。作业每次启动后和暂停恢复后、写入之前会把原来结果表或者结果分区里的内容删除。流上暂停恢复后清空数据会导致数据丢失。
+    A：实时计算3.2以下版本支持；实时计算3.2及以上版本不支持。
 
+    `isOverwrite`为`true`，即写入结果表之前会把结果表或者结果数据清空。作业每次启动后和暂停恢复后、写入之前会把原来结果表或者结果分区里的内容删除。
+
+    -   实时计算3.2以下版本isOverwrite默认值是true，且不支持修改。流式作业完成暂停/恢复操作后，会造成数据丢失。
+    -   实时计算3.2及以上版本isOverwrite默认值是false，且声明MaxCompute流式作业结果表时isOverwrite参数值需要设置为false，否则在编译时会抛出异常。Stream模式MaxCompute结果表具备At Least Once数据保障机制，在作业运行失败后，可能会出现数据重复。
 2.  Q: MaxCompute中的数据类型和实时计算中数据类型的对应关系是什么？
 
     A：如下表。
