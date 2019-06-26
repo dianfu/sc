@@ -2,6 +2,8 @@
 
 本文为您介绍如何创建实时计算表格存储（Table Store）源表。
 
+**说明：** 本文仅适用于实时计算3.2.2及以上版本。
+
 ## 什么是表格存储（Table Store） {#section_zg7_baw_drh .section}
 
 表格存储（Table Store），简称OTS，是构建在阿里云飞天分布式系统之上的分布式NoSQL数据存储服务。表格存储通过数据分片和负载均衡技术，实现数据规模与访问并发上的无缝扩展，提供海量结构化数据的存储和实时访问服务。
@@ -67,9 +69,9 @@ create table tablestore_stream(
 
 |字段名|注释说明|
 |---|----|
-|`OtsRecordType`|数据操作类型|
-|`OtsRecordTimestamp`|数据操作时间（全量数据时为0）|
-|`<列名>_OtsColumnType`|某列的操作类型|
+| `OtsRecordType` |数据操作类型|
+| `OtsRecordTimestamp` |数据操作时间（全量数据时为0）|
+| `<列名>_OtsColumnType` |某列的操作类型|
 
 ## WITH参数 {#section_4nf_fed_4x5 .section}
 
