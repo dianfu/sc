@@ -6,12 +6,12 @@ OpenAPI概览为您列举实时计算所支持的OpenAPI。
 
 |OpenAPI|描述|
 |-------|--|
-|[CheckRawPlanJson](cn.zh-CN/OpenAPI/作业/CheckRawPlanJson.md#)|检测作业planjson的获取状态|
+|[CheckRawPlanJson](cn.zh-CN/OpenAPI/作业/CheckRawPlanJson.md#)|检测作业PlanJson的获取状态|
 |[CommitJob](cn.zh-CN/OpenAPI/作业/CommitJob.md#)|提交作业|
 |[CreateJob](cn.zh-CN/OpenAPI/作业/CreateJob.md#)|创建作业|
 |[DeleteJob](cn.zh-CN/OpenAPI/作业/DeleteJob.md#)|删除作业|
 |[GetJob](cn.zh-CN/OpenAPI/作业/GetJob.md#)|获取job信息|
-|[ListJob](cn.zh-CN/OpenAPI/作业/ListJob.md#)|搜索job|
+|[ListJob](cn.zh-CN/OpenAPI/作业/ListJob.md#)|搜索Job|
 |[OfflineJob](cn.zh-CN/OpenAPI/作业/OfflineJob.md#)|下线作业|
 |[StartJob](cn.zh-CN/OpenAPI/作业/StartJob.md#)|启动作业|
 |[UpdateJob](cn.zh-CN/OpenAPI/作业/UpdateJob.md#)|更新作业|
@@ -39,7 +39,7 @@ OpenAPI概览为您列举实时计算所支持的OpenAPI。
 |[GetInstanceDetail](cn.zh-CN/OpenAPI/实例/GetInstanceDetail.md#)|获取实例运行的DAG图|
 |[GetInstanceExceptions](cn.zh-CN/OpenAPI/实例/GetInstanceExceptions.md#)|获取运行实例的Failover信息|
 |[GetInstanceFinalState](cn.zh-CN/OpenAPI/实例/GetInstanceFinalState.md#)|获取运行实例最终状态|
-|[GetInstanceMetric](cn.zh-CN/OpenAPI/实例/GetInstanceMetric.md#)|获取运行实例的metric信息|
+|[GetInstanceMetric](cn.zh-CN/OpenAPI/实例/GetInstanceMetric.md#)|获取运行实例的Metric信息|
 |[GetInstanceRunSummary](cn.zh-CN/OpenAPI/实例/GetInstanceRunSummary.md#)|获取作业运行实例的运行概要|
 |[ListInstance](cn.zh-CN/OpenAPI/实例/ListInstance.md#)|获取某个项目下所有的运行实例|
 |[ModifyInstanceState](cn.zh-CN/OpenAPI/实例/GetInstanceResource.md#)|修改实例状态|
@@ -63,12 +63,12 @@ OpenAPI概览为您列举实时计算所支持的OpenAPI。
 |[CreateQueue](cn.zh-CN/OpenAPI/Queue/CreateQueue.md#)|创建Queue|
 |[DeleteQueue](cn.zh-CN/OpenAPI/Queue/DeleteQueue.md#)|删除Queue|
 |[BindQueue](cn.zh-CN/OpenAPI/Queue/BindQueue.md#)|绑定项目运行需要的Queue|
-|[UnbindQueue](cn.zh-CN/.md#)|解绑项目运行的Queue|
+|[UnbindQueue](cn.zh-CN/OpenAPI/Queue/UnbindQueue.md#)|解绑项目运行的Queue|
 |[GetClusterQueueInfo](cn.zh-CN/OpenAPI/Queue/GetClusterQueueInfo.md#)|获取集群中Queue的信息|
 |[ListProjectBindQueue](cn.zh-CN/OpenAPI/Queue/ListProjectBindQueue.md#)|查询项目绑定的队列信息|
 |[ListProjectBindQueueResource](cn.zh-CN/OpenAPI/Queue/ListProjectBindQueueResource.md#)|查询项目绑定的队列的资源信息|
 
-## Custer {#section_klr_5gj_b81 .section}
+## Cluster {#section_klr_5gj_b81 .section}
 
 |OpenAPI|描述|
 |-------|--|
