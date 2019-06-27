@@ -2,7 +2,7 @@
 
 本文为您介绍如何创建实时计算Redis维表。
 
-**说明：** 本文仅支持实时计算3.2及以上版本。
+**说明：** 本文仅适用于实时计算3.2.2及以上版本。
 
 ## DDL {#section_033_h6g_uap .section}
 
@@ -29,7 +29,16 @@ CREATE TABLE white_list (
 -   维表JOIN时，ON的条件必须包含所有主键的等值条件。
 -   Redis维表仅支持声明两个字段，且字段类型必须为VARCHAR。
 
-## WITH参数 {#section_so8_ayu_w5h .section}
+## WITH参数 {#section_l5f_xor_vqo .section}
+
+|参数|注释书名|备注|
+|--|----|--|
+|host|Redis连接地址|无。|
+|port|Redis连接端口|默认为6379。|
+|dbNum|选择操作的数据库|默认为0。|
+|password|Redis密码|默认为空，不进行权限验证。|
+
+## CACHE参数 {#section_so8_ayu_w5h .section}
 
 |参数|注释说明|备注|
 |cache|缓存策略|默认 `None`, 可选 `LRU`, `ALL`。 -   None：无缓存。
