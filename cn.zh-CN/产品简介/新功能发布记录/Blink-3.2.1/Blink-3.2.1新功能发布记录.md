@@ -1,5 +1,7 @@
 # Blink-3.2.1新功能发布记录 {#concept_491015 .concept}
 
+本文为您介绍Blink-3.2.1版本的核心功能以及新版本对于Datasteam和SQL的兼容性。
+
 ## 版本核心功能介绍 {#section_8xw_1yd_qqm .section}
 
 Blink-3.2.1是Blink正式开源后第1个基于开源代码的正式版本。Blink-3.2.1版本核心功能介绍如下：
@@ -29,13 +31,11 @@ Blink-3.2.1是Blink正式开源后第1个基于开源代码的正式版本。Bli
     |对接系统|Connector类型|
     |----|-----------|
     |ES|DIM|
-    |MongoDB|DIM|
     |MongoDB|SINK|
     |Redis|DIM|
     |Redis|SINK|
     |RocketMQ\(4.2.0）|SOURCE|
     |DTS|SOURCE|
-    |cassedra|SINK|
     |sqlserver|SINK|
 
 
