@@ -1,48 +1,55 @@
 # GetInstanceMetric {#concept_ifv_tb1_rgb .concept}
 
-GetInstanceMetric API可以获取foas上某个运行实例的所有metric信息，
+通过GetInstanceMetric API，您可以可以获取foas上某个运行实例的所有metric信息。
 
-**说明：** GetInstanceMetric API可以同时获取多个metric信息。在填写metricjson时会涉及到很多参数，想要了解参数的详细含义可以参考[opentsdb标准协议](http://opentsdb.net/docs/build/html/api_http/query/index.html?highlight=query)。
+**说明：** GetInstanceMetric API可以同时获取多个metric信息。metricjson参数详情请参见[opentsdb标准协议](http://opentsdb.net/docs/build/html/api_http/query/index.html?highlight=query)。
 
 ## GetInstanceMetric请求参数 {#section_nd5_qd1_rgb .section}
 
 |参数|类型|是否必选|示例值|描述|
-|jobName|String|是|`job1`|作业名称|
-|metricJson|String|是| ```language-json
-{start: 1547637510000,
-limit: avg:sample:50,
-end: 1547638420000,
-queries: [
-{ downsample: 20s-avg,
-metric: blink.bayes_team.huayuan_test_job.delay,
-granularity: 20s, aggregator: max }, 
-{downsample: 20s-avg,
-metric:blink.bayes_team.huayuan_test_job.fetched_delay, 
-granularity: 20s, 
-aggregator: max }] }
+|jobName|String|是|`job1`|作业名称。|
+|metricJson|String|是| ``` {#codeblock_42e_jlo_ckj .language-json}
+{
+    "start":1547637620000,
+    "limit":"avg:sample:50",
+    "end":1547638420000,
+    "queries":[
+        {
+            "downsample":"20s-avg",
+            "metric":"blink.bayes_team.huayuan_test_job.delay",
+            "granularity":"20s",
+            "aggregator":"max"
+        },
+        {
+            "downsample":"20s-avg",
+            "metric":"blink.bayes_team.huayuan_test_job.fetched_delay",
+            "granularity":"20s",
+            "aggregator":"max"
+        }
+    ]
+}
 ```
 
- |使用特定json来获取metric：-   start：metric开始时间（使用13位时间戳，精确到毫秒）
--   limit：`[取各条线值类型：max,avg,min]:[取值方式:bottom,above,sample]:[数目]`
--   end：metric结束时间（使用13位 时间戳，精确到毫秒）
--   downsample：下采样方式 `[时间(秒)]-[取值方式：max,avg,min]`
--   metric：`blink.[项目名称].[作业名称].[指标名称]`。常用指标名称如下表所示
+ |使用特定json来获取metric： -   start：metric开始时间（使用13位时间戳，精确到毫秒）。
+-   limit：`[取各条线值类型：max,avg,min]:[取值方式:bottom,above,sample]:[数目]`。
+-   end：metric结束时间（使用13位 时间戳，精确到毫秒）。
+-   downsample：下采样方式 `[时间(秒)]-[取值方式：max,avg,min]`。
+-   metric：`blink.[项目名称].[作业名称].[指标名称]`。常用指标名称如下表所示 ：
     -   granularity：采样时间（每隔多少秒取一个点，需要根据start和end时长来取，点数太多会造成调用超时）。
     -   aggregator：聚合方式（按照采样时间将底层的点聚合后输出为一个点，聚合方式有最大值max，最小值min，平均值avg三种）。
 
-|
-|projectName|String|是|`project1`|项目名称|
-|instanceId|Long|否|`-1`|InstanceID，流作业只有一个运行实例，此处填`-1L`，指在线上运行的，批作业可以通过ListInstance、Startjob等接口获得。|
+ |
+|projectName|String|是|`project1`|项目名称。|
+|instanceId|Long|否|`-1`|InstanceID，流式作业只有一个运行实例，此处填`-1L`，即在线上运行的，批作业可以通过ListInstance、Startjob等接口获得。|
 
 ## GetInstanceMetric返回参数 {#section_lww_xd1_rgb .section}
 
 |参数|类型|示例值|描述|
-|RequestId|String|`FD0FF8C0-779A-45EB-9674-FF3E127B10D2`|请求ID，方便foas定位问题|
-|Metrics| | |metric信息详情|
-|  └MetricName|String|`delay`|metric名称|
-|  └Dps|Map|`k:v`|时间点和对应的metric 值|
-|  └Summary|Float|`10.2`|聚合后的metric值|
-|  └Tags|Map|`k:v`|metric标记|
+|RequestId|String|`FD0FF8C0-779A-45EB-9674-FF3E127B10D2`|请求ID，方便foas定位问题。|
+|Metrics.MetricName|String|`delay`|metric名称。|
+|Metrics.Dps|Map|`k:v`|时间点和对应的metric值。|
+|Metrics.Summary|Float|`10.2`|聚合后的metric值。|
+|Metrics.Tags|Map|`k:v`|metric标记。|
 
 ## metric名称对应表 {#section_uwg_zd1_rgb .section}
 
@@ -89,7 +96,7 @@ aggregator: max }] }
 
 ## GetInstanceMetric请求示例 {#section_gwg_121_rgb .section}
 
-```
+``` {#codeblock_h50_l3t_y54}
 http(s)://[Endpoint]/?Action=undefined
 &<公共请求参数>
 ```
