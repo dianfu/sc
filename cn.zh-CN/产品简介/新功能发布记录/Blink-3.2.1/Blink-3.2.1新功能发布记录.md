@@ -35,8 +35,7 @@ Blink-3.2.1是Blink正式开源后第1个基于开源代码的正式版本。Bli
     |Redis|DIM|
     |Redis|SINK|
     |RocketMQ\(4.2.0）|SOURCE|
-    |DTS|SOURCE|
-    |sqlserver|SINK|
+    |SQL Server|SINK|
 
 
 ## 兼容性 {#section_9df_32s_acn .section}
