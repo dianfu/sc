@@ -6,14 +6,14 @@
 
 ## 什么是Kafka源表 {#section_mqr_zmz_bgb .section}
 
-Kafka源表的实现迁移自社区的Kafka版本实现。Kafka源表数据解析流程：Kafka Source Table -\> UDTF -\>Realtime Compute -\> Sink。从Kakfa读入的数据，都是VARBINARY（二进制）格式，对读入的每条数据，都需要用[自定义表值函数（UDTF）](cn.zh-CN/Flink SQL开发指南/Flink SQL/自定义函数（UDX）/自定义表值函数（UDTF）.md#)将其解析成格式化数据。
+Kafka源表的实现迁移自社区的Kafka版本实现。Kafka源表数据解析流程：Kafka Source Table -\> UDTF -\>Realtime Compute -\> Sink。从Kakfa读入的数据为VARBINARY（二进制）格式，需要使用[自定义表值函数（UDTF）](cn.zh-CN/Flink SQL开发指南/Flink SQL/自定义函数（UDX）/自定义表值函数（UDTF）.md#)的方式，将二进制格式解析成格式化数据。
 
 ## DDL定义 {#section_zyh_dnz_bgb .section}
 
-Kafka源表定义DDL部分必须与以下SQL完全一致，with参数中设置可改。
+Kafka源表定义DDL部分必须与以下SQL完全一致，WITH参数中的设置可更改。
 
 ``` {#codeblock_7mm_wfp_udt .language-sql}
-create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
+create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序保持一致。
   messageKey VARBINARY,
   `message`    VARBINARY,
   topic      VARCHAR,
@@ -34,12 +34,15 @@ create table kafka_stream(   ---表中的5个字段顺序务必保持一致。
     |参数|注释说明|备注|
     |--|----|--|
     |type|kafka对应版本|必选，必须是Kafka08、Kafka09、Kafka010或Kafka011。版本对应关系见[Kafka版本对应关系](#section_o4c_b4z_bgb)。|
-    |topic|读取的单个topic|无|
-    |topicPattern|读取一批topic的表达式|无|
-    |startupMode|启动位点|     -   EARLIEST：从Kafka最早分区开始读取。
-    -   Group\_OFFSETS：根据Group读取。
+    |topic|读取的单个topic|无。|
+    |topicPattern|读取一批topic的表达式|无。|
+    |startupMode|启动位点|默认参数为GROUP\_OFFSETS。     -   EARLIEST：从Kafka最早分区开始读取。
+    -   GROUP\_OFFSETS：根据Group读取。
     -   LATEST：从Kafka最新位点开始读取。
     -   TIMESTAMP：从指定的时间点读取。\(Kafka010、Kafka011支持。\)
+
+**说明：** 设置为TIMESTAMP模式时，需要在作业参数中明文指定时区。例如，`blink.job.timeZone=Asia/Shanghai`。
+
  |
     |partitionDiscoveryIntervalMS|定时检查是否有新分区产生|默认值为60000，单位为毫秒。|
     |extraConfig|额外的kafkaConsumer配置项目|可选，未在可选配置项中，但是额外期望的配置。|
