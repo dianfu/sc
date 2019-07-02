@@ -77,10 +77,7 @@ CAST(SUBSTRING(commodity,0,5) AS VARBINARY) AS mess
 FROM source_table
 ```
 
-**说明：** 
-
--   `cast(varchar as varbinary)`需在实时计算2.0及以上版本使用，若版本低于2.0，请先升级。
--   varbinary只能入参一次。
+**说明：** `cast(varchar as varbinary)`需在实时计算2.0及以上版本使用，若版本低于2.0，请先完成版本升级。
 
 ## WITH参数 {#section_glb_mqf_cgb .section}
 
