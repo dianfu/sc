@@ -10,99 +10,99 @@
 
 -   STRING类型
 
-    DDL只有2列：第1列为key；第2列为value。插入数据，对应的Redis命令为`set key value`。
+    DDL为2列：第1列为key；第2列为value。Redis插入数据的命令为`set key value`。
 
     ``` {#codeblock_5k3_olh_1dj}
-    create table resik_output {
+    create table resik_output (
       a varchar,
       b varchar,
       primary key(a)
-    } with {
+    ) with (
       type = 'redis',
       mode = 'string',
       host = '${redisHost}', -- 例如，'127.0.0.1'。
       port = '${redisPort}', -- 例如，'6379'。
       dbNum = '${dbNum}', -- 默认为0。
       ignoreDelete = 'true' -- 收到Retraction时，是否删除之前插入的数据，默认为false。
-    }
+    )
     ```
 
 -   LIST类型
 
-    DDL只有2列：第1列为key；第2列为value。插入数据，对应的Redis命令为`lpush key value`。
+    DDL为2列：第1列为key；第2列为value。Redis插入数据的命令为`lpush key value`。
 
     ``` {#codeblock_7va_8yo_0qh}
-    create table resik_output {
+    create table resik_output (
       a varchar,
       b varchar,
       primary key(a)
-    } with {
+    ) with (
       type = 'redis',
       mode = 'list',
       host = '${redisHost}', -- 例如，'127.0.0.1'。
       port = '${redisPort}', -- 例如，'6379'。
       dbNum = '${dbNum}', -- 默认为0。
       ignoreDelete = 'true' -- 收到Retraction时，是否删除之前插入的数据，默认为false。
-    }
+    )
     ```
 
 -   SET类型
 
-    DDL只有2列：第1列为key；第2列为value。插入数据，对应的Redis命令为`sadd key value`。
+    DDL为2列：第1列为key；第2列为value。Redis插入数据的命令为`sadd key value`。
 
     ``` {#codeblock_s3n_z3t_cvt}
-    create table resik_output {
+    create table resik_output (
       a varchar,
       b varchar,
       primary key(a)
-    } with {
+    ) with (
       type = 'redis',
       mode = 'set',
       host = '${redisHost}', -- 例如，'127.0.0.1'。
       port = '${redisPort}', -- 例如，'6379'。
       dbNum = '${dbNum}', -- 默认为0。
       ignoreDelete = 'true' -- 收到Retraction时，是否删除之前插入的数据，默认为false。
-    }
+    )
     ```
 
 -   HASHMAP类型
 
-    DDL只有3列：第1列为key；第2列为hash\_key；第3列为hash\_key对应的hash\_value。插入数据，对应的Redis命令为`hmset key hash_key hash_value`。
+    DDL为3列：第1列为key；第2列为hash\_key；第3列为hash\_key对应的hash\_value。Redis插入数据的命令为`hmset key hash_key hash_value`。
 
     ``` {#codeblock_vou_p6p_sf5}
-    create table resik_output {
+    create table resik_output (
       a varchar,
       b varchar, 
       c varchar,
       primary key(a)
-    } with {
+    ) with (
       type = 'redis',
       mode = 'hashmap',
       host = '${redisHost}', -- 例如，'127.0.0.1'。
       port = '${redisPort}', -- 例如，'6379'。
       dbNum = '${dbNum}', -- 默认为0。
       ignoreDelete = 'true' -- 收到Retraction时，是否删除之前插入的数据，默认为false。
-    }
+    )
     ```
 
 -   SORTEDSET类型
 
-    DDL只有3列：第1列为key；第2列为score；第3列为value。插入数据，对应的Redis命令为`add key score value`。
+    DDL为3列：第1列为key；第2列为score；第3列为value。Redis插入数据的命令为`add key score value`。
 
     ``` {#codeblock_jh9_u0f_uwg}
-    create table resik_output {
+    create table resik_output (
       a varchar,
       b double,  --必须为DOUBLE类型。
       c varchar,
       primary key(a)
-    } with {
+    ) with (
       type = 'redis',
       mode = 'sortedset',
       host = '${redisHost}', -- 例如，'127.0.0.1'。
       port = '${redisPort}', -- 例如，'6379'。
       dbNum = '${dbNum}', -- 默认为0。
       ignoreDelete = 'true' -- 收到Retraction时，是否删除之前插入的数据，默认为false。
-    }
+    )
     ```
 
 
@@ -121,6 +121,6 @@
 |host|Redis server对应地址|取值示例：`127.0.0.1`|
 |port|Redis server对应端口|否|默认值为6379|
 |dbNum|Redis server对应数据库序号|默认值为0|
-|ignoreDelete|是否忽略Retraction消息|默认值为false，可取值为ture或false。如果设置为true，收到Retraction时，同时删除数据对应的key及之前插入的数据。|
+|ignoreDelete|是否忽略Retraction消息|默认值为false，可取值为true或false。如果设置为true，收到Retraction时，同时删除数据对应的key及之前插入的数据。|
 |password|Redis Server 对应的密码|用户配置参数|
 
