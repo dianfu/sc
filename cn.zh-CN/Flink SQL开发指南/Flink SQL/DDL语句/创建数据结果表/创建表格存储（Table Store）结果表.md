@@ -4,13 +4,13 @@
 
 ## 什么是表格存储（Table Store） {#section_i4b_jrf_cgb .section}
 
-表格存储（Table Store），简称OTS，是构建在阿里云飞天分布式系统之上的分布式NoSQL数据存储服务。表格存储通过数据分片和负载均衡技术，实现数据规模与访问并发上的无缝扩展，提供海量结构化数据的存储和实时访问服务。
+表格存储（Table Store），简称OTS，是基于阿里云飞天分布式系统的分布式NoSQL数据存储服务。表格存储通过数据分片和负载均衡技术，实现数据规模与访问并发上的无缝扩展，提供海量结构化数据的存储和实时访问服务。
 
 ## DDL定义 {#section_pwl_qrf_cgb .section}
 
 实时计算支持使用TableStore作为结果输出，示例代码如下。
 
-```language-sql
+``` {#codeblock_sc8_qve_omt .language-sql}
 CREATE TABLE stream_test_hotline_agent (
  name VARCHAR,
  age BIGINT,
@@ -18,19 +18,20 @@ CREATE TABLE stream_test_hotline_agent (
  PRIMARY KEY (name,age)
 ) WITH (
  type='ots',
- instanceName='yourInstanceName',
- tableName='yourTableName',
- accessId='yourAccessId',
- accessKey='yourAccessSecret',
- endPoint='yourEndpoint',
+ instanceName='<yourInstanceName>',
+ tableName='<yourTableName>',
+ accessId='<yourAccessId>',
+ accessKey='<yourAccessSecret>',
+ endPoint='<yourEndpoint>',
  valueColumns='birthday'
-);		
+);        
 ```
 
 **说明：** 
 
 -   推荐使用数据存储注册功能，参见表格存储[注册表格存储（TableStore）](cn.zh-CN/Flink SQL开发指南/数据存储/注册数据存储/注册表格存储（TableStore）.md#)。
 -   valueColumns的值不能是声明的主键，可以是主键之外的任意字段。
+-   OTS结果表声明中，除主键列外，至少包含一个属性列。
 
 ## WITH参数 {#section_jsj_rrf_cgb .section}
 
