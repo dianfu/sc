@@ -4,7 +4,7 @@
 
 ## 背景 {#section_a3c_swz_zfb .section}
 
-实时计算共享模式处于阿里云经典网络，若需要访问阿里云VPC中的存储资源（例如，VPC中的RDS、MySQL、HybridDB数据库等），则需要完成VPC访问授权。
+实时计算共享模式属于阿里云经典网络，若需要访问阿里云VPC中的存储资源（例如，VPC中的RDS、MySQL、HybridDB数据库等），则需要完成VPC访问授权。
 
 **说明：** 
 
@@ -48,14 +48,14 @@
 
 Q：明文方式中，专有网络存储设备URL参数如何添加？
 
-A：使用明文方式引用VPC中的存储时，DDL WITH参数中的URL参数值需填写VPC访问授权页面中的**Mapping IP**和**Mapping IP**参数，例如，`url='jdbc:mysql://<mappingIP>:<mappingPort>/<databaseName>'`。**Mapping IP**和**Mapping IP**信息查看步骤如下：
+A：使用明文方式引用VPC中的存储时，DDL WITH参数中的URL参数值需填写VPC访问授权页面中的**Mapping IP**和**Mapping Port**参数，例如，`url='jdbc:mysql://<mappingIP>:<mappingPort>/<databaseName>'`。**Mapping IP**和**Mapping Port**信息查看步骤如下：
 
 1.  登录[实时计算控制台](https://stream.console.aliyun.com)。
 2.  将鼠标悬停至页面右上角账号名称。
 3.  在下拉菜单中，单击**项目管理**。
 4.  在左侧导航栏中单击**VPC访问授权**。
-5.  在VPC访问授权页面查看**Mapping IP**和**Mapping IP**信息。
+5.  在VPC访问授权页面查看**Mapping IP**和**Mapping Port**信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40858/156232101336284_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40858/156232189736284_zh-CN.png)
 
 
