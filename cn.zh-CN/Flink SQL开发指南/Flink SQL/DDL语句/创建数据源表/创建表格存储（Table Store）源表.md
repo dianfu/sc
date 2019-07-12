@@ -6,7 +6,7 @@
 
 ## 什么是表格存储（Table Store） {#section_zg7_baw_drh .section}
 
-表格存储（Table Store），简称OTS，是构建在阿里云飞天分布式系统之上的分布式NoSQL数据存储服务。表格存储通过数据分片和负载均衡技术，实现数据规模与访问并发上的无缝扩展，提供海量结构化数据的存储和实时访问服务。
+表格存储（Table Store）简称OTS，是构建在阿里云飞天分布式系统之上的分布式NoSQL数据存储服务。表格存储通过数据分片和负载均衡技术，实现数据规模与访问并发上的无缝扩展，提供海量结构化数据的存储和实时访问服务。
 
 ## 表格存储通道服务 {#section_deg_aur_r52 .section}
 
@@ -40,6 +40,8 @@
 }
 ```
 
+**说明：** 由于OTS源表中的Primary Key底层可进行Retract撤回机制，OTS源表暂不支持用Event Time作为窗口函数的时间类型。OTS源表仅支持Processing Time作为窗口函数的时间类型。Event Time和Processing Time详细说明，请参见[时间属性](cn.zh-CN/Flink SQL开发指南/Flink SQL/基本概念/时间属性.md#)。
+
 ## DDL定义 {#section_w29_83r_m3n .section}
 
 实时计算支持使用TableStore作为结果输出。针对本文Tunnel Service数据通道示例的TableStore源表DDL，示例如下。
@@ -69,9 +71,9 @@ create table tablestore_stream(
 
 |字段名|注释说明|
 |---|----|
-| `OtsRecordType` |数据操作类型|
-| `OtsRecordTimestamp` |数据操作时间（全量数据时为0）|
-| `<列名>_OtsColumnType` |某列的操作类型|
+|`OtsRecordType`|数据操作类型|
+|`OtsRecordTimestamp`|数据操作时间（全量数据时为0）|
+|`<列名>_OtsColumnType`|某列的操作类型|
 
 ## WITH参数 {#section_4nf_fed_4x5 .section}
 
