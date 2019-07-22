@@ -4,7 +4,7 @@
 
 ## 语法 {#section_f11_d15_cgb .section}
 
-```language-sql
+``` {#codeblock_pjm_wvm_mdw .language-sql}
 SELECT [ ALL | DISTINCT ]
 { * | projectItem [, projectItem ]* }
 FROM tableExpression
@@ -16,8 +16,7 @@ FROM tableExpression
 [AFTER MATCH SKIP]
 PATTERN (patternVariable[quantifier] [ patternVariable[quantifier]]*) WITHIN intervalExpression
 DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS patternDefinationExpression]*}
-)];
-			
+)];           
 ```
 
 |参数|说明|
@@ -69,7 +68,7 @@ DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS pat
 
     -   WITHIN 定义符合规则的事件序列的最大时间跨度。
     -   静态窗口格式：`INTERVAL ‘string’ timeUnit [ TO timeUnit ]` 示例：`INTERVAL ‘10’ SECOND, INTERVAL ‘45’ DAY, INTERVAL ‘10:20’ MINUTE TO SECOND, INTERVAL ‘10:20.10’ MINUTE TO SECOND, INTERVAL ‘10:20’ HOUR TO MINUTE, INTERVAL ‘1-5’ YEAR TO MONTH`。
-    -   动态窗口格式： `INTERVAL intervalExpression` 示例： `INTERVAL A.windowTime + 10`，其中A为pattern定义中第一个patternVariable。 在intervalExpression的定义中，可以使用pattern定义中出现过的patternVariable。当前只能使用第一个patternVariable。intervalExpression中可以使用UDF，intervalExpression的结果必须为long，单位为millisecond，表示窗口的大小。
+    -   动态窗口格式： `INTERVAL intervalExpression` 示例： `INTERVAL A.windowTime + 10`，其中A为pattern定义中第一个patternVariable。在intervalExpression的定义中，可以使用pattern定义中出现过的patternVariable。当前只能使用第一个patternVariable。intervalExpression中可以使用UDF，intervalExpression的结果必须为long，单位为millisecond，表示窗口的大小。
     -   DEFINE 定义在PATTERN中出现的patternVariable的具体含义，若某个patternVariable在DEFINE中没有定义，则认为对于每一个事件，该patternVariable都成立。
 -   MEASURES和DEFINE语句函数 
 
@@ -95,7 +94,7 @@ DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS pat
 
 -   示例语法
 
-    ```language-sql
+    ``` {#codeblock_vmt_xn4_j9r .language-sql}
     SELECT *
     FROM Ticker MATCH_RECOGNIZE (
     PARTITION BY symbol
@@ -124,7 +123,7 @@ DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS pat
 
 -   测试案例语法
 
-    ```language-sql
+    ``` {#codeblock_hpp_ca7_gob .language-sql}
     CREATE TABLE datahub_stream (
         `timestamp`               TIMESTAMP,
         card_id                   VARCHAR,
@@ -146,7 +145,7 @@ DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS pat
     );
     
     --案例描述
-    -- 当相同的card_id在十分钟内，从两个不同的location发生刷卡现象，就会触发报警机制，以便于监测信用卡盗刷等现象。
+    -- 当相同的card_id在十分钟内，在两个不同的location发生刷卡现象，就会触发报警机制，以便于监测信用卡盗刷等现象。
     
     -- 定义计算逻辑
     insert into rds_out
@@ -176,7 +175,7 @@ DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS pat
 
     |start\_timestamp（TIMESTAMP）|end\_timestamp（TIMESTAMP）|card\_id（VARCHAR）|event（VARCHAR）|
     |---------------------------|-------------------------|-----------------|--------------|
-    |`2018-04-13 20:00:00.0`|`2018-04-13 20:05:00.0`|1|Tom|
-    |`2018-04-13 20:05:00.0`|`2018-04-13 20:10:00.0`|1|Tom|
+    |`2018-04-13 12:00:00.0`|`2018-04-13 12:05:00.0`|1|Tom|
+    |`2018-04-13 12:05:00.0`|`2018-04-13 12:10:00.0`|1|Tom|
 
 
