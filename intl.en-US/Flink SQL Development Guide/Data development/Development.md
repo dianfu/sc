@@ -2,7 +2,7 @@
 
 This topic describes SQL code assistance, SQL version management, engine version change, and data storage management during the development phase of Realtime Compute.
 
-Users of Realtime Compute mainly use Flink SQL for data development. For more information, see [Flink SQL](intl.en-US/Flink SQL Development Guide/Flink SQL/Flink SQL overview.md#). In the data development phase, Realtime Compute provides a complete set of integrated development environment \(IDE\) tools, and offers the following functions to assist you with your business development:
+Users of Realtime Compute mainly use Flink SQL for data development. For more information, see [Flink SQL](intl.en-US/Flink SQL Development Guide/Flink SQL/Flink SQL overview.md#). In the data development phase, Realtime Compute provides a complete set of integrated development environment \(IDE\) tools, and offers the following functions to assist you with your business development.
 
 ## SQL code assistance {#section_ljd_bgs_2gb .section}
 
