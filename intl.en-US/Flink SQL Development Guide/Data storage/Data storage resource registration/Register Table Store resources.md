@@ -10,7 +10,7 @@ Table Store is a NoSQL data storage service built on the Apsara system of Alibab
 
 -   Endpoint
 
-    -   Enter the endpoint of Table Store. View the endpoint information of Table Store in the [Table Store console](https://ots.console.aliyun.com), and enter the internal IP address of Table Store. For more information, see [Endpoint](../../../../intl.en-US/Product Introduction/Terms/Endpoint.md#).
+    -   Enter the endpoint of Table Store. View the endpoint information of Table Store in the [Table Store console](https://ots.console.aliyun.com), and enter the VPC address of Table Store. For more information, see [Endpoint](../../../../intl.en-US//Endpoint.md#).
     -   Set Accessed By to **Any Network**. Log on to the [Table Store console](https://ots.console.aliyun.com/). Choose **Instance Details** \> **Network** \> **Change** \> **Any Network**.
 -   Instance name
 
