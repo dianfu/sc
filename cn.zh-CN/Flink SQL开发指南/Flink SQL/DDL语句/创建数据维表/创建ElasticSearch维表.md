@@ -13,7 +13,8 @@
   field1 LONG, 
   field2 VARBINARY, 
   field3 VARCHAR,
-  PRIMARY KEY(field1)
+  PRIMARY KEY(field1),
+  PERIOD FOR SYSTEM_TIME
 ) WIHT (
   type ='elasticsearch',
   endPoint = '<yourEndPoint>',
