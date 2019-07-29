@@ -31,7 +31,7 @@ WHERE rownum <= N [AND conditions]
 
 WHERE条件的限制
 
-为了使Flink SQL能识别出这是一个TopN的query，外层循环中必须要指定 `rownum <= N`的格式来指定前N条记录，不能使用`rownum - 5 <= N` 这种将`rownum`至于某个表达式中。当然，WHERE条件中，可以额外带上其他条件，但是必须是以`AND`连接。
+为了使Flink SQL能识别出这是一个TopN的query，外层循环中必须要指定 `rownum <= N`的格式来指定前N条记录，不能使用`rownum - 5 <= N` 这种将`rownum`至于某个表达式中。WHERE条件中，可以额外带上其他条件，但是必须是以`AND`连接。
 
 ## 示例1 {#section_k54_xdt_cgb .section}
 
@@ -63,7 +63,7 @@ FROM (
         FROM tmp_search
         GROUP BY SUBSTRING(time_str,1,12), keyword, city
     ) a 
-) 
+) t
 WHERE rownum <= 100
 ```
 
@@ -120,7 +120,7 @@ WHERE rownum <= 100
             FROM  source_table
             GROUP BY SUBSTRING(`TIME`,1,2), IP
         )a
-    ) 
+    ) t
     WHERE rownum <= 3 --可以根据真实top值取相应的数值，这里取得是测试数据。
     ```
 
@@ -138,7 +138,7 @@ WHERE rownum <= 100
 -   无排名优化解决数据膨胀问题
     -   数据膨胀问题
 
-        根据TopN的语法，`rownum`字段会作为结果表的主键字段之一写入结果表。但是这可能导致数据膨胀的问题。例如，收到一条原排名9的更新数据，更新后排名上升到1，那么从1到9的数据排名都发生变化了。需要将这些数据作为更新都写入结果表。这样就产生了数据膨胀，可能导致结果表因为收到了太多的数据而降低更新速度。
+        根据TopN的语法，`rownum`字段会作为结果表的主键字段之一写入结果表。但是这可能导致数据膨胀的问题。例如，收到一条原排名9的更新数据，更新后排名上升到1，则从1到9的数据排名都发生变化了。需要将这些数据作为更新都写入结果表。这样就产生了数据膨胀，可能导致结果表因为收到了太多的数据而降低更新速度。
 
     -   无排名优化方法
 
