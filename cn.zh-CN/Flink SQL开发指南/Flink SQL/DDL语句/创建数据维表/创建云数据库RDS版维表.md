@@ -2,6 +2,8 @@
 
 本文为您介绍如何创建实时计算云数据库RDS（DRDS）版维表。
 
+**说明：** 实时计算暂不支持引用RDS for MySQL 8.0版本作为数据存储。
+
 ## 云数据库RDS版 {#section_awk_yfn_cgb .section}
 
 阿里云关系型数据库（Relational Database Service）简称RDS，是一种稳定可靠、可弹性伸缩的在线数据库服务。基于阿里云分布式文件系统和高性能存储，RDS支持MySQL、SQL Server、PostgreSQL和PPAS（Postgre Plus Advanced Server，一种高度兼容Oracle的数据库）引擎，并且提供了容灾、备份、恢复、监控、迁移等方面的全套解决方案，彻底解决数据库运维的烦恼。
