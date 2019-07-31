@@ -166,7 +166,7 @@ DEMO中已经分别有3个简单的UDF、UDAF和UDTF的实现，供参考。
 |CHAR|java.lang.Character|
 |STRING|java.lang.String|
 |VARBINARY|java.lang.byte\[\]|
-|ARRAY|java.util.List|
+|ARRAY|暂不支持|
 |MAP|暂不支持|
 
 ## 自定义函数参数获取 {#section_zjd_fbn_jhb .section}
