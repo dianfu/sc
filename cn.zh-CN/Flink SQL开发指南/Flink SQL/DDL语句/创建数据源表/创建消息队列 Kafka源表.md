@@ -41,8 +41,10 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序保�
     -   LATEST：从Kafka最新位点开始读取。
     -   TIMESTAMP：从指定的时间点读取。\(Kafka010、Kafka011支持。\)
 
-**说明：** 设置为TIMESTAMP模式时，需要在作业参数中明文指定时区。例如，`blink.job.timeZone=Asia/Shanghai`。
+**说明：** 
 
+        -   设置为TIMESTAMP模式时，需要在作业参数中明文指定时区。例如，`blink.job.timeZone=Asia/Shanghai`。
+        -   阿里云Kafka产品基于开源Kafka 0.10.0版本，不支持`startupMode='TIMESTAMP'`模式。
  |
     |partitionDiscoveryIntervalMS|定时检查是否有新分区产生|默认值为60000，单位为毫秒。|
     |extraConfig|额外的kafkaConsumer配置项目|可选，未在可选配置项中，但是额外期望的配置。|
@@ -529,7 +531,7 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序保�
 
 -   WITH参数
 
-    请参见文档开始部分[with参数说明](cn.zh-CN/Flink SQL开发指南/Flink SQL/DDL语句/创建数据源表/创建消息队列 Kafka源表.md#section_ivk_14z_bgb)。
+    请参见文档开始部分[WITH参数](#section_ivk_14z_bgb)。
 
     **说明：** 
 
