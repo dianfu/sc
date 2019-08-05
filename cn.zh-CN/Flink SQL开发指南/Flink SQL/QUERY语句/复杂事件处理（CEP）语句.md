@@ -108,8 +108,7 @@ DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS pat
     DEFINE
     DOWN AS DOWN.price < PREV(DOWN.price),
     UP AS UP.price > PREV(UP.price)
-    ) MR
-    ORDER BY MR.symbol, MR.start_tstamp
+    )
     ```
 
 -   测试数据
@@ -167,7 +166,6 @@ DEFINE {patternVariable AS patternDefinationExpression [, patternVariable AS pat
         DEFINE                     --定义在PATTERN中出现的patternVariable的具体含义。
             e1 as e1.action = 'Tom',    --事件一的action标记为Tom。
             e2 as e2.action = 'Tom' and e2.location <> e1.location --事件二的action标记为Tom，且事件一和事件二的location不一致。
-    
     );
     ```
 
