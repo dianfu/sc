@@ -2,19 +2,19 @@
 
 The Overview page shows the real-time running status and instantaneous values of a job. Based on the analysis of the job status, you can determine whether the job is healthy, and whether it meets your expectations.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/155764081833933_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/156496856733933_en-US.png)
 
 ## Health score {#section_bc3_5dr_bgb .section}
 
 To help you quickly locate job performance issues, Realtime Compute offers a health check feature.
 
-A health score of less than 60 points indicates that the current node has stacked up some data, and its data processing capacity is insufficient. You can solve this issue by using either of the two methods:[Automatic configuration optimization](intl.en-US/Flink SQL Development Guide/Configuration optimization/Automatic configuration optimization.md#) and [Manual configuration optimization](intl.en-US/Flink SQL Development Guide/Configuration optimization/Manual configuration optimization.md#). You can optimize the performance based on your business requirements.
+A health score of less than 60 points indicates that the current node has stacked up some data, and its data processing capacity is insufficient. You can solve this issue by using [Manual configuration optimization](reseller.en-US/Flink SQL Development Guide/Configuration optimization/Manual configuration optimization.md#). You can optimize the performance based on your business requirements.
 
-## Task status { .section}
+## Task status {#section_ss9_hnu_bd2 .section}
 
 A task can be in any of the following statuses: created, running, failed, completed, scheduled, canceling, and canceled. You can determine whether a job is running properly based on the task status.
 
-## Job instantaneous values { .section}
+## Job instantaneous values {#section_7uk_ywg_ifl .section}
 
 |Name|Description|
 |----|-----------|
@@ -26,7 +26,7 @@ A task can be in any of the following statuses: created, running, failed, comple
 |Start time|The start time of the job.|
 |Running duration|The duration that the job has been running since it was started.|
 
-## Running topology { .section}
+## Running topology {#section_zyy_eot_eui .section}
 
 A running topology shows how the underlying computational logic of Realtime Compute works. Each component corresponds to a task. Each data stream starts from one or more data sources and ends in one or more result tables. The flow of data streams is similar to a Directed Acyclic Graph \(DAG\). For more efficient distributed execution, Realtime Compute chains operator subtasks together into tasks if possible. Every task is run in a thread. Combining operators into a task reduces inter-thread switching, serialized or deserialized messages, and data exchange in the cache, shortening latency and increasing overall throughput. An operator indicates a computational logic operator, and a task is a collection of multiple operators.
 
@@ -34,7 +34,7 @@ A running topology shows how the underlying computational logic of Realtime Comp
 
     To help you better understand the abstract underlying computational logic of Realtime Compute, the Realtime Compute platform offers the following view.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/155764081933937_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/156496856733937_en-US.png)
 
     The detailed information about a task is as follows. When you move the pointer over a task, the detailed information appears.
 
