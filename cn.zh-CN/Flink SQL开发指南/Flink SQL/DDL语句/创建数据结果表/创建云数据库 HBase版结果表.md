@@ -2,42 +2,81 @@
 
 本文为您介绍如何创建实时计算云数据库HBase版结果表。
 
-**说明：** 本文档仅适用于实时计算独享模式。
+**说明：** 
+
+-   本文档仅适用于实时计算独享模式。
+-   blink-3.3.0以下版本仅支持HBase企业标准版
+-   blink-3.3.0及以上版本同时支持HBase企业标准版和HBase性能增强版。
 
 ## DDL定义 {#section_l2m_q1g_cgb .section}
 
-实时计算支持使用HBase作为结果输出。示例代码如下。
+实时计算支持使用HBase作为结果输出。
 
-``` {#codeblock_rua_osa_a1v .language-java}
-create table liuxd_user_behavior_test_front (
-    row_key varchar,
-    from_topic varchar,
-    origin_data varchar,
-    record_create_time varchar,
-    primary key (row_key)
-) with (
-    type = 'cloudhbase',
-    zkQuorum = '2',  
-    columnFamily = '<yourColumnFamily>',
-    tableName = '<yourTableName>',
-    batchSize = '500'
-)    
-```
+-   HBase企业标准版示例代码如下。
+
+    ``` {#codeblock_o4f_k36_qwn .language-java}
+    create table liuxd_user_behavior_test_front (
+        row_key varchar,
+        from_topic varchar,
+        origin_data varchar,
+        record_create_time varchar,
+        primary key (row_key)
+    ) with (
+        type = 'cloudhbase',
+        zkQuorum = '2',  
+        columnFamily = '<yourColumnFamily>',
+        tableName = '<yourTableName>',
+        batchSize = '500'
+    )
+    ```
+
+-   HBase性能增强版示例代码如下。
+
+    ``` {#codeblock_3rr_vre_6eu .language-java}
+    create table liuxd_user_behavior_test_front (
+        row_key varchar,
+        from_topic varchar,
+        origin_data varchar,
+        record_create_time varchar,
+        primary key (row_key)
+    ) with (
+        type = 'cloudhbase',
+        endPoint = '2',  
+        columnFamily = '<yourColumnFamily>',
+        tableName = '<yourTableName>',
+        batchSize = '500'
+    )
+    ```
+
 
 **说明：** 
 
 -   PRIMARY KEY支持定义多字段。多字段以`rowkeyDelimiter`（默认为`:`）作为分隔符进行连接。
 -   HBase执行撤回删除操作时，如果COLUMN定义了多版本，将清空所有版本的COLUMN值。
+-   HBase企业标准版和HBase性能增强版DDL的区别为连接参数不同：
+    -   HBase企业标准版使用连接参数`zkQuorum`。
+    -   HBase性能增强版使用连接参数`endPoint`。
 
 ## WITH参数 {#section_zdt_m1g_cgb .section}
 
 |参数|注释说明|备注|
 |--|----|--|
-|zkQuorum|HBase集群配置的zk地址|可以在hbase-site.xml文件中找到hbase.zookeeper.quorum相关配置。|
-|zkNodeParent|集群配置在zk上的路径|可以在hbase-site.xml文件中找到hbase.zookeeper.quorum相关配置。|
+|zkQuorum|HBase集群配置的zk地址|可以在hbase-site.xml文件中找到hbase.zookeeper.quorum相关配置。 **说明：** 仅在HBase企业标准版中生效。
+
+ |
+|zkNodeParent|集群配置在zk上的路径|可以在hbase-site.xm文件中找到hbase.zookeeper.quorum相关配置。 **说明：** 仅在HBase企业标准版中生效。
+
+ |
+|endPoint|HBase地域名称|可在购买的HBase实例控制台中获取。 **说明：** 仅在HBase性能增强版中生效。
+
+ |
+|userName|userName|可选。 **说明：** 仅在HBase性能增强版中生效。
+
+ |
+|password|密码|可选。 **说明：** 仅在HBase性能增强版中生效。
+
+ |
 |tableName|HBase表名|无。|
-|userName|用户名|无。|
-|password|密码|无。|
 |partitionBy|是否使用joinKey进行分区|可选，默认为false。设置为true时，使用joinKey进行分区，将数据分发到各JOIN节点，提高缓存命中率。|
 |shuffleEmptyKey|是否将上游EMPTY KEY随机发送到下游节点|可选，默认为false。参数意义如下： -   false：如果上游有多个EMPTY KEY，将会将所有EMPTY KEY发送至一个JOIN节点。
 -   true：如果上游有多个EMPTY KEY，将会将所有EMPTY KEY随机发送到各个JOIN节点。
