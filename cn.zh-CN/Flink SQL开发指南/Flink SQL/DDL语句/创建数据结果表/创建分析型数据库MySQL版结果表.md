@@ -4,9 +4,11 @@
 
 ## 什么是分析型数据库MySQL版 {#section_pzl_l42_cgb .section}
 
-分析型数据库MySQL版是阿里巴巴自主研发的海量数据实时高并发在线分析（Realtime OLAP）云计算服务，使得您可以在毫秒级时单位时间内，对千亿级数据进行即时的多维分析透视和业务探索。
+分析型数据库MySQL版是阿里巴巴自主研发的海量数据实时高并发在线分析（Realtime OLAP）云计算服务，支持在毫秒级时单位时间内，对千亿级数据进行即时的多维分析透视和业务探索。
 
 ## DDL定义 {#section_zvg_442_cgb .section}
+
+**说明：** 分析型数据库MySQL版 3.0版本（ADS 3.0版本）实时计算结果表DDL请参见[DDL定义](cn.zh-CN/Flink SQL开发指南/Flink SQL/DDL语句/创建数据结果表/创建云数据库 HybridDB for MySQL结果表.md#section_jvv_vsm_cgb)。
 
 实时计算支持使用分析型数据库MySQL版作为结果输出。示例代码如下。
 
