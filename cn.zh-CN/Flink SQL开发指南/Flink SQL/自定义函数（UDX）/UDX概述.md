@@ -14,109 +14,39 @@
 |UDAF（User Defined Aggregation Function）|自定义聚合函数，其输入与输出是多对一的关系， 即将多条输入记录聚合成一条输出值。可以与SQL中的GROUP BY语句联用。具体语法请参见[聚合函数](../../../../cn.zh-CN/开发/SQL及函数/内建函数/聚合函数.md#)。|
 |UDTF（User Defined Table-valued Function）|自定义表值函数，调用一次函数输出多行或多列数据。|
 
+## UDX DEMO {#section_1ou_984_z4n .section}
+
+阿里云团队为您提供UDX DEMO便于您快速进行业务开发。以下实时计算UDX DEMO中包含UDF、UDAF和UDTF的实现，供您参考：
+
+**说明：** 
+
+-   DEMO示例中已为您配置对应版本的开发环境，您无需进行环境搭建。
+-   DEMO为Maven项目，您可使用IntelliJ IDEA进行开发。开发方法请参见[使用IntelliJ IDEA开发自定义函数](cn.zh-CN/Flink SQL开发指南/Flink SQL/自定义函数（UDX）/使用IntelliJ IDEA开发自定义函数.md#)。
+
+-   实时计算3.0版本
+
+    [blink\_udx\_3x](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/99987/cn_zh/1565689446746/blink_customersink_3x.tar.gz)
+
+-   实时计算2.0版本
+
+    [blink\_udx\_2x](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/99987/cn_zh/1565689659066/blink_customersink_2x.tar.gz)
+
+-   实时计算1.0版本
+
+    [blink\_udx\_1x](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1565683878129/blink_udx_1x.tar.gz)
+
+
 ## 环境搭建 {#section_ck2_gcm_cgb .section}
 
-自定义函数（UDX）的开发需要依赖实时计算的相关JAR包，为了便于您快速的搭建环境，我们提供了一个UDX开发DEMO（`RealtimeCompute-udxDemo.gz`），该DEMO为Maven的Project，您可使用IntelliJ IDEA直接打开，并在此基础上进行开发。
+以上DEMO主要使用的依赖JAR包如下，如您需要单独使用，可自行下载：
 
-DEMO中已经分别有3个简单的UDF、UDAF和UDTF的实现，供参考。
-
-`[RealtimeCompute-udxDemo.gz](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/69463/cn_zh/1535104736459/RealtimeCompute-udxDemo.gz)`
-
-以上DEMO主要使用的依赖JAR包如下，如您需要单独使用，可以直接下载：
-
--   基于实时计算3.2.1以下版本
-
+-   基于实时计算3.2.1以下版本：
     -   [flink-streaming-java\_2.11](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1543327398632/flink-streaming-java_2.11-blink-2.2.4.jar)
     -   [flink-table\_2.11](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1543327437386/flink-table_2.11-blink-2.2.4.jar)
     -   [flink-core-blink-2.2.4](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1543326995841/flink-core-blink-2.2.4.jar)
-    **说明：** 上文中的DEMO包下载后，要将`pom.xml`按照下边示例进行更改。您可以下载基于共享模式的[单例测试案例](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1557294154462/RealtimeCompute-udxDemo.zip)。
+-   基于实时计算3.2.1及以上版本：
 
-    ``` {#codeblock_m93_8xh_puo .language-java}
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-core</artifactId>
-        <version>blink-2.2.4-SNAPSHOT</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-         <groupId>org.apache.flink</groupId>
-         <artifactId>flink-table_2.11</artifactId>
-         <version>blink-2.2.4-SNAPSHOT</version>
-         <scope>provided</scope>
-    </dependency> 
-    <dependency>
-         <groupId>org.apache.flink</groupId>
-         <artifactId>flink-streaming-java_2.11</artifactId>
-         <version>blink-2.2.4-SNAPSHOT</version>
-         <scope>provided</scope>
-    </dependency>
-    
-    <!-- 单例测试使用 -->
-    <!-- https://mvnrepository.com/artifact/junit/junit -->
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.8.1</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.scala-lang</groupId>
-        <artifactId>scala-library</artifactId>
-        <version>2.11.12</version>
-    </dependency> 
-    ```
-
--   基于实时计算3.2.1及以上版本
-
-    请根据需求自行添加开源版本所支持的[POM依赖包](https://search.maven.org/search?q=com.alibaba.blink)。Blink 3.2.1版本的POM文件，示例如下。
-
-    ``` {#codeblock_4li_hly_1n8 .language-java}
-    <properties>
-        <scala.version>2.11.12</scala.version>
-        <scala.binary.version>2.11</scala.binary.version>
-        <blink.version>blink-3.2.2</blink.version>
-        <java.version>1.8</java.version>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba.blink</groupId>
-            <artifactId>flink-core</artifactId>
-            <version>${blink.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.blink</groupId>
-            <artifactId>flink-java</artifactId>
-            <version>${blink.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.blink</groupId>
-            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
-            <version>${blink.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.blink</groupId>
-            <artifactId>flink-table_2.11</artifactId>
-            <version>${blink.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.11.12</version>
-        </dependency>
-    </dependencies>
-    ```
-
-    下载查看[完整依赖包示例](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/111995/cn_zh/1553501574644/pom.xml)。
+    请根据需求自行添加开源版本所支持的[POM依赖包](https://search.maven.org/search?q=com.alibaba.blink)。 下载查看[完整依赖包示例](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/111995/cn_zh/1553501574644/pom.xml)。
 
     **说明：** 如果您需要依赖Snapshot版本，可以自行添加Snapshot版本所支持的[POM依赖包](https://oss.sonatype.org/content/repositories/snapshots/com/alibaba/blink/flink-core/)。
 
