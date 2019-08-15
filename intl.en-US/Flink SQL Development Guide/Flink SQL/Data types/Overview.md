@@ -22,7 +22,7 @@ This topic describes data types supported by Realtime Compute and how to convert
 
 ## Data type conversion {#section_hkv_tct_zgb .section}
 
-![Data type conversion](images/34048_en-US.png)
+![Data Types](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40868/156584075534048_en-US.png)
 
 ## Examples {#section_mnp_5ct_zgb .section}
 
@@ -34,10 +34,10 @@ This topic describes data types supported by Realtime Compute and how to convert
 
 -   Test statements
 
-    ```language-SQL
+    ``` {#codeblock_0nf_0l7_k1m .language-SQL}
     cast (var1 as bigint) as AA;
     cast (big1 as varchar) as BB;
-    
+    					
     ```
 
 -   Test results
