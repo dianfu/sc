@@ -16,7 +16,7 @@ More details about these three methods are described in the following sections. 
 
 The miniBatch parameter can be used to optimize only GROUP BY operators. During the streaming data processing of Flink SQL, the state is read each time a data record arrives for processing, which consumes large amounts of I/O resources. After you set the miniBatch parameter, Realtime Compute reads the state only once for data records with the same key, and the output contains only the latest data record. This reduces the frequency of reading the state and minimizes the data output updates. When you add miniBatch as a new parameter for your job, we recommend that you terminate the job before you set the parameter, and then restart the job. If you want to change the value of this parameter, you can suspend the job beforehand, and then resume the job.
 
-```
+``` {#codeblock_y7k_vd2_9rv}
 # excatly-once semantics
 blink.checkpoint.mode=EXACTLY_ONCE
 # The checkpoint interval, in milliseconds.
@@ -49,7 +49,7 @@ blink.job.timeZone=Asia/Shanghai
 1.  Problem analysis
     1.  As shown in the following topology, the percentage of input queues at task node 2 has reached 100%. The data of task node 2 is stacked up and puts pressure back on task node 1, at which the percentage of output queues has reached 100%.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41064/155764139033889_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41064/156583953133889_en-US.png)
 
     2.  You can click task node 2 and locate the subtask in **SubTask List**where the percentage of **InQueue** has reached 100%. Then, click **View Logs** to view the detailed information.
     3.  Check the CPU and memory usage in **TaskExecutor** \> **Metrics Graph**. Increase the CPU capacity and memory size based on the actual use.
@@ -62,15 +62,10 @@ blink.job.timeZone=Asia/Shanghai
             2.  Click the **Pencil** icon .
             3.  Modify Operator parameters in **Modify Operator Data**.
         -   Modify parameters of a single operator:
-
             1.  Click**➕** at the group box where the target operator belongs to.
             2.  Hover your mouse on the target operator box.
             3.  Click the **Pencil** icon .
             4.  Modify Operator parameters in **Modify Operator Data**.
-            ![](images/33897_en-US.png)
-
-            ![](images/33898_en-US.png)
-
     3.  After you modify the parameters, click **Apply and Close** in the upper-right corner of the page.
     **Note:** 
 
