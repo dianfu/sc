@@ -22,7 +22,7 @@ This topic describes data types supported by Realtime Compute and how to convert
 
 ## Data type conversion {#section_hkv_tct_zgb .section}
 
-![Data Types](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40868/156584075534048_en-US.png)
+![Data Types](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40868/156584321334048_en-US.png)
 
 ## Examples {#section_mnp_5ct_zgb .section}
 
