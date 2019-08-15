@@ -2,7 +2,7 @@
 
 The Overview page shows the real-time running status and instantaneous values of a job. Based on the analysis of the job status, you can determine whether the job is healthy, and whether it meets your expectations.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/156496856733933_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/156584754633933_en-US.png)
 
 ## Health score {#section_bc3_5dr_bgb .section}
 
@@ -34,7 +34,7 @@ A running topology shows how the underlying computational logic of Realtime Comp
 
     To help you better understand the abstract underlying computational logic of Realtime Compute, the Realtime Compute platform offers the following view.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/156496856733937_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/156584754633937_en-US.png)
 
     The detailed information about a task is as follows. When you move the pointer over a task, the detailed information appears.
 
@@ -56,7 +56,7 @@ A running topology shows how the underlying computational logic of Realtime Comp
 
     Realtime Compute also allows you to view each task in the list mode.
 
-    ![](images/33942_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41066/156584754733942_en-US.png)
 
     You can click a task node to enter its details page, and view its **Subtask List**.
 
