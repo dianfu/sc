@@ -10,21 +10,21 @@ A session window is configured by using a gap, which defines the length of an in
 
 The following figure shows a session window. Note that different keys have different windows due to data distribution differences.
 
-![](images/34336_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40914/156584843034336_en-US.png)
 
 ## Session window function syntax {#section_dhc_y1v_cgb .section}
 
 The SESSION function is used to define a session window in a GROUP BY clause.
 
-```language-sql
+``` {#codeblock_8me_8d8_rxj .language-sql}
 SESSION(<time-attr>, <gap-interval>)
 <gap-interval>: INTERVAL 'string' timeUnit
-
+			
 ```
 
 **Note:** 
 
-The <time-attr data-spm-anchor-id="a2762.11472859.0.i151.7ca4203bEk6mXa"\>`<time-attr>` parameter must be a valid time attribute in a stream to specify whether the time is the processing time or event time.</time-attr\> For more information about how to define the [time attribute](intl.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#section_vhy_mp5_cgb) and [watermark](intl.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#ul_pf2_sx5_cgb), see [Window function overview](intl.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#).
+The <time-attr data-spm-anchor-id="a2762.11472859.0.i151.7ca4203bEk6mXa"\>`<time-attr>` parameter must be a valid time attribute in a stream to specify whether the time is the processing time or event time.</time-attr\> For more information about how to define the [time attribute](reseller.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#section_vhy_mp5_cgb) and [watermark](reseller.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#ul_pf2_sx5_cgb), see [Window function overview](reseller.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#).
 
 ## Window identifier functions {#section_dtr_rdv_cgb .section}
 
@@ -54,7 +54,7 @@ The following example describes how to compute the number of clicks per user dur
 
 -   Test statements
 
-    ```language-SQL
+    ``` {#codeblock_gvd_9sk_hr6 .language-SQL}
     CREATE TABLE user_clicks(
     username varchar,
     click_url varchar,
@@ -82,7 +82,7 @@ The following example describes how to compute the number of clicks per user dur
     COUNT(click_url)
     FROM user_clicks
     GROUP BY SESSION(ts, INTERVAL '30' SECOND), username
-    
+    					
     ```
 
 -   Test result
