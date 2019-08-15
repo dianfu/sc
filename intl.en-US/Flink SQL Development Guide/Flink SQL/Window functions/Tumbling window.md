@@ -6,21 +6,21 @@ This topic describes how to use the tumbling window function of Realtime Compute
 
 By using tumbling windows, you assign each element to a window with the specified size. Generally, tumbling windows are fixed in size and do not overlap each other. For example, if a 5-minute tumbling window is defined, an infinite data stream is divided by period into windows such as `[0:00, 0:05)`, `[0:05, 0:10)`, `[0:10, 0:15)`. The following figure shows a 30-second tumbling window.
 
-![Tumbling window](images/34298_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40912/156584880734298_en-US.png)
 
 ## Syntax {#section_dhc_y1v_cgb .section}
 
 The TUMBLE function is used to define a tumbling window in a GROUP BY clause.
 
-```language-sql
+``` {#codeblock_llm_lf2_nj6 .language-sql}
 TUMBLE(<time-attr>, <size-interval>)
 <size-interval>: INTERVAL 'string' timeUnit
-
+			
 ```
 
 **Note:** 
 
-The <time-attr data-spm-anchor-id="a2762.11472859.0.i151.7ca4203bEk6mXa"\>`<time-attr>` parameter must be a valid time attribute in a stream to specify whether the time is the processing time or event time.</time-attr\> For more information about how to define the [time attribute](intl.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#section_vhy_mp5_cgb) and [watermark](intl.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#ul_pf2_sx5_cgb), see [Window function overview](intl.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#).
+The <time-attr data-spm-anchor-id="a2762.11472859.0.i151.7ca4203bEk6mXa"\>`<time-attr>` parameter must be a valid time attribute in a stream to specify whether the time is the processing time or event time.</time-attr\> For more information about how to define the [time attribute](reseller.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#section_vhy_mp5_cgb) and [watermark](reseller.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#ul_pf2_sx5_cgb), see [Window function overview](reseller.en-US/Flink SQL Development Guide/Flink SQL/Window functions/Window function overview.md#).
 
 ## Window identifier functions {#section_dtr_rdv_cgb .section}
 
@@ -49,7 +49,7 @@ The following describes how to compute the number of clicks per user and minute 
 
 -   Test statements
 
-    ```language-SQL
+    ``` {#codeblock_47s_19a_858 .language-SQL}
     CREATE TABLE user_clicks(
     username varchar,
     click_url varchar,
@@ -77,7 +77,7 @@ The following describes how to compute the number of clicks per user and minute 
     COUNT(click_url)
     FROM user_clicks
     GROUP BY TUMBLE(ts, INTERVAL '1' MINUTE), username
-    
+    					
     ```
 
 -   Test result
