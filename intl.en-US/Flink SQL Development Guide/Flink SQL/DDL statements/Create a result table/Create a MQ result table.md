@@ -6,7 +6,7 @@ This topic describes how to create an MQ result table in Realtime Compute.
 
 MQ is a professional message middleware that Alibaba Cloud has developed and put into commercial use. It is a core product for the enterprise-level Internet architecture \(Aliware\). Based on the high-availability distributed cluster technology, MQ provides a complete set of high-performance messaging cloud services, including publishing/subscription, message tracing, resource statistics, message scheduling \(delaying\), and monitoring and alerting. Realtime Compute supports creating an MQ table as the result table. The sample code is as follows:
 
-```language-sql
+``` {#codeblock_jvs_1vy_u38 .language-sql}
 CREATE TABLE stream_test_hotline_agent (
 id INTEGER,
 len BIGINT,
@@ -28,7 +28,8 @@ type='mq',
 
 ## CSV format {#section_tvd_lqg_chb .section}
 
-```language-sql
+``` {#codeblock_4k7_3nf_ono .language-sql}
+
 
 
 
@@ -56,7 +57,7 @@ type='mq',
 
 The sample code for the binary format is as follows:
 
-```language-sql
+``` {#codeblock_2dy_9mk_2kt .language-sql}
 create table source_table (
   commodity VARCHAR
 )with(
@@ -90,7 +91,7 @@ FROM source_table
 |Name|Description|Remarks|
 |----|-----------|-------|
 |topic|The name of the MQ queue.|None|
-|endpoint|The endpoint.| -   Intranet access to Alibaba Cloud public cloud \(Alibaba Cloud classic network or VPC\): The endpoint for China \(Hangzhou\), China \(Shanghai\), China \(Qingdao\), China \(Beijing\), China \(Shenzhen\), and Hong Kong is `onsaddr-internal.aliyun.com:8080`.
+|endpoint|The endpoint.| -   Intranet access to Alibaba Cloud public cloud \(Alibaba Cloud classic network or VPC\): The endpoint for China \(Hangzhou\), China \(Shanghai\), China \(Qingdao\), China \(Beijing\), China \(Shenzhen\), and China \(Hong Kong\) is `onsaddr-internal.aliyun.com:8080`.
 -   Internet access to Alibaba Cloud public cloud: The endpoint is `http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet`.
 
  |
