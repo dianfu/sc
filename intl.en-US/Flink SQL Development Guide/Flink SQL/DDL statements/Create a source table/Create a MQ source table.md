@@ -8,7 +8,7 @@ MQ is a professional message middleware that Alibaba Cloud has developed and put
 
 ## Examples {#section_h3x_mkz_bgb .section}
 
-```language-sql
+``` {#codeblock_o5l_gwx_wyq .language-sql}
 create table mq_stream(
  x varchar,
  y varchar,
@@ -32,7 +32,7 @@ create table mq_stream(
 
 Assume that you have an MQ message in the following CSV format:
 
-```
+``` {#codeblock_iaa_irs_gxl}
 1,name,male 
 2,name,female
 ```
@@ -41,7 +41,7 @@ Assume that you have an MQ message in the following CSV format:
 
 In a Realtime Compute job, the DDL statement used to declare an MQ source table is as follows:
 
-```language-sql
+``` {#codeblock_c96_gsa_1ys .language-sql}
 create table mq_stream(
  x varchar,
  y varchar,
@@ -63,7 +63,7 @@ create table mq_stream(
 
 The sample code for the binary format is as follows:
 
-```language-sql
+``` {#codeblock_mkp_xsc_tln .language-sql}
 create table source_table (
   mess varbinary
 ) with (
@@ -98,7 +98,7 @@ FROM source_table
 |Name|Description|Remarks|
 |----|-----------|-------|
 |topic|The topic name.|None|
-|endPoint|The endpoint.| -   Intranet access to Alibaba Cloud public cloud \(Alibaba Cloud classic network or VPC\): The endpoint for China \(Hangzhou\), China \(Shanghai\), China \(Qingdao\), China \(Beijing\), China \(Shenzhen\), and Hong Kong is `onsaddr-internal.aliyun.com:8080`.
+|endPoint|The endpoint.| -   Intranet access to Alibaba Cloud public cloud \(Alibaba Cloud classic network or VPC\): The endpoint for China \(Hangzhou\), China \(Shanghai\), China \(Qingdao\), China \(Beijing\), China \(Shenzhen\), and China \(Hong Kong\) is `onsaddr-internal.aliyun.com:8080`.
 -   Internet access to Alibaba Cloud public cloud: The endpoint is `http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet`.
 
  |
