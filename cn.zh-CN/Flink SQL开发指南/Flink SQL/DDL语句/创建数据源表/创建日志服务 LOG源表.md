@@ -4,7 +4,7 @@
 
 ## 什么是日志服务 {#section_qr1_2wy_bgb .section}
 
-日志服务 LOG是针对日志类数据的一站式服务，在阿里巴巴集团经历大量大数据场景锤炼而成。 日志服务本身是流数据存储，实时计算能将其作为流式数据输入。对于日志服务而言，数据格式类似JSON，示例如下。
+日志服务 LOG是针对日志类数据的一站式服务，在阿里巴巴集团经历大量大数据场景锤炼而成。日志服务本身是流数据存储，实时计算能将其作为流式数据输入。对于日志服务而言，数据格式类似JSON，示例如下。
 
 ``` {#codeblock_pa1_2qk_7x8 .language-json}
 {
@@ -23,13 +23,13 @@ create table sls_stream(
   c VARCHAR
 ) with (
   type ='sls',  
-  endPoint ='yourEndpoint',
-  accessId ='yourAccessId',
-  accessKey ='yourAccessKey',
-  startTime = 'yourStartTime',
-  project ='yourProjectName',
-  logStore ='yourLogStoreName',
-  consumerGroup ='yourConsumerGroupName'
+  endPoint ='<yourEndpoint>',
+  accessId ='<yourAccessId>',
+  accessKey ='<yourAccessKey>',
+  startTime = '<yourStartTime>',
+  project ='<yourProjectName>',
+  logStore ='<yourLogStoreName>',
+  consumerGroup ='<yourConsumerGroupName>'
 );
 ```
 
@@ -59,16 +59,16 @@ create table sls_stream(
     ``` {#codeblock_q14_8p8_21o .language-sql}
     CREATE TABLE sls_log (
       __topic__  VARCHAR HEADER,
-      result     VARCHAR  
+      `result`     VARCHAR  
     )
     WITH
     (
       type ='sls'
     );
     CREATE TABLE sls_out (
-      name     VARCHAR,
+      `name`     VARCHAR,
       MsgID    VARCHAR,
-      Version  VARCHAR 
+      `Version`  VARCHAR 
     )
     WITH
     (
@@ -77,8 +77,8 @@ create table sls_stream(
     INSERT INTO sls_out
     SELECT 
     __topic__,
-    JSON_VALUE(result,'$.MsgID'),
-    JSON_VALUE(result,'$.Version')
+    JSON_VALUE(`result`,'$.MsgID'),
+    JSON_VALUE(`result`,'$.`Version`')
     FROM
     sls_log
     ```
