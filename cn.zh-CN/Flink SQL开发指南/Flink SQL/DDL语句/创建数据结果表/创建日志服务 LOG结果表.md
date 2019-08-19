@@ -8,7 +8,7 @@
 
 ``` {#codeblock_kmd_56v_uzg .language-sql}
 create table sls_stream(
- name VARCHAR,
+ `name` VARCHAR,
  age BIGINT,
  birthday BIGINT
 )with(
