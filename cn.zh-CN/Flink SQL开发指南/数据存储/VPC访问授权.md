@@ -22,24 +22,24 @@
 
     |参数|说明|
     |--|--|
-    |名称|VPC的名称|
-    |地域|VPC中存储设备所在的区域。|
-    |VPC ID|VPC中存储设备的VPC网络ID。 **说明：** RDS VPC网络ID查看步骤如下：
+    |**名称**|VPC的名称。|
+    |**地域**|VPC中存储设备所在的区域。|
+    |**VPC ID**|VPC中存储设备的VPC网络ID。 **说明：** RDS VPC网络ID查看步骤如下：
 
-    1.  登录[RDS管理控制台](https://rds.console.aliyun.com/)
+    1.  登录[RDS管理控制台](https://rds.console.aliyun.com/)。
     2.  在页面左上角，选择实例所在地域。
     3.  单击目标实例ID。
     4.  单击左侧导航栏中的**数据库连接**。
     5.  在**实例连接** \> **数据库连接** \> **网络类型**中，查看RDS的VPC ID。例如，`vpc-bp1lysht98wrvl9n3****`。
  |
-    |Instance ID|VPC中存储设设备的实例ID。 **说明：** RDS中实例ID查看步骤如下：
+    |**Instance ID**|VPC中存储设设备的实例ID。 **说明：** RDS中实例ID查看步骤如下：
 
-    1.  登录[RDS管理控制台](https://rds.console.aliyun.com/)
+    1.  登录[RDS管理控制台](https://rds.console.aliyun.com/)。
     2.  在页面左上角，选择实例所在地域。
     3.  单击目标实例ID，进入基本信息页面。
     4.  在**基本信息** \> **实例ID**中，查看RDS实例的ID。
  |
-    |Instance Port|VPC中存储设备的端口ID。 **说明：** RDS端口查询方法请参见[查看实例的内外网地址及端口信息](../../../../cn.zh-CN/RDS for MySQL 用户指南/数据库连接/查看实例的内外网地址及端口信息.md#)。
+    |**Instance Port**|VPC中存储设备的端口ID。 **说明：** RDS端口查询方法请参见[查看实例的内外网地址及端口信息](../../../../cn.zh-CN/RDS for MySQL 用户指南/数据库连接/查看实例的内外网地址及端口信息.md#)。
 
  |
 
@@ -56,6 +56,6 @@ A：使用明文方式引用VPC中的存储时，DDL WITH参数中的URL参数�
 4.  在左侧导航栏中单击**VPC访问授权**。
 5.  在VPC访问授权页面查看**Mapping IP**和**Mapping Port**信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40858/156232189736284_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40858/156620837036284_zh-CN.png)
 
 
