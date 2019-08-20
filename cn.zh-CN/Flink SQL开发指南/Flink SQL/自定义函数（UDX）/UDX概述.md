@@ -25,15 +25,15 @@
 
 -   实时计算3.0版本
 
-    [blink\_udx\_3x](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1565683799449/blink_udx_3x.tar.gz)
+    [blink\_udx\_3x](https://github.com/RealtimeCompute/blink_udx_3x)
 
 -   实时计算2.0版本
 
-    [blink\_udx\_2x](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1565683843085/blink_udx_2x.tar.gz)
+    [blink\_udx\_2x](https://github.com/RealtimeCompute/blink_udx_2x)
 
 -   实时计算1.0版本
 
-    [blink\_udx\_1x](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/98378/cn_zh/1565683878129/blink_udx_1x.tar.gz)
+    [blink\_udx\_1x](https://github.com/RealtimeCompute/blink_udx_1x)
 
 
 ## 环境搭建 {#section_ck2_gcm_cgb .section}
