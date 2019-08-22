@@ -39,11 +39,12 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序保�
     |startupMode|启动位点|默认参数为GROUP\_OFFSETS。     -   EARLIEST：从Kafka最早分区开始读取。
     -   GROUP\_OFFSETS：根据Group读取。
     -   LATEST：从Kafka最新位点开始读取。
-    -   TIMESTAMP：从指定的时间点读取。\(Kafka010、Kafka011支持。\)
+    -   TIMESTAMP：从指定的时间点读取。（Kafka010、Kafka011支持。）
 
 **说明：** 
 
         -   设置为TIMESTAMP模式时，需要在作业参数中明文指定时区。例如，`blink.job.timeZone=Asia/Shanghai`。
+        -   Group\_OFFSETS模式下，GroupID的第一次消费，没有设置偏移（Offset）值，默认从Kafka的最早分区开始读取数据。
         -   阿里云Kafka产品基于开源Kafka 0.10.0版本，不支持`startupMode='TIMESTAMP'`模式。
  |
     |partitionDiscoveryIntervalMS|定时检查是否有新分区产生|默认值为60000，单位为毫秒。|
@@ -537,4 +538,26 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序保�
 
     -   `bootstrap.servers`参数需要填写自建的地址和端口号。
     -   实时计算仅在2.2.6及以上版本中，支持阿里云Kafka或自建Kafka的TPS、RPS等指标信息的显示。
+
+## 常见问题 {#section_bc5_625_im1 .section}
+
+Q：作业启动时产生如下报错：
+
+``` {#codeblock_l68_gay_l12 .lanuage-sql}
+ERR_ID:
+     SQL-00010007
+CAUSE:
+     Could not create table 'kafka_source' as source table
+ACTION:
+     Please refer to details section for hint.
+     If it doesn't help, please contact customer support
+DETAIL:
+     java.lang.IllegalArgumentException: Startup time[1566481803000] must be before current time[1566453003356].
+```
+
+A：时区设置错误导致以上报错。请在作业参数中增加如下参数：
+
+``` {#codeblock_oc2_lco_83z .lanuage-sql}
+blink.job.timeZone=Asia/Shanghai
+```
 
