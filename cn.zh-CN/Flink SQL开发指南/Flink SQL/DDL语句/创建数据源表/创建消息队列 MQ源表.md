@@ -96,8 +96,13 @@ FROM source_table
 |参数|注释说明|备注|
 |--|----|--|
 |topic|topic名称|无。|
-|endPoint|endPoint地址| -   公共云内网接入（阿里云经典网络/VPC）：华东1、华东2、华北1、华北2、华南1、中国（香港）的区域endpoint的地址是：`onsaddr-internal.aliyun.com:8080`
--   公共云公网接入地址是：`http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet`
+|endPoint|endPoint地址| -   公共云内网（阿里云经典网络/VPC）接入地址：
+    -   华东1、华东2、华北1华北2、华南1、中国（香港）：`onsaddr-internal.aliyun.com:8080`
+    -   新加坡：`ap-southeastaddr-internal.aliyun.com:8080`
+    -   迪拜：`ons-me-east-1-internal.aliyuncs.com:8080`
+    -   孟买：`ons-ap-south-1-internal.aliyuncs.com:8080`
+    -   吉隆坡：`ons-ap-southeast-3-internal.aliyun.com:8080`
+-   公共云公网接入地址：`onsaddr-internet.aliyun.com:80`
 
  |
 |accessId|accessId|无。|
@@ -120,8 +125,8 @@ FROM source_table
     -   解析出的字段数小于定义字段数时，在行尾用null填充缺少的字段。
 
  |
-|columnErrorDebug|是否打开调试开关|可选，默认为false。如果设置为te，则打印解析异常的log。|
-|instanceID|Topic所属的分组|实时计算3.2及以上版本必须。|
+|columnErrorDebug|是否打开调试开关|可选，默认为false。如果设置为true，则打印解析异常的log。|
+|instanceID|Topic所属的分组|可选。|
 
 ## 类型映射 {#section_hkx_4kz_bgb .section}
 
