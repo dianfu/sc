@@ -1,10 +1,10 @@
 # 高性能Flink SQL优化技巧 {#concept_xdd_nbz_zfb .concept}
 
-本文为您介绍提升性能的Flink SQL推荐写法、推荐配置、推荐函数。
+本文为您介绍提升性能的Flink SQL推荐写法、推荐配置和推荐函数。
 
 ## Group Aggregate优化技巧 {#section_211_m3y_k5i .section}
 
--   开启MicroBatch/MiniBatch （提升吞吐）
+-   开启MicroBatch或MiniBatch （提升吞吐）
 
     MicroBatch和MiniBatch都是微批处理，只是微批的触发机制略有不同。原理同样是缓存一定的数据后再触发处理，以减少对State的访问，从而提升吞吐和减少数据的输出量。
 
@@ -18,7 +18,7 @@
 
     -   开启方式
 
-        MicroBatch/MiniBatch默认关闭，开启方式：
+        MicroBatch和MiniBatch默认关闭，开启方式：
 
         ``` {#codeblock_txe_lb2_eix}
         #3.2及以上版本开启Window miniBatch方法（3.2及以上版本默认不开启Window miniBatch。）
@@ -33,33 +33,33 @@
 
 -   开启LocalGlobal（解决常见数据热点问题）
 
-    LocalGlobal优化即将原先的Aggregate分成Local+Global 两阶段聚合，也就是在MapReduce模型中熟知的Combine+Reduce处理模式。第一阶段在上游节点本地攒一批数据进行聚合（localAgg），并输出这次微批的增量值（Accumulator），第二阶段再将收到的Accumulator merge起来，得到最终的结果（globalAgg）。
+    LocalGlobal优化即将原先的Aggregate分成Local+Global两阶段聚合，也就是在MapReduce模型中熟知的Combine+Reduce处理模式。第一阶段在上游节点本地攒一批数据进行聚合（localAgg），并输出这次微批的增量值（Accumulator），第二阶段再将收到的Accumulator合并（merge），得到最终的结果（globalAgg）。
 
-    LocalGlobal本质上能够靠localAgg的聚合筛除部分倾斜数据，从而降低globalAgg的热点，从而提升性能。LocalGlobal如何解决数据倾斜问题可以结合下图理解。
+    LocalGlobal本质上能够靠localAgg的聚合筛除部分倾斜数据，从而降低globalAgg的热点，提升性能。您可以结合下图理解LocalGlobal如何解决数据倾斜的问题。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/75347/156326647533642_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/75347/156688421033642_zh-CN.png)
 
     -   适用场景
 
         LocalGlobal适用于提升如SUM、COUNT、MAX、MIN和AVG等普通聚合的性能，以及解决这些场景下的数据热点问题。
 
-        **说明：** 开启LocalGlobal需要UDAF实现M方法。
+        **说明：** 开启LocalGlobal需要UDAF实现`merge`方法。
 
     -   开启方式
 
-        在 实时计算`2.0`版本开始，LocalGlobal是默认开启的，参数是： `blink.localAgg.enabled=true`，但是需要在microbatch/minibatch开启的前提下才能生效。
+        在 实时计算`2.0`版本开始，LocalGlobal是默认开启的，参数是： `blink.localAgg.enabled=true`，但是需要在microbatch或minibatch开启的前提下才能生效。
 
     -   如何判断是否生效
 
-        观察最终生成的拓扑图的节点名字中是否包含**GlobalGroupAggregate**或**LocalGroupAggregate**
+        观察最终生成的拓扑图的节点名字中是否包含**GlobalGroupAggregate**或**LocalGroupAggregate**。
 
--   开启PartialFinal（解决COUNT DISTINCT热点）
+-   开启PartialFinal（解决COUNT DISTINCT热点问题）
 
     上述的LocalGlobal优化能针对常见普通聚合有较好的效果（如SUM、COUNT、MAX、MIN和AVG）。但是对于COUNT DISTINCT收效不明显，原因是COUNT DISTINCT在local聚合时，对于DISTINCT KEY的去重率不高，导致在Global节点仍然存在热点。
 
-    实时计算历史版本用户为了解决COUNT DISTINCT的热点问题时，通常会手动改写成两层聚合（增加按distinct key 取模的打散层），自`2.2.0`版本开始，实时计算提供了COUNT DISTINCT自动打散，我们称之为PartialFinal优化，您无需自己改写成两层聚合。PartialFinal和LocalGlobal的原理对比请参见下图。
+    实时计算历史版本中，用户为了解决COUNT DISTINCT的热点问题，通常会手动改写成两层聚合（增加按distinct key取模的打散层），自`2.2.0`版本开始，实时计算提供了COUNT DISTINCT自动打散，即PartialFinal优化，您无需自行改写为两层聚合。PartialFinal和LocalGlobal的原理对比参见下图。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/75347/156326647533643_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/75347/156688421033643_zh-CN.png)
 
     -   适用场景
 
@@ -81,22 +81,22 @@
 
     **说明：** 仅支持实时计算`2.2.2` 及以上版本。
 
-    统计作业需要计算各种维度的UV，比如全网UV、来自手淘的UV、来自PC的UV等等。建议使用更标准的AGG WITH FILTER语法来代替CASE WHEN实现多维度统计的功能。实时计算目前的SQL优化器能分析出Filter 参数，从而同一个字段上计算不同条件下的COUNT DISTINCT能共享State，减少对State的读写操作。性能测试中，使用AGG WITH FILTER语法来代替CASE WHEN能够能够使性能提高1倍。
+    统计作业需要计算各种维度的UV，例如全网UV、来自手机客户端的UV、来自PC的UV等等。建议使用更标准的AGG WITH FILTER语法来代替CASE WHEN实现多维度统计的功能。实时计算目前的SQL优化器能分析出Filter 参数，从而同一个字段上计算不同条件下的COUNT DISTINCT能共享State，减少对State的读写操作。性能测试中，使用AGG WITH FILTER语法来代替CASE WHEN能够能够使性能提高1倍。
 
     -   适用场景
 
-        我建议用户将AGG WITH CASE WHEN的语法都替换成AGG WITH FILTER的语法，尤其是对同一个字段上计算不同条件下的COUNT DISTINCT结果时有极大的性能提升。
+        建议用户将AGG WITH CASE WHEN的语法都替换成AGG WITH FILTER的语法，尤其是对同一个字段上计算不同条件下的COUNT DISTINCT结果时有极大的性能提升。
 
     -   原始写法
 
-        ``` {#codeblock_thi_rla_aam .language-java}
-        COUNT(distinct visitor_id)as UV1,COUNT(distinctcasewhen is_wireless='y'then visitor_id elsenullend)as UV2
+        ``` {#codeblock_thi_rla_aam .lanuage-sql}
+        COUNT(distinct visitor_id) as UV1 , COUNT(distinct case when is_wireless='y' then visitor_id else null end) as UV2
         ```
 
     -   优化写法
 
-        ``` {#codeblock_29o_z67_b5d .language-java}
-        COUNT(distinct visitor_id)as UV1,COUNT(distinct visitor_id) filter (where is_wireless='y')as UV2
+        ``` {#codeblock_29o_z67_b5d .lanuage-sql}
+        COUNT(distinct visitor_id) as UV1 , COUNT(distinct visitor_id) filter (where is_wireless='y') as UV2
         ```
 
 
@@ -104,7 +104,7 @@
 
 -   TopN算法
 
-    当TopN的输入是非更新流（如Source），TopN只有一种算法AppendRank。当TopN的输入是更新流时（如经过了AGG/JOIN计算），TopN有3种算法，性能从高到低分别是：UpdateFastRank \>\> UnaryUpdateRank \>\> RetractRank。算法名字会显示在拓扑图的节点名字上。其中：
+    当TopN的输入是非更新流（例如Source），TopN只有一种算法AppendRank。当TopN的输入是更新流时（例如经过了AGG/JOIN计算），TopN有3种算法，性能从高到低分别是：UpdateFastRank 、 UnaryUpdateRank和RetractRank。算法名字会显示在拓扑图的节点名字上。
 
     -   UpdateFastRank ：最优算法，需要具备2个条件：1.输入流有PK信息。2.排序字段的更新是单调的，且单调方向与排序方向相反。例如，order by count/count\_distinct/sum（正数） desc。
 
@@ -114,10 +114,10 @@
         SELECT cate_id, seller_id, stat_date, pay_ord_amt  # 不输出rownum字段，能减小对结果表的输出量。
         FROM (SELECT*
               ROW_NUMBER ()OVER(PARTITIONBY cate_id, stat_date   # 注意要有时间字段，否则state过期会导致数据错乱。
-        ORDERBY pay_ord_amt DESC## 根据上游sum结果排序)AS rownum。
-          FROM (SELECT cate_id, seller_id, stat_date,# 重点。声明sum的参数都是正数，所以sum的结果是单调递增的，所以TopN能用优化算法。
-        sum(total_fee) filter (where total_fee >=0)as pay_ord_amt
-            FROM WHERE total_fee >=0GROUPBY cate_name, seller_id, stat_date)WHERE rownum <=100))
+        ORDER BY pay_ord_amt DESC## 根据上游sum结果排序)AS rownum。
+          FROM (SELECT cate_id, seller_id, stat_date, # 重点。声明sum的参数都是正数，所以sum的结果是单调递增的，所以TopN能用优化算法。
+        sum(total_fee) filter (where total_fee >=0) as pay_ord_amt
+            FROM WHERE total_fee >=0 GROUP BY cate_name, seller_id, stat_date)WHERE rownum <=100))
         ```
 
     -   UnaryUpdateRank：仅次于UpdateFastRank的算法。需要具备1个条件：输入流存在PK信息。例如，order by avg。
@@ -144,18 +144,18 @@
 
     -   partitionBy的字段中要有时间类字段
 
-        比如每天的排名，要带上day字段。否则TopN的结果到最后会由于state ttl有错乱。
+        例如每天的排名，要带上day字段。否则TopN的结果到最后会由于state ttl有错乱。
 
 
 ## 高效去重方案 {#section_qfl_p2j_yak .section}
 
-**说明：** 高效去重方案仅支持实时计算3.2.1及以上版本。
+**说明：** 仅实时计算3.2.1及以上版本支持高效去重方案。
 
-一些场景下，实时计算的源数据中存在重复数据。去重成为了用户经常反馈的需求。实时计算去重方案有保留第一条（Deduplicate Keep FirstRow）和保留最后一条（Deduplicate Keep LastRow）2种。
+实时计算的源数据在部分场景中存在重复数据，去重成为了用户经常反馈的需求。实时计算有保留第一条（Deduplicate Keep FirstRow）和保留最后一条（Deduplicate Keep LastRow）2种去重方案。
 
 -   语法
 
-    由于 SQL 上没有直接支持去重的语法，还要灵活的保留第一条或保留最后一条。因此我们使用了 SQL 的 ROW\_NUMBER OVER WINDOW 功能来实现去重语法。这非常像我们 TopN 支持的方案。实际上去重就是一种特殊的 TopN。
+    由于SQL上没有直接支持去重的语法，还要灵活的保留第一条或保留最后一条。因此我们使用了SQL的ROW\_NUMBER OVER WINDOW功能来实现去重语法。去重本质上是一种特殊的TopN。
 
     ``` {#codeblock_xbu_z8a_6bl .language-java}
     SELECT *
@@ -171,12 +171,12 @@
     |--|--|
     |ROW\_NUMBER\(\)|计算行号的OVER窗口函数。行号从1开始计算。|
     |PARTITION BY col1\[, col2..\]|可选。指定分区的列，即去重的KEYS。|
-    |ORDER BY timeAttributeCol \[asc|desc\]\)|指定排序的列，必须是一个[时间属性](cn.zh-CN/Flink SQL开发指南/Flink SQL/基本概念/时间属性.md#)的字段（即 proctime或rowtime）。可以指定顺序（Keep FirstRow）或者倒序 \(Keep LastRow\)。|
+    |ORDER BY timeAttributeCol \[asc|desc\]\)|指定排序的列，必须是一个[时间属性](cn.zh-CN/Flink SQL开发指南/Flink SQL/基本概念/时间属性.md#)的字段（即 proctime或rowtime）。可以指定顺序（Keep FirstRow）或者倒序 （Keep LastRow）。|
     |rownum|仅支持`rownum=1`或`rownum<=1`。|
 
     如上语法所示，去重需要两层Query：
 
-    1.  使用ROW\_NUMBER\(\) 窗口函数来对数据根据时间属性列进行排序并标上排名。
+    1.  使用`ROW_NUMBER()` 窗口函数来对数据根据时间属性列进行排序并标上排名。
 
         **说明：** 
 
@@ -184,11 +184,13 @@
         -   当排序字段是rowtime列时，Flink就会按照业务时间去重，其每次运行的结果是确定的。
     2.  对排名进行过滤，只取第一条，达到了去重的目的。
 
-        **说明：** 排序方向可以是按照时间列顺序也可以倒。顺序并取第一条也就是Deduplicate Keep FirstRow，倒序并取第一条也就是Deduplicate Keep LastRow。
+        **说明：** 排序方向可以是按照时间列的顺序，也可以是倒序：
 
+        -   Deduplicate Keep FirstRow：顺序并取第一条行数据。
+        -   Deduplicate Keep LastRow：倒序并取第一条行数据。
 -   Deduplicate Keep FirstRow
 
-    保留首行的去重策略：保留KEY下第一条出现的数据，之后出现该KEY下的数据会被丢弃掉。因为STATE中只存储了KEY数据，因此性能较优。示例如下。
+    保留首行的去重策略：保留KEY下第一条出现的数据，之后出现该KEY下的数据会被丢弃掉。因为STATE中只存储了KEY数据，所以性能较优，示例如下。
 
     ``` {#codeblock_1zb_eds_55j .language-SQL}
     SELECT *
@@ -200,11 +202,11 @@
     WHERE rowNum = 1
     ```
 
-    **说明：** 以上示例是将T表按照b字段进行去重，并按照系统时间保留第一条数据。proctime在这里是源表T中的一个具有Processing Time属性的字段。如果您按照系统时间去重，也可以将proctime字段简化 PROCTIME\(\) 函数调用，可以省略proctime字段的声明。
+    **说明：** 以上示例是将T表按照b字段进行去重，并按照系统时间保留第一条数据。proctime在这里是源表T中的一个具有Processing Time属性的字段。如果您按照系统时间去重，也可以将proctime字段简化 `PROCTIME()` 函数调用，可以省略proctime字段的声明。
 
 -   Deduplicate Keep LastRow
 
-    保留末行的去重策略：保留KEY下最后一条出现的数据。性能略优于LAST\_VALUE函数。示例如下。
+    保留末行的去重策略：保留KEY下最后一条出现的数据。保留末行的去重策略性能略优于LAST\_VALUE函数，示例如下。
 
     ``` {#codeblock_ozv_9m5_bf4 .language-SQL}
     SELECT *
@@ -223,17 +225,19 @@
 
 -   使用内置函数替换自定义函数
 
-    请尽量使用内置函数。在老版本时，由于内置函数不齐全，很多用户都用的三方包的自定义函数。在实时计算2.x 中，我们对内置函数做了很多的优化（主要是节省了序列化/反序列化、以及直接对 bytes 进行操作），但是自定义函数无法享受到这些优化。
+    实时计算的内置函数在持续的优化当中，请尽量使用内部函数提到自定义函数。实时计算2.0版本对内置函数主要进行了如下优化：
 
--   KEY VALUE 函数使用单字符的分隔符
+    -   优化数据序列化和反序列化的耗时。
+    -   新增直接对字节单位进行操作的功能。
+-   KEY VALUE函数使用单字符的分隔符
 
     KEY VALUE 的签名是：`KEYVALUE(content, keyValueSplit, keySplit, keyName)`，当keyValueSplit和KeySplit是单字符时，如`:`、`,`会使用优化的算法，会在二进制数据上直接寻找所需的keyName 的值，而不会将整个content做切分。性能约有30%提升。
 
--   多KEYVALUE场景使用MULTI\_KEYVALUE
+-   多KEY VALUE场景使用MULTI\_KEYVALUE
 
     **说明：** 仅支持实时计算-`2.2.2`及以上版本
 
-    如果在query中有对同一个content 做大量KEYVALUE 的操作，比如content中包含10个key-value对，希望把10个value 的值都取出来作为字段。用户经常会写10个KEY VALUE函数，那么就会对content 做10次解析。在这种场景建议使用 [MULTI\_KEYVALUE](cn.zh-CN/Flink SQL开发指南/Flink SQL/内置函数/表值函数/MULTI_KEYVALUE.md#)，这是一个表值函数。使用该函数可以只对content 做一次 split 解析。性能约有 50%~100%的性能提升。
+    如果在query中有对同一个content做大量KEY VALUE 的操作，例如Content中包含10个key-value对，希望把10个Value的值都取出来作为字段。用户经常会写10个KEY VALUE函数，那么就会对Content 做10次解析。在这种场景建议使用 [MULTI\_KEYVALUE](cn.zh-CN/Flink SQL开发指南/Flink SQL/内置函数/表值函数/MULTI_KEYVALUE.md#)，这是一个表值函数。使用该函数可以只对Content 做一次Split解析。性能约有50%~100%的性能提升。
 
 -   LIKE 操作注意事项
     -   如果需要进行startWith操作，使用`LIKE 'xxx%'`。
@@ -261,7 +265,7 @@
 
 -   使用Dynamic-Rebalance替代Rebalance
 
-    Dynamic Rebalance，它可以根据当前各subpartition中堆积的buffer的数量，选择负载较轻的subpartition进行写入，从而实现动态的负载均衡。相比于静态的rebalance策略，在下游各任务计算能力不均衡时，可以使各任务相对负载更加均衡，从而提高整个作业的性能。例如，在使用rebalance时，发现下游各个并发负载不均衡时，可以考虑使用 Dynamic-Rebalance。参数：`task.dynamic.rebalance.enabled=true`， 默认关闭。
+    Dynamic-Rebalance可以根据当前各subpartition中堆积的buffer的数量，选择负载较轻的subpartition进行写入，从而实现动态的负载均衡。相比于静态的rebalance策略，在下游各任务计算能力不均衡时，可以使各任务相对负载更加均衡，从而提高整个作业的性能。例如，在使用rebalance时，发现下游各个并发负载不均衡时，可以考虑使用 Dynamic-Rebalance。参数：`task.dynamic.rebalance.enabled=true`， 默认关闭。
 
 -   使用Rescale替代Rebalance
 
