@@ -2,7 +2,7 @@
 
 本文为您介绍如何创建实时计算数据总线 DataHub结果表。
 
-**说明：** DataHub未正式商业。
+**说明：** DataHub未正式商用。
 
 ## 什么是数据总线 DataHub {#section_xmt_2w2_cgb .section}
 
