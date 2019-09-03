@@ -2,7 +2,7 @@
 
 本文为您介绍如何为实时计算创建数据总线 DataHub源表以及创建过程涉及到的属性字段、WITH参数和类型映射。
 
-**说明：** DataHub未正式商业。
+**说明：** DataHub未正式商用。
 
 ## 什么是数据总线 {#section_ptb_bvy_bgb .section}
 
@@ -69,7 +69,7 @@ Flink SQL支持获取DataHub的属性字段。通过读取属性字段可以获�
 
 ## 类型映射 {#section_cwm_twy_bgb .section}
 
-DataHub和实时计算字段类型对应关系如下，建议使用该对应关系时进行DDL声明:
+DataHub和实时计算字段类型对应关系如下，建议使用该对应关系时进行DDL声明。
 
 |DataHub字段类型|实时计算字段类型|
 |-----------|--------|
