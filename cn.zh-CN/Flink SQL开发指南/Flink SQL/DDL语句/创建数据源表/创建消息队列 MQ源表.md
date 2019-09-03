@@ -126,7 +126,7 @@ FROM source_table
 
  |
 |columnErrorDebug|是否打开调试开关|可选，默认为false。如果设置为true，则打印解析异常的log。|
-|instanceID|Topic所属的分组|可选。|
+|instanceID|Topic所属的分组|可选。若MQ实例为**DEFAULT\_INSTANCE**，则不可使用instanceID参数。|
 
 ## 类型映射 {#section_hkx_4kz_bgb .section}
 
