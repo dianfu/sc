@@ -2,6 +2,8 @@
 
 本文为您介绍如何创建实时计算数据总线 DataHub结果表。
 
+**说明：** DataHub未正式商业。
+
 ## 什么是数据总线 DataHub {#section_xmt_2w2_cgb .section}
 
 DataHub作为流式数据总线，为阿里云数加平台提供了大数据的入口服务。实时计算通常使用DataHub作为流式数据存储输入源和输出目的端。
@@ -28,7 +30,7 @@ create table datahub_output(
 			
 ```
 
-**说明：** 建议使用存储注册功能，参见[ZH-CN\_TP\_40854.md\#](cn.zh-CN/Flink SQL开发指南/数据存储/注册数据存储/注册数据总线 DataHub.md#)。
+**说明：** 建议使用存储注册功能，参见[注册数据总线 DataHub](cn.zh-CN/Flink SQL开发指南/数据存储/注册数据存储/注册数据总线 DataHub.md#)。
 
 ## WITH参数 {#section_pvr_nx2_cgb .section}
 
