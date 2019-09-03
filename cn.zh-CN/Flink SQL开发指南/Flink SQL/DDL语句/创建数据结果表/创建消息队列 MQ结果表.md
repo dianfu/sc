@@ -100,5 +100,5 @@ FROM source_table
 |encoding|编码类型|可选，默认为`utf-8`。|
 |retryTimes|写入的重试次数|可选，默认为10。|
 |sleepTimeMs|重试间隔时间|可选，默认为1000（毫秒）。|
-|instanceID|Topic所属的分组|可选。|
+|instanceID|Topic所属的分组|可选。若MQ实例为**DEFAULT\_INSTANCE**，则不可使用instanceID参数。|
 
