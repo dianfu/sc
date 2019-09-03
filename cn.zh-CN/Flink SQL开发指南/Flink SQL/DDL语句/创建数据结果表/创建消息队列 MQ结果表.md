@@ -82,18 +82,23 @@ FROM source_table
 
 |参数|说明|备注|
 |--|--|--|
-|topic|Message Queue队列名称|无|
-|endpoint|地址| -   公共云内网接入（阿里云经典网络/VPC）：华东1、华东2、华北1、华北2、华南1、中国（香港）区域的endpoint地址为`onsaddr-internal.aliyun.com:8080` 。
--   公共云公网接入地址为`http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet`。
+|topic|Message Queue队列名称|无。|
+|endpoint|地址| -   公共云内网（阿里云经典网络/VPC）接入地址：
+    -   华东1、华东2、华北1、华北2、华南1、中国（香港）：`onsaddr-internal.aliyun.com:8080`
+    -   新加坡：`ap-southeastaddr-internal.aliyun.com:8080`
+    -   迪拜：`ons-me-east-1-internal.aliyuncs.com:8080`
+    -   孟买：`ons-ap-south-1-internal.aliyuncs.com:8080`
+    -   吉隆坡：`ons-ap-southeast-3-internal.aliyun.com:8080`
+-   公共云公网接入地址：`onsaddr-internet.aliyun.com:80`
 
  |
-|accessID|填写阿里云accessID|无|
-|accessKey|填写阿里云accessKey|无|
-|producerGroup|写入的群组|无|
+|accessID|填写阿里云accessID|无。|
+|accessKey|填写阿里云accessKey|无。|
+|producerGroup|写入的群组|无。|
 |tag|写入的标签|可选，默认为空。|
 |fieldDelimiter|字段分割符|可选，默认为`\u0001` 。表示在只读模式下以 `\u0001`（`\u0001`在只读模式不可见）作为分隔符；在编辑模式下以`^A`作为分隔符。|
 |encoding|编码类型|可选，默认为`utf-8`。|
 |retryTimes|写入的重试次数|可选，默认为10。|
 |sleepTimeMs|重试间隔时间|可选，默认为1000（毫秒）。|
-|instanceID|Topic所属的分组|实时计算3.2及以上版本必须。|
+|instanceID|Topic所属的分组|可选。|
 
