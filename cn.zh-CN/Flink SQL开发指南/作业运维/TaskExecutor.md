@@ -10,7 +10,10 @@ TaskExecutor是实时计算集群的启动过程不可或缺的一部分。TaskE
 
 ## 登录TaskExecutor页面 {#section_rpr_gga_c1q .section}
 
-1.  登录**作业运维**平台。登录步骤参见[登录作业运维平台](cn.zh-CN/Flink SQL开发指南/作业运维/登录作业运维平台.md#)。
+1.  登录**作业运维**页面。
+    1.  登录[实时计算控制台](https://stream.console.aliyun.com)。
+    2.  单击页面顶部的**运维**。
+    3.  在**作业列表**区域，单击**作业名称**下的目标作业名。
 2.  在**作业运维**页面，单击页面顶部的**TaskExecutor**。
 
 ## TaskExecutor在集群启动中的作用 {#section_44c_d61_6dq .section}
@@ -26,5 +29,5 @@ TaskExecutor是实时计算集群的启动过程不可或缺的一部分。实�
 
 TaskExecutor界面为您提供Task列表以及Task详情的接口。
 
-![taskexecutor](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41071/156627253834013_zh-CN.png)
+![taskexecutor](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41071/156870718934013_zh-CN.png)
 
