@@ -1,8 +1,8 @@
 # 注册云数据库RDS版 {#concept_62478_zh .concept}
 
-本文为您介绍注册云数据库RDS版数据存储所需的参数信息。，以及连接过程中的常见问题。
+本文为您介绍注册云数据库RDS版数据存储所需的参数信息，以及连接过程中的常见问题。
 
-云数据库RDS版是一种稳定可靠、可弹性伸缩的在线数据库服务。目前实时计算支持包括MySQL在内的RDS数据库引擎。
+云数据库RDS版是一种稳定可靠、可弹性伸缩的在线数据库服务。目前实时计算支持包括MySQL在内的部分RDS数据库引擎。
 
 **说明：** 
 
@@ -32,13 +32,11 @@
 |网络类型|默认为内网。|
 |白名单授权|默认设置。实时计算存储注册方式为RDS自动添加IP白名单。|
 
-信息填写：
-
 ## 常见问题 {#section_ejy_2zg_yfb .section}
 
 Q：存储注册过程中出现`操作错误：未在VPC中授权`？
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40857/156352507033245_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40857/156868732833245_zh-CN.png)
 
 A：注册的RDS实例为专有网络（VPC）实例。对于VPC实例，请先完成实时计算对VPC的访问授权，授权步骤请参见[VPC访问授权](cn.zh-CN/Flink SQL开发指南/数据存储/VPC访问授权.md#)。
 
