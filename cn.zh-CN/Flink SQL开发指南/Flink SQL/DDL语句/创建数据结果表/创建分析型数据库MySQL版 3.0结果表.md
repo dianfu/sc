@@ -4,6 +4,7 @@
 
 **说明：** 
 
+-   暂不支持注册存储功能。
 -   本文档仅适用于`blink 3.3.0`及以上版本。
 -   AnalyticDB for MySQL 2.0版本结果表创建说明参见[创建分析型数据库MySQL版 2.0结果表](cn.zh-CN/Flink SQL开发指南/Flink SQL/DDL语句/创建数据结果表/创建分析型数据库MySQL版 2.0结果表.md#)。
 
