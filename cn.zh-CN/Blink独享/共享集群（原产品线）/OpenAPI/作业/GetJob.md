@@ -33,9 +33,9 @@ GET /api/v2/projects/[projectName]/jobs/[jobName] HTTPS
 |名称|类型|示例值|描述|
 |--|--|---|--|
 |Job|Struct| |作业详情 |
-|ApiType|String|DATASTREAM|作业类型： DATASTREAM或SQL。 |
+|ApiType|String|DATASTREAM|作业类型：DATASTREAM或SQL。 |
 |ClusterId|String|xxx|集群ID |
-|Code|String|xxxxx|Instance的运行代码：
+|Code|String|xxxxx|运行代码：
 
  -   SQL作业返回SQL代码。
 -   Datastream作业返回Datastream配置。 |
@@ -99,6 +99,27 @@ GET /api/v2/projects/[projectName]/jobs/[jobName] HTTPS
 `JSON` 格式
 
 ```
-{"requestId":"2C6E2F4C-2FA1-4159-87DA-676DB15F4826","job":{"jobName":"datastream_enable","projectName":"bayes_team","jobType":"FLINK_STREAM","apiType":"DATASTREAM","code":"xxxxx","packages":"big-data-1.0-snapshot.jar","isCommitted":true,"creator":"xxx","createTime":1595493794000,"modifier":"xxx","modifyTime":1597743765000,"engineVersion":"blink-3.5.0-hotfix","clusterId":"xxx","queueName":"root.default","folderId":26808,"jobId":"rd8r1lgccsnnchh9fqwukw6e","fileId":"75724"}}
+{
+    "requestId": "2C6E2F4C-2FA1-4159-87DA-676DB15F4826",
+    "job": {
+        "jobName": "datastream_enable",
+        "projectName": "bayes_team",
+        "jobType": "FLINK_STREAM",
+        "apiType": "DATASTREAM",
+        "code": "xxxxx",
+        "packages": "big-data-1.0-snapshot.jar",
+        "isCommitted": true,
+        "creator": "xxx",
+        "createTime": 1595493794000,
+        "modifier": "xxx",
+        "modifyTime": 1597743765000,
+        "engineVersion": "blink-3.5.0-hotfix",
+        "clusterId": "xxx",
+        "queueName": "root.default",
+        "folderId": 26808,
+        "jobId": "rd8r1lgccsnnchh9fqwukw6e",
+        "fileId": 75724
+    }
+}
 ```
 
