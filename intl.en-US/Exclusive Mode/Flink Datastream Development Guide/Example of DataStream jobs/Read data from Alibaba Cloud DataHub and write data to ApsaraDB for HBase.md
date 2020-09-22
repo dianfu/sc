@@ -13,7 +13,7 @@ This topic describes how to run a Flink DataStream job to read data from Alibaba
 
     **Note:** The test data must contain three fields, which have the data types of BOOLEAN, STRING, and STRING in sequence.
 
--   An ApsaraDB for HBase instance is created. The ApsaraDB for HBase instance resides in the same region and the same virtual private cloud \(VPC\) as your Realtime Compute for Apache Flink cluster in exclusive mode. A table with several column families is created in the ApsaraDB for HBase instance. For more information about how to use HBase Shell to connect to the HBase cluster, see [Use HBase Shell to access ApsaraDB for HBase](https://help.aliyun.com/document_detail/52056.html?spm=a2c4g.11174283.6.595.ccba363fBF1uOn).
+-   An ApsaraDB for HBase instance is created. The ApsaraDB for HBase instance resides in the same region and the same virtual private cloud \(VPC\) as your Realtime Compute for Apache Flink cluster in exclusive mode. A table with several column families is created in the ApsaraDB for HBase instance. For more information about how to use HBase Shell to connect to the HBase cluster, see [Use HBase Shell to access ApsaraDB for HBase](https://www.alibabacloud.com/help/doc-detail/52056.htm?spm=a2c63.l28256.b99.52.5a9c5f1f6Mm6bu).
 
     **Note:**
 
