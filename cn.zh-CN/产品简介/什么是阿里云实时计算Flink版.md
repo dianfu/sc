@@ -17,9 +17,9 @@ keyword: [实时计算Flink版, 什么是阿里云实时计算Flink版]
 
 ## 产品架构
 
-![产品架构](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1716140061/p141022.png)
+![产品架构](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0543470061/p141022.png)
 
-阿里云实时计算Flink版与Apache Flink对比如下。
+## 与Apache Flink对比
 
 ![对比](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1716140061/p141885.png)
 
