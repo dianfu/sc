@@ -39,18 +39,6 @@ create table kafkaTable(
 -   avro
 -   debezium-json
 -   canal-json |
-|scan.startup.mode|Kafka消费启动位点|否|STRING|启动位点取值如下：-   group\_offsets（默认值）：根据Group读取。
--   earliest\_offset：从Kafka最早分区开始读取。
--   latest\_offset：从Kafka最新位点开始读取。
--   timestamp：从Kafka指定时间点读取。
-
-需要在WITH参数中指定scan.startup.timestamp-millis参数。
-
--   specific\_offsets：从Kafka指定分区指定偏移量读取。
-
-需要在WITH参数中指定scan.startup.specific-offsets参数。 |
-|scan.startup.specific-offsets|在specific-offsets启动模式下，指定每个分区的启动偏移量。|否|STRING|例如：partition:0,offset:42;partition:1,offset:300|
-|scan.startup.timestamp-millis|在timestamp启动模式下，指定启动位点时间戳。|否|LONG|单位为毫秒。|
 |sink.partitioner|从Flink分区到Kafka分区的映射模式。|否|STRING|映射模式取值如下：-   fixed：每个Flink分区对应至多一个Kafka分区。
 -   round-robin：Flink分区中的数据将被轮流分配至Kafka的各个分区。
 -   自定义FlinkKafkaPartitioner的子类：如果fixed和round-robin不满足您的需求，您可以自定义映射模式到FlinkKafkaPartitioner的子类。例如`org.mycompany.MyPartitioner`。 |
