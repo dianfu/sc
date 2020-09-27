@@ -63,8 +63,10 @@ CREATE TABLE event (
    id STRING, 
    data STRING,
    proctime as PROCTIME()
-) with (
-   'connector' = 'xxx'
+) 
+COMMENT 'datagen source table' --必填，Datagen源表标识。
+with (
+   'connector' = 'datagen' 
 );
 
 CREATE TABLE white_list (
@@ -79,9 +81,20 @@ CREATE TABLE white_list (
    'typeNames' = '<yourTypeName>'
 );
 
+CREATE TABLE sink (
+ id STRING,
+ data STRING,
+ `value` FLOAT
+) 
+COMMENT 'blackhole sink table' --必填，blackhole结果表标识。
+WITH (
+  'connector' = 'blackhole' 
+);
+
+INSERT INTO sink
 SELECT e.*, w.*
   FROM event AS e
-JOIN white_list FOR SYSTEM_TIME AS OF T.proctime AS w
+JOIN white_list FOR SYSTEM_TIME AS OF e.proctime AS w
 ON e.id = w.id;
 ```
 
