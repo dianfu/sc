@@ -13,7 +13,7 @@ keyword: 创建交互式分析Hologres结果表
 ## DDL定义
 
 ```
-create table mysource(
+create table mysink(
   name varchar,
   age BIGINT,
   birthday BIGINT
