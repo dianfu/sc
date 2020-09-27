@@ -80,12 +80,14 @@ Flink全托管以JSON来解析Elasticsearch数据，详情请参见[数据类型
 ## 代码示例
 
 ```
-CREATE TABLE random_stream (
+CREATE TABLE datagen_stream (
   id STRING, 
   name STRING,
   uv BIGINT
-) with (
-  'connector' = 'random'
+) 
+COMMENT 'datagen source table' --必填，Datagen源表标识。  
+with (
+  'connector' = 'datagen'
 );
 
 CREATE TABLE myUserTable (
@@ -104,6 +106,6 @@ CREATE TABLE myUserTable (
 
 INSERT INTO myUserTable
    SELECT id, name, uv
-FROM random_stream;
+FROM datagen_stream;
 ```
 
