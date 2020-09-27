@@ -38,11 +38,13 @@ CREATE TABLE mongodb_table(
 ## 代码示例
 
 ```
-CREATE TABLE random_stream (
+CREATE TABLE datagen_stream (
    v INT, 
    p INT
-) with (
-   'connector' = 'random'
+) 
+COMMENT 'datagen source table' --必填，Datagen源表标识。
+with (
+   'connector' = 'datagen'
 );
 
 CREATE TABLE mongodb_table(
@@ -50,13 +52,13 @@ CREATE TABLE mongodb_table(
    number INT
 ) with (
    'connector'='mongodb',
-   'database' = 'mongodb_db1',
-   'collection' = 'test', 
-   'uri'='mongodb://123@dds-/admin?replicaSet=mgset-32966591'
+   'database' = '<yourDatabase>',
+   'collection' = '<yourCollection>', 
+   'uri'='<yourUri>'
 );
 
 INSERT INTO mongodb_table 
    SELECT v, p
-FROM random_stream;
+FROM datagen_stream;
 ```
 
