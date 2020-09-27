@@ -148,11 +148,13 @@ keyword: [Redis, 结果表]
 ## 代码示例
 
 ```
-CREATE TABLE random_stream (
+CREATE TABLE datagen_stream (
   v STRING, 
   p STRING
-) with (
-  'connector' = 'random'
+)
+  COMMENT 'datagen source table' --必填，Datagen源表标识。
+  with (
+  'connector' = 'datagen'
 );
 
 create table resik_output (
@@ -162,13 +164,13 @@ create table resik_output (
 ) with (
   'connector' = 'redis',
   'mode' = 'string',
-  'host' = '<yourHost>', 
-  'port' = '<yourPort>', 
-  'password' = '<yourPassword>'
+  'host' = '${reidsHost}', 
+  'port' = '${redisPort}', 
+  'password' = '${password}'
 );
 
 INSERT INTO resik_output 
 SELECT v, p
-FROM random_stream;
+FROM datagen_stream;
 ```
 
