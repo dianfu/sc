@@ -1,16 +1,16 @@
 ---
-keyword: [Postgres CDC, Change Data Capture]
+keyword: [Postgres的CDC, Change Data Capture, CDC]
 ---
 
 # Postgres的CDC源表
 
 本文为您介绍Postgres的CDC（Change Data Capture）源表DDL定义、WITH参数、类型映射和代码示例。
 
-## 什么是Postgres CDC源表
+## 什么是Postgres的CDC源表
 
-Postgres CDC源表，即Postgres的流式源表，用于依次读取PostgreSQL数据库全量快照数据和变更数据，保证不多读一条也不少读一条数据。即使发生故障，也能采用Exactly Once方式处理。
+Postgres的CDC源表，即Postgres的流式源表，用于依次读取PostgreSQL数据库全量快照数据和变更数据，保证不多读一条也不少读一条数据。即使发生故障，也能采用Exactly Once方式处理。
 
-**说明：** 如果您使用的是开源的PostgreSQL数据库，Flink全托管的Postgres CDC connector支持读取的Posgres版本为9.6及以上版本。
+**说明：** 如果您使用的是开源的PostgreSQL数据库，Flink全托管的Postgres CDC connector支持读取的Postgres版本为9.6及以上版本。
 
 ## DDL定义
 
@@ -23,13 +23,13 @@ CREATE TABLE shipments (
   is_arrived BOOLEAN
 ) WITH (
   'connector' = 'postgres-cdc',
-  'hostname' = 'localhost',
+  'hostname' = '<yourHostname>',
   'port' = '5432',
-  'username' = 'postgres',
-  'password' = 'postgres',
-  'database-name' = 'postgres',
-  'schema-name' = 'public',
-  'table-name' = 'shipments'
+  'username' = '<yourUserName>',
+  'password' = '<yourPassWord>',
+  'database-name' = '<yourDatabaseName>',
+  'schema-name' = '<yourSchemaName>',
+  'table-name' = '<yourTableName>'
 );
 ```
 
