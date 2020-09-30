@@ -63,7 +63,7 @@ Kafka Producer配置项详情请参见[Producer Configs](https://kafka.apache.or
 从名称为source的Topic中读取Kafka数据，再写入名称为sink的Topic，数据使用CSV格式。
 
 ```
-CREATE TABLE KafkaSourceTable (
+CREATE TEMPORARY TABLE KafkaSourceTable (
     id INT,
     name STRING,
     age INT
@@ -75,7 +75,7 @@ CREATE TABLE KafkaSourceTable (
     'format' = 'csv'
 );
 
-CREATE TABLE KafkaSinkTable (
+CREATE TEMPORARY TABLE KafkaSinkTable (
     id INT,
     name STRING,
     age INT
@@ -86,6 +86,6 @@ CREATE TABLE KafkaSinkTable (
     'format' = 'csv'
 );
 
-INSERT INTO KafkaSinkTable SELECT (id, name, age) FROM KafkaSourceTable;
+INSERT INTO KafkaSinkTable SELECT id, name, age FROM KafkaSourceTable;
 ```
 
