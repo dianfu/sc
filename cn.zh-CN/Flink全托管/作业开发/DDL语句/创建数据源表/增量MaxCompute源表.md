@@ -97,9 +97,9 @@ create table odps_source(
 
 ```
 --读增量MaxCompute表，读取的分区范围是[ds=20191201，∞)。
-CREATE TABLE odps_source (
+CREATE TEMPORARY TABLE odps_source (
     cid VARCHAR,
-    rt DOUBLE,
+    rt DOUBLE
 ) with (
     'connector' = 'continuous-odps', 
     'endpoint' = '<yourEndpoint>',
@@ -111,10 +111,12 @@ CREATE TABLE odps_source (
     'startpartition' = 'ds=2018****'
 );
 
-CREATE TABLE test (
+CREATE TEMPORARY TABLE test (
     cid VARCHAR,
-    rt DOUBLE,
-) with (
+    rt DOUBLE
+)
+COMMENT 'blackhole sink table'--必填，blackhole结果表标识。 
+WITH (
     'connector'='backhole'
 );
 
