@@ -2,6 +2,8 @@
 
 您可以通过CreateProject OpenAPI在集群中创建项目。
 
+**说明：** 不能通过子账号的AK信息以openAPI方式创建项目。
+
 ## 调试
 
 [您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=foas&api=CreateProject&type=ROA&version=2018-11-11)
