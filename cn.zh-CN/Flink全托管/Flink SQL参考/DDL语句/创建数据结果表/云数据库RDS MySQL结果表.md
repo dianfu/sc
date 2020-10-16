@@ -9,7 +9,7 @@ keyword: [云数据库RDS MySQL, 云数据库RDS版, MySQL]
 ## 语法示例
 
 ```
-CREATE TABLE rds_sink (
+CREATE TEMPORARY TABLE rds_sink (
    id INT,
    num BIGINT,
    PRIMARY KEY (id) NOT ENFORCE
