@@ -13,7 +13,7 @@ keyword: [消息队列, 结果表, MQ]
 ## DDL定义
 
 ```
-create table mq_output(
+create table mq_sink(
    x varchar,
    y varchar,
    z varchar
@@ -56,7 +56,7 @@ create table mq_output(
 -   CSV格式
 
     ```
-    create table stream_test_hotline_agent (
+    create table mq_sink (
         id INTEGER,
         len BIGINT,
         content VARCHAR
@@ -78,13 +78,13 @@ create table mq_output(
 -   二进制格式
 
     ```
-    CREATE TABLE source_table (
+    CREATE TEMPORARY TABLE datagen_source (
         commodity VARCHAR
     ) WITH ( 
         'connector' = 'datagen' 
     );
     
-    CREATE TABLE result_table (
+    CREATE TEMPORARY TABLE mq_sink (
         mess VARBINARY
     ) WITH (
         'connector'='mq',
@@ -95,10 +95,10 @@ create table mq_output(
         'producerGroup'='<yourGroupName>'
     );
     
-    INSERT INTO result_table
+    INSERT INTO mq_sink
     SELECT 
          CAST(SUBSTRING(commodity,0,5) AS VARBINARY) AS mess   
-    FROM source_table;
+    FROM datagen_source;
     ```
 
 
