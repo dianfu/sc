@@ -16,8 +16,8 @@ CREATE TABLE hbase_sink(
   family3 ROW<q4 DOUBLE, q5 BOOLEAN, q6 STRING>
 ) with (
   'connector'='cloudhbase',
-  'table-name'='xxx',
-  'zookeeper.quorum'='xxx'
+  'table-name'='<yourTableName>',
+  'zookeeper.quorum'='<yourZookeeperQuorum>'
 );
 ```
 
@@ -81,7 +81,7 @@ HBase数据通过org.apache.hadoop.hbase.util.Bytes转换成**Flink全托管**�
 Flink全托管部分结果数据需要按某列的值，作为动态列输入HBase。例如，某商品每小时的成交额作为动态列的数据，示例如下。
 
 ```
-CREATE TABLE src(
+CREATE TEMPORARY TABLE datagen_source (
     id INT,
     f1hour STRING,
     f1deal BIGINT,
@@ -91,19 +91,19 @@ CREATE TABLE src(
     'connector'='datagen'
 );
 
-CREATE TABLE hbase_sink (
+CREATE TEMPORARY TABLE hbase_sink (
     rowkey INT,
     f1 ROW<`hour` STRING, deal BIGINT>,
     f2 ROW<`day` STRING, deal BIGINT>
 ) with (
     'connector'='cloudhbase',
-    'table-name'='xxx',
-    'zookeeper.quorum'='xxx',
+    'table-name'='<yourTableName>',
+    'zookeeper.quorum'='<yourZookeeperQuorum>',
     'dynamic.table'='true'
 );
 
 INSERT INTO hbase_sink
-SELECT id, ROW(f1hour, f1deal), ROW(f2day, f2deal) FROM src;
+SELECT id, ROW(f1hour, f1deal), ROW(f2day, f2deal) FROM datagen_source;
 ```
 
 **说明：**
@@ -115,7 +115,7 @@ SELECT id, ROW(f1hour, f1deal), ROW(f2day, f2deal) FROM src;
 ## 代码示例
 
 ```
-CREATE TABLE src(
+CREATE TEMPORARY TABLE datagen_source (
    rowkey INT,
    f1q1 INT,
    f2q1 STRING,
@@ -124,10 +124,10 @@ CREATE TABLE src(
    f3q2 BOOLEAN,
    f3q3 STRING
 ) with (
-   'connector'="datagen"
+   'connector'='datagen'
 );
 
-CREATE TABLE hbase_sink(
+CREATE TEMPORARY TABLE hbase_sink (
    rowkey INT,
    family1 ROW<q1 INT>,
    family2 ROW<q1 STRING, q2 BIGINT>,
@@ -135,11 +135,11 @@ CREATE TABLE hbase_sink(
    PRIMARY KEY (rowkey) NOT ENFORCE
 ) with (
    'connector'='cloudhbase',
-   'table-name'='xxx',
-   'zookeeper.quorum'='xxx'
+   'table-name'='<yourTableName>',
+   'zookeeper.quorum'='<yourZookeeperQuorum>'
 );
  
 INSERT INTO hbase_sink
-SELECT rowkey, ROW(f1q1), ROW(f2q1, f2q2), ROW(f3q1, f3q2, f3q3) FROM src;
+SELECT rowkey, ROW(f1q1), ROW(f2q1, f2q2), ROW(f3q1, f3q2, f3q3) FROM datagen_source;
 ```
 
