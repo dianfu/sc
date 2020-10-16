@@ -13,7 +13,7 @@ keyword: [消息队列Kafka, 源表]
 ## DDL定义
 
 ```
-create table kafkaTable(  
+create table kafka_source(  
   user_id BIGINT,
   item_id BIGINT,
   category_id BIGINT,
