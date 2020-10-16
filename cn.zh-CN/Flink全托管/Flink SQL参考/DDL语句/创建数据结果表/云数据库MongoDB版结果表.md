@@ -11,7 +11,7 @@ keyword: [MongoDB, 结果表]
 ## DDL定义
 
 ```
-CREATE TABLE mongodb_table(
+CREATE TABLE mongodb_sink(
    id INT, 
    number INT
 ) with (
@@ -38,14 +38,14 @@ CREATE TABLE mongodb_table(
 ## 代码示例
 
 ```
-CREATE TABLE datagen_stream (
+CREATE TEMPORARY TABLE datagen_source (
    v INT, 
    p INT
 ) with (
    'connector' = 'datagen'
 );
 
-CREATE TABLE mongodb_table(
+CREATE TEMPORARY TABLE mongodb_sink(
    id INT, 
    number INT
 ) with (
@@ -55,8 +55,8 @@ CREATE TABLE mongodb_table(
    'uri'='<yourUri>'
 );
 
-INSERT INTO mongodb_table 
+INSERT INTO mongodb_sink 
    SELECT v, p
-FROM datagen_stream;
+FROM datagen_source;
 ```
 
