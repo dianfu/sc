@@ -101,7 +101,7 @@ HBase数据通过org.apache.hadoop.hbase.util.Bytes转换成**Flink全托管**�
 包含HBase维表的实时计算作业代码示例如下。
 
 ```
-CREATE TABLE src(
+CREATE TABLE datagen_source (
   a INT,
   b BIGINT,
   c STRING,
@@ -117,11 +117,11 @@ CREATE TABLE hbase_dim (
   family3 ROW<col1 DOUBLE, col2 BOOLEAN, col3 STRING>
 ) WITH (
   'connector' = 'cloudhbase',
-  'table-name' = 'xxx',
-  'zookeeper.quorum' = 'xxx'
+  'table-name' = '<yourTableName>',
+  'zookeeper.quorum' = '<yourZookeeperQuorum>'
 );
 
-CREATE TABLE sink(
+CREATE TABLE blackhole_sink(
   a INT,
   f1c1 INT,
   f3c3 STRING
@@ -129,8 +129,8 @@ CREATE TABLE sink(
   'connector' = 'blackhole' 
 );
   
-INSERT INTO sink
-     SELECT a, family1.col1 as f1c1,  family3.col3 as f3c3 FROM src
+INSERT INTO blackhole_sink
+     SELECT a, family1.col1 as f1c1,  family3.col3 as f3c3 FROM datagen_source
 JOIN hbase_dim FOR SYSTEM_TIME AS OF src.`proc_time` as h ON src.a = h.rowkey;
 ```
 
