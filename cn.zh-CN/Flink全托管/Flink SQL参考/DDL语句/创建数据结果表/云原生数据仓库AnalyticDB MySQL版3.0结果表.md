@@ -9,9 +9,9 @@ keyword: [云原生数据仓库AnalyticDB MySQL版, 3.0, 云原生数据仓库An
 ## DDL定义
 
 ```
-CREATE TABLE adb30_sink (
-    id INT,
-    num BIGINT
+CREATE TABLE adb_sink (
+  id INT,
+  num BIGINT
 ) WITH (
   'connector' = 'adb3.0',
   'password' = '<yourPassword>',
