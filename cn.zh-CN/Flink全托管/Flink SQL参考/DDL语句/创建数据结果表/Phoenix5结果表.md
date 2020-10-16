@@ -9,13 +9,13 @@ keyword: Phoenix5结果表
 ## DDL定义
 
 ```
-create table US_POPULATION_SINK (
+create table phoenix5_sink (
   `STATE` varchar,
   CITY varchar,
   POPULATION BIGINT,
   PRIMARY KEY (`STATE`, CITY)
 ) WITH (
-  'connector' = 'PHOENIX5',
+  'connector' = 'phoenix5',
   'serverUrl' = '<yourserverUrl>',
   'tableName' = '<yourTableName>',
   'batchsize' = '25'
@@ -26,7 +26,7 @@ create table US_POPULATION_SINK (
 
 |参数|说明|是否必填|备注|
 |--|--|----|--|
-|connector|结果表类型|是|默认值为`PHOENIX5`。|
+|connector|结果表类型|是|默认值为`phoenix5`。|
 |serverUrl|Phoenix5的Query Server地址：-   如果Phoenix5是在集群中创建的，则serverUrl是负载均衡服务的URL地址。
 -   如果Phoenix5是在单机中创建的，则serverUrl是单机的URL地址。
 
@@ -39,7 +39,7 @@ create table US_POPULATION_SINK (
 包含Phoenix5结果表的Flink全托管作业代码示例如下。
 
 ```
-create table `source` (
+CREATE TEMPORARY table datagen_source (
   `id` varchar,
   `name` varchar,
   `age` varchar,
@@ -48,7 +48,7 @@ create table `source` (
   'connector' = 'datagen'
 );
 
-create table sink (
+CREATE TEMPORARY table phoenix5_sink (
   `id` varchar,
   `name` varchar,
   `age` varchar,
@@ -61,8 +61,8 @@ create table sink (
   'batchsize' = '25'
 );
 
-INSERT INTO sink
+INSERT INTO phoenix5_sink
   SELECT  `id` ,`name` , `age` ,`birthday` 
-FROM `source`;
+FROM datagen_source;
 ```
 
