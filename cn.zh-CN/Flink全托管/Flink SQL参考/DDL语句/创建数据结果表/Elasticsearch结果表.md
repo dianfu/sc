@@ -11,7 +11,7 @@ keyword: [Elasticsearch, ES, 结果表]
 ## DDL定义
 
 ```
- CREATE TABLE es_stream_source(
+ CREATE TABLE es_sink(
    user_id   STRING,
    user_name   STRING,
    uv BIGINT,
@@ -21,9 +21,9 @@ keyword: [Elasticsearch, ES, 结果表]
    'connector' = 'elasticsearch-7',
    'hosts' = '<yourHosts>',
    'index' = '<yourIndex>',
-   'document-type' = '<elasticsearch.types>',
-   'username' ='<elasticsearch.accessId>',
-   'password' ='<elasticsearch.accessKey>'
+   'document-type' = '<yourEelasticsearch.types>',
+   'username' ='<yourElasticsearch.accessId>',
+   'password' ='<yourElasticsearch.accessKey>'
 );
 ```
 
@@ -82,7 +82,7 @@ Flink全托管以JSON来解析Elasticsearch数据，详情请参见[数据类型
 ## 代码示例
 
 ```
-CREATE TABLE datagen_stream (
+CREATE TEMPORARY TABLE datagen_source (
   id STRING, 
   name STRING,
   uv BIGINT
@@ -90,7 +90,7 @@ CREATE TABLE datagen_stream (
   'connector' = 'datagen'
 );
 
-CREATE TABLE myUserTable (
+CREATE TEMPORARY TABLE es_sink (
    user_id STRING,
    user_name STRING,
    uv BIGINT,
@@ -99,13 +99,13 @@ CREATE TABLE myUserTable (
    'connector' = 'elasticsearch-7',
    'hosts' = '<yourHosts>',
    'index' = '<yourIndex>',
-   'document-type' = '<elasticsearch.types>',
-   'username' ='<elasticsearch.accessId>',
-   'password' ='<elasticsearch.accessKey>'
+   'document-type' = '<yourElasticsearch.types>',
+   'username' ='<yourElasticsearch.accessId>',
+   'password' ='<yourElasticsearch.accessKey>'
 );
 
-INSERT INTO myUserTable
+INSERT INTO es_sink
    SELECT id, name, uv
-FROM datagen_stream;
+FROM datagen_source;
 ```
 
