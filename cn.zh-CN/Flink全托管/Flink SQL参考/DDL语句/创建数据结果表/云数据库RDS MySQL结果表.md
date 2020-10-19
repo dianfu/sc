@@ -12,7 +12,7 @@ keyword: [云数据库RDS MySQL, 云数据库RDS版, MySQL]
 CREATE TEMPORARY TABLE rds_sink (
    id INT,
    num BIGINT,
-   PRIMARY KEY (id) NOT ENFORCE
+   PRIMARY KEY (id) NOT ENFORCED
 ) WITH (
    'connector' = 'rds',
    'password' = '<yourPassword>',
