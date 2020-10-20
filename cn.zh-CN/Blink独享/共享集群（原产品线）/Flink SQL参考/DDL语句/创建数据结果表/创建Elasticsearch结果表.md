@@ -64,10 +64,10 @@
 
 |参数|说明|默认值|是否必选|
 |--|--|---|----|
-|dynamicIndex|是否开启动态索引|-   true：开启
+|dynamicIndex|是否开启动态索引：-   true：开启
 -   false：不开启
 
-|否。|
+|false|否|
 |indexField|抽取索引的字段名|无|dynamicIndex为true时必填，只支持TIMESTAMP（以秒为单位）、DATE和LONG3种数据类型。|
 |indexInterval|切换索引的周期|d|dynamicIndex为true时必填 ，可选参数值如下： -   d：天
 -   m：月
