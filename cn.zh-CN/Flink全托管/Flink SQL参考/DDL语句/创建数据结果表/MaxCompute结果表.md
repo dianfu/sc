@@ -21,13 +21,14 @@ MaxCompute Sink可以分为以下两个阶段：
 **Flink全托管**支持将MaxCompute作为结果输出，示例代码如下。
 
 ```
-create table odps_output(
+create table odps_sink(
     id INT,
     user_name VARCHAR,
     content VARCHAR
 ) with (
     'connector' = 'odps',
     'endpoint' = '<yourEndpoint>',
+    'tunnelEndpoint' = '<yourTunnelEndpoint>',
     'project' = '<yourProjectName>',
     'tablename' = '<yourTableName>',
     'accessid' = '<yourAccessKeyId>',
@@ -95,7 +96,7 @@ create table odps_output(
 -   写入固定分区
 
     ```
-    CREATE TABLE source (
+    CREATE TEMPORARY TABLE datagen_source (
         id INT,
         len INT,
         content VARCHAR
@@ -103,30 +104,31 @@ create table odps_output(
         'connector' = 'datagen'
     );
     
-    create table odps_sink (
+    CREATE TEMPORARY TABLE odps_sink (
         id INT,
         len INT,
         content VARCHAR
     ) with (
         'connector' = 'odps',
-        'endpoint' = 'your_end_point_name',
-        'project' = 'your_project_name',
-        'tablename' = 'your_table_name',
-        'accessid' = 'your_access_id',
-        'accesskey' = 'your_access_key',
+        'endpoint' = '<yourEndpoint>',
+        'tunnelEndpoint' = '<yourTunnelEndpoint>',
+        'project' = '<yourProjectName>',
+        'tablename' = '<yourTableName>',
+        'accessid' = '<yourAccessKeyId>',
+        'accesskey' = '<yourAccessKeySecret>',
         'partition' = 'ds=20180905'
     );
     
     INSERT INTO odps_sink 
     SELECT 
          id, len, content 
-    FROM source;
+    FROM datagen_source;
     ```
 
 -   写入动态分区
 
     ```
-    CREATE TABLE source (
+    CREATE TEMPORARY TABLE datagen_source (
         id INT,
         len INT,
         content VARCHAR,
@@ -135,18 +137,19 @@ create table odps_output(
         'connector' = 'datagen'
     );
     
-    create table odps_sink (
+    CREATE TEMPORARY TABLE odps_sink (
          id  INT,
          len INT,
          content VARCHAR,
          ds VARCHAR --动态分区列需要显式声明。
     ) with (
          'connector' = 'odps',
-         'endpoint' = 'your_end_point_name',
-         'project' = 'your_project_name',
-         'tablename' = 'your_table_name',
-         'accessid' = 'your_access_id',
-         'accesskey' = 'your_access_key',
+         'endpoint' = '<yourEndpoint>',
+         'tunnelEndpoint' = '<yourTunnelEndpoint>',
+         'project' = '<yourProjectName>',
+         'tablename' = '<yourTableName>',
+         'accessid' = '<yourAccessKeyId>',
+         'accesskey' = '<yourAccessKeySecret>',
          'partition' ='ds' --不写分区的值，表示根据ds字段的值写入不同分区。
     );
     
@@ -156,7 +159,7 @@ create table odps_output(
           len, 
           content,
           DATE_FORMAT(c, 'yyMMdd') as ds
-    FROM source;
+    FROM datagen_source;
     ```
 
 
