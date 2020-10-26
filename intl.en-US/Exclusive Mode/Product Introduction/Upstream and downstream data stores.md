@@ -44,5 +44,5 @@ Realtime Compute for Apache Flink supports a wide range of upstream and downstre
     -   [Create an AnalyticDB for MySQL 3.0 dimension table](/intl.en-US/Exclusive Mode/Flink SQL/DDL statements/Create a dimension table/Create an AnalyticDB for MySQL 3.0 dimension table.md)
     -   [Create an Elasticsearch dimension table](/intl.en-US/Exclusive Mode/Flink SQL/DDL statements/Create a dimension table/Create an Elasticsearch dimension table.md)
 
-**Note:** To allow Realtime Compute for Apache Flink to access other data stores, [submit a ticket](https://account.alibabacloud.com/login/login.htm?oauth_callback=https%3A//ticket-intl.console.aliyun.com/%23).
+**Note:** If you want to connect Realtime Compute for Apache Flink with other upstream and downstream data stores,[submit a ticket](https://account.alibabacloud.com/login/login.htm?oauth_callback=https%3A//ticket-intl.console.aliyun.com/%23).
 
