@@ -14,7 +14,7 @@
     -   Group\_Offsets：每个Shard优先从服务端保存的Checkpoint开始消费，必须指定ConsumerGroup。
     **说明：** 仅当State中不存在Checkpoint时，Earlist、Latest、Group\_Offsets和Timestamp的配置才生效。
 
--   降低大规模作业拓补的内存消耗。
+-   降低大规模作业拓扑的内存消耗。
 -   Oracle源表的timeFieldType参数支持多种时间格式：
     -   TO\_DATE：DATE类型。
     -   TIMESTAMP：TIMESTAMP类型。
