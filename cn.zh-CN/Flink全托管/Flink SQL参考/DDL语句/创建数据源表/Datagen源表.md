@@ -26,6 +26,16 @@ CREATE TABLE datagen_source (
 |参数|说明|是否必填|备注|
 |--|--|----|--|
 |connector|源表类型|是|固定值为datagen。|
+|rows-per-second|生成随机数据的速率|否|默认值为10000条/秒。|
+|fields.\#.length|生成随机字符串数据的长度。|否|默认值为100。支持CHAR、VARCHAR和STRING。|
+|fields.\#.kind|-   在数据源是无界的，即fields.\#.kind为随机生成器（默认值）。
+-   在数据源是有界的，即fields.\#.kind为序列生成器。
+
+|否|无|
+|fields.\#.max|随机发生器的最大值|否|仅支持数字类型|
+|fields.\#.min|随机发生器的最小值|否|仅支持数字类型|
+|fields.\#.start|序列发生器的起始值|否|无|
+|fields.\#.end|序列发生器的结束值|否|无|
 
 ## 代码示例
 
