@@ -12,7 +12,7 @@ Blink-3.2.1是Blink正式开源后第1个基于开源代码的正式版本。Bli
 
 -   支持Datastream API
     -   Blink-3.2.1版本中正式加入了对Datastream API的支持。Blink-3.2.1基于开源Flink 1.5.1分支开发，Blink-3.2.1中Datastream API接口与开源Flink1.5.1版本兼容性对比请参见[Blink 3.2与Flink 1.5.1版本API兼容性报告](/intl.zh-CN/独享模式/新功能发布记录/Blink-3.2.1/Blink 3.2与Flink 1.5.1版本API兼容性报告.md)。
-    -   Datastream Connector新增
+    -   Datastream Connector新增。
 
         |对接系统|Source|Sink|
         |----|------|----|
