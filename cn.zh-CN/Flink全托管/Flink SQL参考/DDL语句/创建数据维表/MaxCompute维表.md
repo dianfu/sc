@@ -13,6 +13,7 @@ create table odps_dim(
     id INT,
     user_name VARCHAR,
     age int
+    PRIMARY KEY (id)
 ) with (
     'connector' = 'odps', 
     'endpoint' = '<yourEndpoint>',
