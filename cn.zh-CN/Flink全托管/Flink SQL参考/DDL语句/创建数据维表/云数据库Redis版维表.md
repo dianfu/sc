@@ -70,7 +70,7 @@ CREATE TABLE redis_dim (
 ## 代码示例
 
 ```
-CREATE TABLE event (
+CREATE TEMPORARY TABLE datagen_source (
   id STRING, 
   data STRING,
   proctime as PROCTIME()
@@ -78,7 +78,7 @@ CREATE TABLE event (
   'connector' = 'datagen'
 );
 
-CREATE TABLE white_list (
+CREATE TEMPORARY TABLE redis_dim (
   id STRING,
   name STRING,
   PRIMARY KEY (id) NOT ENFORCED --Redis中的Row Key字段。
@@ -89,7 +89,7 @@ CREATE TABLE white_list (
   'password' = '<yourPassword>'
 );
 
-CREATE TABLE sink (
+CREATE TEMPORARY blackhole_sink (
   id STRING,
   data STRING,
   name STRING
@@ -97,10 +97,10 @@ CREATE TABLE sink (
   'connector' = 'blackhole'
 );
 
-INSERT INTO sink
+INSERT INTO blackhole_sink
 SELECT e.*, w.*
-FROM event AS e
-JOIN white_list FOR SYSTEM_TIME AS OF e.proctime AS w
+FROM datagen_source AS e
+JOIN redis_dim FOR SYSTEM_TIME AS OF e.proctime AS w
 ON e.id = w.id;
 ```
 
