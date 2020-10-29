@@ -39,7 +39,7 @@ create table hologres_sink(
 |password|密码|是|无|
 |endpoint|Hologres端点|是|格式为<ip\>:<port\>。|
 |field\_delimiter|Hologres Sink支持将一个STRING字段按照field\_delimiter切分成数组导入Hologres。|否|默认值为"\\u0002"。|
-|mutatetype|数据写入模式，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
+|mutateType|数据写入模式，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
 |partitionrouter|是否写入分区表。|否|默认值为false。|
 |ignoredelete|是否忽略撤回消息。|否|默认值为false。**说明：** 仅在使用流式语义时生效。 |
 
