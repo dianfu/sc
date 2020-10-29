@@ -51,7 +51,7 @@ create table Hologres_sink(
 |field\_delimiter|导出数据时，不同行之间使用的分隔符。 **说明：** 不能在数据中插入分隔符，且需要与bulkload语义一同使用。
 
 |否|默认值为"\\u0002"。|
-|mutationType|流式写入语义，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
+|mutateType|流式写入语义，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
 |partitionrouter|分区表写入|否|默认值为false。|
 |ignoredelete|是否忽略撤回消息。|否|默认值为false。**说明：** 仅在使用流式语义时生效。 |
 
@@ -67,14 +67,14 @@ create table Hologres_sink(
 在Hologres结果表中使用流式语义，您需要注意以下几点：
 
 -   如果Hologres物理表未设置主键，则Hologres Sink使用At-least-once语义。
--   如果Hologres物理表已设置主键，则Hologres Sink通过主键确保Exactly-once语义。当同主键数据出现多次时，您需要设置mutationType参数确定更新结果表的方式，mutationType取值如下：
+-   如果Hologres物理表已设置主键，则Hologres Sink通过主键确保Exactly-once语义。当同主键数据出现多次时，您需要设置mutateType参数确定更新结果表的方式，mutateType取值如下：
 
     -   insertorignore（默认值）：保留首次出现的数据，忽略后续所有数据。
     -   insertorreplace：使用后续出现的数据整行替换已有数据。
     -   insertorupdate：使用后续出现的数据选择性替换已有数据。
     **说明：**
 
-    -   当mutationType设置为insertorupdate或insertorreplace时，系统根据主键更新数据。
+    -   当mutateType设置为insertorupdate或insertorreplace时，系统根据主键更新数据。
     -   Blink定义的结果表中的数据列数不一定要和Hologres物理表的列数一致，您需要保证缺失的列没有非空约束，即列值可以为Null，否则会报错。
 -   默认情况下，Hologres Sink只能向一张表导入数据。如果导入数据至分区表的父表，即使导入成功，也会查询数据失败。您可以设置参数partitionRouter为true，开启自动将数据路由到对应分区表的功能。注意事项如下：
     -   tablename参数需要填写为父表的表名。
