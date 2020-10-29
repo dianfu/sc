@@ -10,10 +10,10 @@ keyword: [维表, MaxCompute]
 
 ```
 create table odps_dim(
-    id INT,
-    user_name VARCHAR,
-    age int
-    PRIMARY KEY (id)
+    id VARCHAR,
+    name VARCHAR,
+    age int,
+    PRIMARY KEY (id, name) not enforced
 ) with (
     'connector' = 'odps', 
     'endpoint' = '<yourEndpoint>',
@@ -29,10 +29,10 @@ create table odps_dim(
 
 **说明：**
 
--   不支持将MaxCompute维表分区列写入DDL定义中。
--   WITH参数需要全部小写。
 -   声明维表时，必须要指名主键，MaxCompute维表主键必须具有唯一性，否则会被去重。
 -   在维表进行JOIN时，ON条件必须包含所有主键的等值条件。
+-   不支持将MaxCompute维表分区列写入DDL定义中。
+-   主键字段必须按照PRIMARY KEY括号中字段的先后顺序，放在非主键字段之前。
 
 ## WITH参数
 
