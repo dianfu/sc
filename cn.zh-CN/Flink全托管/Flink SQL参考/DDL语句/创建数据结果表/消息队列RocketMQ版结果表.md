@@ -38,11 +38,19 @@ create table mq_sink(
 |--|--|----|--|
 |connector|结果表类型|是|固定值为`mq`。|
 |topic|topic名称|是|无|
-|endpoint|地址|是|仅支持公网地域的MQ，接入地址为`onsaddr-internet.aliyun.com:80`。|
-|accessID|AccessKey ID|是|无|
+|endpoint|地址|是|阿里云消息队列RocketMQ版接入地址支持以下两种类型： -   内网服务（阿里云经典网络/VPC）： 华北2（北京）、华东2（上海）、华东1（杭州）、华南1（深圳）：`onsaddr-internal.aliyun.com:8080`。
+
+**说明：** 仅VVR 2.1.1及以上版本支持以上地域。
+
+-   公网服务：`onsaddr-internet.aliyun.com:80`。 |
+|accessId|AccessKey ID|是|无|
 |accessKey|AccessKey Secret|是|无|
 |producerGroup|写入的群组|是|无|
 |tag|写入的标签|否|默认值为空。|
+|nameServerSubgroup|NameServer组|否|-   内网服务（阿里云经典网络/VPC）：nsaddr4client-internal
+-   公网服务：nsaddr4client-internet
+
+**说明：** 仅VVR 2.1.1及以上版本支持该参数。 |
 |fieldDelimiter|字段分割符|否|默认值为`\u0001` 。分隔符的使用情况如下所示： -   只读模式：以 `\u0001`作为分隔符，`\u0001`在只读模式不可见。
 -   编辑模式：以`^A`作为分隔符。 |
 |encoding|编码类型|否|默认值为`utf-8`。|
