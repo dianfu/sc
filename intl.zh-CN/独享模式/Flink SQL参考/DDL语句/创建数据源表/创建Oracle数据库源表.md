@@ -138,7 +138,7 @@ A：
 
 -   问题原因：Blink运行故障。
 
-    解决方法：查看TaskManager的`Round start:[{}], end:[{}]`和`Round read records`日志，如果未查询到日志数据，则Blink运行故障。您可以参见[运行Failover]()解决Blink运行故障。
+    解决方法：查看TaskManager的`Round start:[{}], end:[{}]`和`Round read records`日志，如果未查询到日志数据，则Blink运行故障。
 
     **说明：**
 
