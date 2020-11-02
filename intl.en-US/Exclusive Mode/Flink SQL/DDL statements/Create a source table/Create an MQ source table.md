@@ -116,7 +116,7 @@ FROM source_table;
 **Note:**
 
 -   Internal MQ service does not support cross-origin access. For example, if your Realtime Compute for Apache Flink service is located in the China \(Hangzhou\) region but your MQ service is located in the China \(Shanghai\) region, Realtime Compute for Apache Flink cannot access this MQ service.
--   By default, Realtime Compute for Apache Flink clusters in exclusive mode cannot access the Internet. If you want to access the Internet, configure a NAT gateway. For more information, see [t1860611.md\#section\_k9u\_1t0\_jqs]().
+-   By default, Realtime Compute for Apache Flink clusters in exclusive mode cannot access the Internet. If you want to access the Internet, configure a NAT gateway. For more information.
 -   Due to changes in the network security policies of Alibaba Cloud, connection issues may occur when Realtime Compute for Apache Flink connects to the Internet MQ service. We recommend that you use the internal MQ service. If an exception occurs when you use the Internet MQ service,[submit a ticket](https://account.alibabacloud.com/login/login.htm?oauth_callback=https%3A//ticket-intl.console.aliyun.com/%23). |
 |accessId|The AccessKey ID that is used to log on to the database.|Yes|None.|
 |accessKey|The AccessKey secret that is used to log on to the database.|Yes|None.|
