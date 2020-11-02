@@ -116,7 +116,6 @@ FROM source_table;
 **说明：**
 
 -   内网服务无法跨域访问。例如，您所购买的实时计算服务的地域为华东1，但是购买的消息队列MQ服务的地域为华东2，则无法访问。
--   独享集群默认不能访问公网，如果需要请配置NAT网关，详情参见[独享集群如何访问公网？]()
 -   由于阿里云网络安全策略动态变化，实时计算连接公网服务MQ时可能会出现网络连接问题，推荐您使用内网服务MQ，如果在使用公网服务MQ时出现异常，请您[提交工单](https://account.alibabacloud.com/login/login.htm?oauth_callback=https%3A//ticket-intl.console.aliyun.com/%23)进行咨询。 |
 |accessId|AccessKey ID|是|无|
 |accessKey|AccessKey Secret|是|无|
