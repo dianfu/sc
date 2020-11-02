@@ -138,7 +138,7 @@ A:
 
 -   Cause: Blink is faulty.
 
-    Solution: View the `Round start:[{}], end:[{}]` and `Round read records` logs on the TaskManager tab. If the logs do not contain data, Blink is faulty. For information about how to rectify the Blink failure.
+    Solution: View the `Round start:[{}], end:[{}]` and `Round read records` logs on the TaskManager tab. If the logs do not contain data, Blink is faulty. .
 
     **Note:**
 
