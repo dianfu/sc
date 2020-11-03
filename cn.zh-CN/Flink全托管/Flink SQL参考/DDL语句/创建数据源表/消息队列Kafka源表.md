@@ -102,3 +102,9 @@ CREATE TEMPORARY TABLE Kafka_sink (
 INSERT INTO Kafka_sink SELECT id, name, age FROM Kafka_source;
 ```
 
+## 常见问题
+
+Q：Flink全托管中的COMMIT OFFSET有什么作用？
+
+A：Flink全托管版默认采用commitOffsetOnCheckpointing，用户设置的Commit Offset策略不生效。只有开启checkpoint后，在每次checkpoint成功时，才会commit当前分区消费的offset至Kafka，以便在作业失败恢复过程中，从上一次checkpoint的commit位点开始消费，保证计算的Exactly Once。如果将checkpoint间隔设置过大，Kafka端可能会查询不到当前消费offset。
+
