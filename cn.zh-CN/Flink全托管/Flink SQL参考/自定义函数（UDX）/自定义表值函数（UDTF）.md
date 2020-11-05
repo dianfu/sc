@@ -43,7 +43,7 @@
     该示例中，pom.xml文件已配置了Flink 1.11版依赖的主要JAR包信息。如果您的业务：
 
     -   不依赖其他JAR包：不用配置pom.xml文件，继续下一步。
-    -   依赖其他JAR包：在pom.xml文件中添加您所需依赖的JAR包信息。此外，您还需要在[MvnrePository](https://mvnrepository.com/)库中下载依赖包到您本地，以防打包报错。
+    -   依赖其他JAR包：在pom.xml文件中添加您所需依赖的JAR包信息。
     Flink 1.11版依赖的主要JAR包如下。
 
     ```
