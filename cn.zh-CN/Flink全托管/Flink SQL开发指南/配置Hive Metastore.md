@@ -73,7 +73,9 @@
     -   hadoop-conf-dir：存放Hadoop依赖的目录。
 15. 单击**运行**。
 
-    如果您想停用Hive Metastore服务，详情请参见[删除Hive Metasore服务](#section_h4x_5t3_488)。
+    Hive Metastore服务配置完成后，您就可以在作业中引用Hive Metastore表信息，作为结果表和维表，无需声明表的DDL。Hive Metastore表名称格式为$\{hive-catlog-name\}.$\{hive-db-name\}.$\{hive-table-name\}。
+
+    此外，如果您想停用Hive Metastore服务，详情请参见[删除Hive Metasore服务](#section_h4x_5t3_488)。
 
 
 ## 查看Hive元数据
