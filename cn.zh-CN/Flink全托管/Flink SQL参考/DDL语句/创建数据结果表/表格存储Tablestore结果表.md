@@ -49,7 +49,7 @@ CREATE TABLE ots_sink (
 |maxRetryTimes|最大重试次数|否|默认值为100。|
 |ignoreDelete|是否忽略DELETE操作|否|默认值为False。|
 |connectTimeout|Connector连接Tablestore的超时时间|否|单位毫秒，默认值为30000（30秒）。|
-|socketTimeout|Connector链接Tablestore的Socket超时时间|否|单位毫秒，默认值为30000（30秒）。|
+|socketTimeout|Connector连接Tablestore的Socket超时时间|否|单位毫秒，默认值为30000（30秒）。|
 
 ## 类型映射
 
