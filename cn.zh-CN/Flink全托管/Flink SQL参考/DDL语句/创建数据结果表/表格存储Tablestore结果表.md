@@ -46,7 +46,7 @@ CREATE TABLE ots_sink (
 |batchWriteTimeoutMs|写入超时的时间|否|单位为毫秒，默认值为5000。表示如果缓存中的数据在等待5秒后，依然没有达到输出条件，系统会自动输出缓存中的所有数据。|
 |batchSize|一次批量写入的条数|否|默认值为100。|
 |retryIntervalMs|重试间隔时间|否|单位为毫秒，默认值为1000。|
-|maxRetryTimes|最大重试次数|否|默认值为100。|
+|maxRetryTimes|最大重试次数|否|默认值为10。|
 |ignoreDelete|是否忽略DELETE操作|否|默认值为False。|
 |connectTimeout|Connector连接Tablestore的超时时间|否|单位毫秒，默认值为30000（30秒）。|
 |socketTimeout|Connector连接Tablestore的Socket超时时间|否|单位毫秒，默认值为30000（30秒）。|
