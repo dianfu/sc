@@ -97,7 +97,7 @@ UDTF注册过程，请参见[管理自定义函数（UDF）](/cn.zh-CN/Flink全�
 
     ```
     CREATE TEMPORARY TABLE ASI_UDTF_Source (
-      message  VARCHAR
+      `message`  VARCHAR
     ) WITH (
       'connector'='datagen'
     );
@@ -111,7 +111,7 @@ UDTF注册过程，请参见[管理自定义函数（UDF）](/cn.zh-CN/Flink全�
     
     INSERT INTO ASI_UDTF_Sink
     SELECT name,place
-    FROM ASI_UDTF_Source,lateral table(`message`) as T(name,place);
+    FROM ASI_UDTF_Source,lateral table(ASI_UDTF(`message`)) as T(name,place);
     ```
 
 2.  在**作业列表**中，单击目标作业名称**操作**列的**启动**。
