@@ -13,7 +13,7 @@ keyword: 创建交互式分析Hologres源表
 ## DDL定义
 
 ```
-create table mysource(
+create table hologres_source(
   name varchar,
   age BIGINT,
   birthday BIGINT
@@ -28,7 +28,10 @@ create table mysource(
 );
 ```
 
-**说明：** Flink全托管不支持源表中定义计算列。
+**说明：**
+
+-   Flink全托管不支持源表中定义计算列。
+-   Flink全托管以批模式读取Hologres源表数据，即只扫描一次Hologres全表，扫描结束，消费结束，新到Hologres源表的数据不会被读取。
 
 ## WITH参数
 
@@ -47,7 +50,7 @@ create table mysource(
 ## 代码示例
 
 ```
-CREATE TEMPORARY TABLE mysource(
+CREATE TEMPORARY TABLE hologres_source (
   name varchar, 
   age BIGINT,
   birthday BIGINT
@@ -61,7 +64,7 @@ CREATE TEMPORARY TABLE mysource(
   'field_delimiter'='|' --该参数可选。
 );
 
-CREATE TEMPORARY TABLE print_output(
+CREATE TEMPORARY TABLE blackhole_sink(
   name varchar,
   age BIGINT,
   birthday BIGINT 
@@ -69,10 +72,10 @@ CREATE TEMPORARY TABLE print_output(
   'connector'='blackhole'
 );
 
-INSERT INTO print_output
+INSERT INTO blackhole_sink
 SELECT 
    name, age, birthday
-from mysource;
+from hologres_source;
 ```
 
 ## 类型映射
