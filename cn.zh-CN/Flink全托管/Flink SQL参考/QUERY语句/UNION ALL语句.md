@@ -10,7 +10,7 @@ UNION ALL
 select_statement;
 ```
 
-**说明：** 实时计算Flink版同样支持`UNION`函数。`UNION ALL`允许重复值，`UNION`不允许重复值。在实时计算Flink版系统中，`UNION`相当于`UNION ALL+Distinct`，运行效率低，通常不推荐使用`UNION`。
+**说明：** Flink全托管同样支持`UNION`函数。`UNION ALL`允许重复值，`UNION`不允许重复值。在Flink全托管系统中，`UNION`相当于`UNION ALL+Distinct`，运行效率低，通常不推荐使用`UNION`。
 
 ## 示例
 
