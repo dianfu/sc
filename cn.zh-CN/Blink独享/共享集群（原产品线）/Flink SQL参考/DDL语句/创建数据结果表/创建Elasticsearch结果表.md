@@ -39,10 +39,10 @@
 |--|--|---|----|
 |type|connector类型|elasticsearch|是|
 |endPoint|Server地址，例入：http://127.0.0.1:9211。|无|是|
-|accessId|AccessKey ID。 **说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录ID。
+|accessId|创建ES时的登录名**说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录ID。
 
 |无|是|
-|accessKey|AccessKey Secret。 **说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录密码。
+|accessKey|创建ES时的登录密码 **说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录密码。
 
 |无|是|
 |index|索引名称，类似于数据库Database的名称。|无|是|
@@ -78,8 +78,8 @@
 -   仅Blink 2.2.7及以上版本支持动态索引功能。
 -   当开启动态索引后，基本配置中的`index`名称会作为后续创建索引的统一Alias，Alias和索引为一对多关系。
 -   不同的`indexInterval`对应的真实索引名称：
-    -   d -\> Alias + "yyyyMMdd"
-    -   m -\> Alias + "yyyyMM"
-    -   w -\> Alias + "yyyyMMW"
+    -   d -\> Alias "yyyyMMdd"
+    -   m -\> Alias "yyyyMM"
+    -   w -\> Alias "yyyyMMW"
 -   对于单个的真实索引可使用Index API进行修改，但对于Alias只支持`get`功能。如果需要更新Alias，请参见[Index Aliases](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html)。
 
