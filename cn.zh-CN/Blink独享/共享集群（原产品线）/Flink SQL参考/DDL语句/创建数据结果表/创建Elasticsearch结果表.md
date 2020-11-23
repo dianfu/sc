@@ -72,6 +72,16 @@
 |indexInterval|切换索引的周期|d|dynamicIndex为true时必填 ，可选参数值如下： -   d：天
 -   m：月
 -   w：周 |
+|mapping|启用动态索引时，设置文档各字段的类型与格式。|空|否。Blink 3.7.0版本及以上版本支持该参数。例如，设置名为sendTime字段的格式：```
+{
+ "properties": {    
+ "sendTime": {     
+ "type":   "date",     
+ "format": "yyyy-MM-dd HH:mm:ss"    
+    }
+  }
+}
+``` |
 
 **说明：**
 
