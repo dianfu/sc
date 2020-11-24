@@ -8,7 +8,7 @@ keyword: [Datagen, Datagen源表]
 
 ## 什么是Datagen源表
 
-Datagen源表是系统内置的Connector，可以周期性地生成Datagen源表对应类型的随机数据。如果您在注册其他类型的Connector源表时报错，但您不确定是全托管系统问题还是源表WITH参数错误，您可以将WITH参数修改为'connector' = 'datagen'后，单击**运行**。如果不再报错，则证明全托管系统没有问题，您需要确认修改WITH参数。
+Datagen源表是系统内置的Connector，可以周期性地生成Datagen源表对应类型的随机数据。如果您在注册其他类型的Connector源表时报错，但您不确定是Flink系统问题还是源表WITH参数错误，您可以将WITH参数修改为'connector' = 'datagen'后，单击**运行**。如果不再报错，则证明Flink系统没有问题，您需要确认修改WITH参数。
 
 ## DDL定义
 
