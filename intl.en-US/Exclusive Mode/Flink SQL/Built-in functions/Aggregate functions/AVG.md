@@ -18,6 +18,8 @@ AVG(A)
 
 Returns the average value of all the values in a specified expression.
 
+**Note:** The return value is of the DOUBLE type by default. If the field value in the result table is of a type other than DOUBLE, you must use [CAST](/intl.en-US/Exclusive Mode/Flink SQL/Built-in functions/Type conversion function/CAST.md) to convert the data type.
+
 ## Example
 
 -   Test data
