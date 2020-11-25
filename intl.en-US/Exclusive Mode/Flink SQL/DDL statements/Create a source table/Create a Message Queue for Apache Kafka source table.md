@@ -53,7 +53,7 @@ create table kafka_stream(   --The sequence and data types of the following fiel
     -   LATEST: reads data from the latest offset in a Kafka cluster.
     -   TIMESTAMP: reads data from a specified time point.
 
-You can specify the startTimeMs or startTime parameter in the WITH clause. The value of the startTimeMs parameter is a timestamp, whereas the value of the startTime parameter is in the `yyyy-MM-dd HH:mm:ss` format. We recommend that you use the startTimeMs parameter. If neither parameter is specified, data is consumed from the start offset specified by Realtime Compute for Apache Flink.
+You can specify the startTimeMs or startTime parameter in the WITH clause. The value of the startTimeMs parameter is a timestamp, whereas the value of the startTime parameter is in the `yyyy-MM-dd HH:mm:ss` format. We recommend that you use the startTimeMs parameter. If neither of the parameters is specified, data is consumed from the start offset specified by Realtime Compute for Apache Flink.
 
 **Note:**
 
@@ -116,7 +116,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
         -   [Kafka09](https://kafka.apache.org/0110/documentation.html#consumerconfigs)
         -   [Kafka010](https://kafka.apache.org/090/documentation.html#newconsumerconfigs)
         -   [Kafka011](https://kafka.apache.org/0102/documentation.html#newconsumerconfigs)
-        If you want to modify the configurations, you can add parameters to the WITH clause of the DDL statement. For example, if you want to configure Simple Authentication and Security Layer \(SASL\), add the `security.protocol`, `sasl.mechanism`, and `sasl.jaas.config` parameters.
+        If you want to modify the configurations, you can add parameters to the WITH clause in the DDL statement. For example, if you want to configure Simple Authentication and Security Layer \(SASL\), add the `security.protocol`, `sasl.mechanism`, and `sasl.jaas.config` parameters.
 
         ```
         create table kafka_stream(
@@ -162,7 +162,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
 
     -   Data processing method 1: Realtime Compute for Apache Flink reads and processes data from the Message Queue for Apache Kafka source table and then exports the result data to ApsaraDB RDS.
 
-        In Blink 2.2.7 and later, you can use the CAST function to convert the VARBINARY data type to the VARCHAR data type. Then, you can use the JSON\_VALUE function to parse the data of the Message Queue for Apache Kafka source table. The following code shows an example:
+        In Blink 2.2.7 and later, you can use the CAST function to convert the VARBINARY data type to the VARCHAR data type. Then, use the JSON\_VALUE function to parse the data of the Message Queue for Apache Kafka source table. The following code shows an example:
 
         ```
         CREATE TABLE kafka_src (
@@ -626,7 +626,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
          java.lang.IllegalArgumentException: Startup time[1566481803000] must be before current time[1566453003356].
     ```
 
-    A: This error is caused by incorrect time zone settings. To solve this issue, add the following parameter to job parameters:
+    A: This error is caused by invalid time zone settings. To solve this issue, add the following parameter to job parameters:
 
     ```
     blink.job.timeZone=Asia/Shanghai
@@ -643,7 +643,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
     -   Troubleshooting
         1.  View the endpoint for listener\_security\_protocol of the broker of ZooKeeper.
 
-            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4089493061/p64421.jpg)
+            ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4089493061/p64421.jpg)
 
         2.  Use the network detection feature to check whether you can access the IP address or domain name in the endpoint.
         3.  Log on to your machine to confirm the cause.
@@ -652,7 +652,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
         -   Exclusive clusters of Realtime Compute for Apache Flink cannot resolve domain names. If the endpoint is a domain name and a whitelist has been configured, use one of the following methods:
             -   If you cannot restart the Kafka service, perform the following operations:
 
-                Purchase [PrivateZone](https://www.aliyun.com/product/pvtz?spm=5176.10695662.1395782.1.305e10614trdiP) and configure domain name resolution for all Kafka brokers. After network detection based on the domain name is successful, restart your Realtime Compute for Apache Flink job.
+                Purchase [PrivateZone of Alibaba Cloud DNS](https://www.aliyun.com/product/pvtz?spm=5176.10695662.1395782.1.305e10614trdiP) and configure domain name resolution for all Kafka brokers. After network detection based on the domain name is successful, restart your Realtime Compute for Apache Flink job.
 
             -   If you can restart the Kafka service, perform the following operations:
 
