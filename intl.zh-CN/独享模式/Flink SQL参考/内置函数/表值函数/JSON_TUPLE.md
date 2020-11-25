@@ -1,6 +1,8 @@
 # JSON\_TUPLE
 
-本文为您介绍如何使用实时计算表值函数JSON\_TUPLE。
+本文为您介绍如何使用实时计算Flink版表值函数JSON\_TUPLE。
+
+**说明：** 仅Blink支持JSON\_TUPLE，Flink不支持JSON\_TUPLE。
 
 ## 语法
 
@@ -25,8 +27,8 @@ JSON_TUPLE(str, path1, path2 ..., pathN)
 
     |d\(VARCHAR\)|s\(VARCHAR\)|
     |------------|------------|
-    |\{“qwe”:”asd”,”qwe2”:”asd2”,”qwe3”:”asd3”\}|qwe3|
-    |\{“qwe”:”asd4”,”qwe2”:”asd5”,”qwe3”:”asd3”\}|qwe2|
+    |\{"qwe":"asd","qwe2":"asd2","qwe3":"asd3"\}|qwe3|
+    |\{"qwe":"asd4","qwe2":"asd5","qwe3":"asd3"\}|qwe2|
 
 -   测试语句
 
@@ -40,9 +42,9 @@ JSON_TUPLE(str, path1, path2 ..., pathN)
 
     |d\(VARCHAR\)|v\(VARCHAR\)|
     |------------|------------|
-    |\{“qwe”:”asd”,”qwe2”:”asd2”,”qwe3”:”asd3”\}|asd|
-    |\{“qwe”:”asd”,”qwe2”:”asd2”,”qwe3”:”asd3”\}|asd3|
-    |\{“qwe”:”asd4”,”qwe2”:”asd5”,”qwe3”:”asd3”\}|asd4|
-    |\{“qwe”:”asd4”,”qwe2”:”asd5”,”qwe3”:”asd3”\}|asd5|
+    |\{"qwe":"asd","qwe2":"asd2","qwe3":"asd3"\}|asd|
+    |\{"qwe":"asd","qwe2":"asd2","qwe3":"asd3"\}|asd3|
+    |\{"qwe":"asd4","qwe2":"asd5","qwe3":"asd3"\}|asd4|
+    |\{"qwe":"asd4","qwe2":"asd5","qwe3":"asd3"\}|asd5|
 
 
