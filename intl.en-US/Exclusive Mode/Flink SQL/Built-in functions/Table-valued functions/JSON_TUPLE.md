@@ -2,6 +2,8 @@
 
 This topic describes how to use the table-valued function JSON\_TUPLE in Realtime Compute for Apache Flink.
 
+**Note:** Only Blink supports JSON\_TUPLE. Flink does not support JSON\_TUPLE.
+
 ## Syntax
 
 ```
