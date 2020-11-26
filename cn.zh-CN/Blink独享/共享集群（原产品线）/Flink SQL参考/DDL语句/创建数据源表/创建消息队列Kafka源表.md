@@ -113,9 +113,9 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
 
     -   Kafka09/Kafka010/Kafka011可选配置，请参见如下Kafka官方文档进行配置：
 
-        -   [Kafka09](https://kafka.apache.org/0110/documentation.html#consumerconfigs)
-        -   [Kafka010](https://kafka.apache.org/090/documentation.html#newconsumerconfigs)
-        -   [Kafka011](https://kafka.apache.org/0102/documentation.html#newconsumerconfigs)
+        -   [Kafka09](https://kafka.apache.org/090/documentation.html?spm=a2c4g.11186623.2.18.5fda779biQ4ToG#newconsumerconfigs)
+        -   [Kafka010](https://kafka.apache.org/0100/documentation.html?spm=a2c4g.11186623.2.18.5fda779biQ4ToG#newconsumerconfigs)
+        -   [Kafka011](https://kafka.apache.org/0110/documentation.html?spm=a2c4g.11186623.2.17.5fda779biQ4ToG#consumerconfigs)
         当需要配置某选项时，在DDL中的WITH部分增加对应的参数即可。例如，配置SASL登录，需增加``security.protocol``、``sasl.mechanism``和``sasl.jaas.config``3个参数，示例如下。
 
         ```
@@ -643,7 +643,7 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
     -   排查思路
         1.  查看**zookeeper** \> **broker** \> **listener\_security\_protocol** \> **endpoint**信息。
 
-            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9084359951/p64421.jpg)
+            ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9084359951/p64421.jpg)
 
         2.  通过**网络探测**功能检测endpoint的IP或域名是否可访问。
         3.  登录机器再次确认。
