@@ -105,7 +105,7 @@ FROM source_table;
 |--|--|----|--|
 |type|源表类型|是|固定值为mq。|
 |topic|topic名称|是|无。|
-|endPoint|endPoint地址|是|阿里云消息队列提供内网服务MQ（非公网region）和公网服务MQ（公网region）两种类型，请务必根据您购买的MQ的类型选择对应正确的接入地址（endPoint）： -   内网服务MQ（阿里云经典网络/VPC）接入地址：
+|endPoint|endPoint地址|是|阿里云消息队列提供内网服务MQ（非公网region）和公网服务MQ（公网region）两种类型，请务必根据您购买的MQ的类型选择对应正确的接入地址（endPoint）：-   内网服务MQ（阿里云经典网络/VPC）接入地址：
     -   华东1（杭州）、华东2（上海）、华北1（青岛）、华北2（北京）、华南1（深圳）、中国（香港）：`onsaddr-internal.aliyun.com:8080`。
     -   亚太东南1（新加坡）：`ap-southeastaddr-internal.aliyun.com:8080`。
     -   中东东部1（迪拜）：`ons-me-east-1-internal.aliyuncs.com:8080`。
