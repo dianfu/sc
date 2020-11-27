@@ -23,7 +23,7 @@ The following code shows the core methods of the AggregateFunction class.
     */
     public abstract class AggregateFunction<T, ACC> extends UserDefinedFunction {
     /*
-    * Initialize the accumulator in AggregateFunction.
+    * Initializes the accumulator in AggregateFunction.
     * The system calls the following method before it aggregates data for the first time.
     */
     public ACC createAccumulator();
@@ -60,7 +60,7 @@ The following code shows the core methods of the AggregateFunction class.
 
     **Note:**
 
-    -   The retract method is the reverse operation of the accumulate method. For example, in a count UDAF, the computing result increases by one each time the accumulate method is called to process a data record, whereas the result decreases by one each time the retract method is called to process a data record.
+    -   The retract method is the reverse operation of the accumulate method. For example, in a count UDAF, the number of data records in the computing result increases by one each time the accumulate method is called to process a data record, whereas the number of data records in the result decreases by one each time the retract method is called to process a data record.
     -   Similar to the accumulate method, the first parameter of the retract method must be an accumulator of the ACC type defined in AggregateFunction. During code execution, the runtime code sends the previous value in the accumulator and the specified upstream data to the retract method for aggregation. The upstream data can be of any type and contain any number of data records.
     Realtime Compute for Apache Flink requires the merge method in some scenarios. For example, if you use a session window to aggregate data, you must use the merge method. Realtime Compute for Apache Flink can process out-of-order data. Newly arrived data may fill the gap between two separate sessions, which results in the merge of the two sessions. In this case, you must use the merge method to integrate multiple accumulators into one accumulator.
 
@@ -123,19 +123,19 @@ public class CountUdaf extends AggregateFunction<Long, CountUdaf.CountAccum> {
 2.  In the top navigation bar, click **Development**.
 3.  In the left-side navigation pane, click the **Resources** tab.
 4.  In the upper-right corner of the **Resources** pane, click **Create Resource**.
-5.  In the Upload Resource dialog box, configure resource parameters.
+5.  In the **Upload Resource** dialog box, configure resource parameters.
 
     |Parameter|Description|
     |---------|-----------|
-    |Location|You can only upload JAR packages from your machine in the Realtime Compute for Apache Flink console.**Note:** The maximum size of a JAR package that can be uploaded from your machine is 300 MB. If the JAR package exceeds 300 MB, you must upload it to the Object Storage Service \(OSS\) bucket bound to your cluster or use APIs to upload it. |
-    |Resource|Click **Upload Resource** and select the resource that you want to reference.|
+    |Location|You can only upload JAR packages from your machine in the Realtime Compute for Apache Flink console.**Note:** The maximum size of a JAR package that can be uploaded from your machine is 300 MB. If the JAR package exceeds 300 MB, you must upload it to the Object Storage Service \(OSS\) bucket that is bound to your cluster or use an API to upload it. |
+    |Resource|Click **Upload Resource** to select the resource that you want to reference.|
     |Resource Name|Enter a name for the resource.|
     |Resource Description|Enter a resource description.|
     |Resource Type|Select the type of the resource. The type can be JAR, DICTIONARY, or PYTHON.|
 
 6.  In the **Resources** pane, find the new resource, and move the pointer over **More** in the Actions column.
 7.  In the drop-down list, select **Reference**.
-8.  In the code editor, declare the UDX at the beginning. The following statement is an example:
+8.  In the code editor, declare the UDX. The following statement is an example:
 
     ```
     CREATE FUNCTION stringLengthUdf AS 'com.hjc.test.blink.sql.udx.StringLengthUdf';
@@ -144,7 +144,7 @@ public class CountUdaf extends AggregateFunction<Long, CountUdaf.CountAccum> {
 
 ## Publish and use a UDAF
 
-For more information about how to publish and use a UDAF, see [Publish a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Publish a job.md) and [t147761.md\#](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Start a job.md).
+For more information about how to publish and use a UDAF, see [Publish a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Publish a job.md) and [Start a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Start a job.md).
 
 ## Example
 
@@ -153,35 +153,35 @@ For more information about how to publish and use a UDAF, see [Publish a job](/i
 CREATE FUNCTION countUdaf AS 'com.hjc.test.blink.sql.udx.CountUdaf';
 
 create table sls_stream(
-a int,
-b bigint,
-c varchar
+   a int,
+   b bigint,
+   c varchar
 ) with (
-type='sls',
-endPoint='yourEndpoint',
-accessKeyId='yourAccessId',
-accessKeySecret='yourAccessSecret',
-startTime = '2017-07-04 00:00:00',
-project='<yourPorjectName>',
-logStore='stream-test2',
-consumerGroup='consumerGroupTest3'
+   type='sls',
+   endPoint='yourEndpoint',
+   accessKeyId='yourAccessId',
+   accessKeySecret='yourAccessSecret',
+   startTime='2017-07-04 00:00:00',
+   project='<yourPorjectName>',
+   logStore='stream-test2',
+   consumerGroup='consumerGroupTest3'
 );
 
 create table rds_output(
-len1 bigint,
-len2 bigint
+   len1 bigint,
+   len2 bigint
 ) with (
-type='rds',
-url='yourDatabaseURL',
-tableName='<yourDatabaseTableName>',
-userName='<yourDatabaseUserName>',
-password='<yourDatabasePassword>'
+   type='rds',
+   url='yourDatabaseURL',
+   tableName='<yourDatabaseTableName>',
+   userName='<yourDatabaseUserName>',
+   password='<yourDatabasePassword>'
 );
 
 insert into rds_output
 select
-count(a),
-countUdaf(a)
+   count(a),
+   countUdaf(a)
 from sls_stream;
 ```
 
