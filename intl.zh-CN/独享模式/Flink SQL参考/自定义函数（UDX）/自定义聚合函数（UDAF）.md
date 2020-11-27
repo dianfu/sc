@@ -50,7 +50,7 @@ AggregateFunction的核心接口方法，如下所示：
     -   accumulate方法的第一个参数必须是使用AggregateFunction的ACC类型的accumulator。在系统运行过程中，runtime代码会把accumulator的历史状态和您指定的上游数据（支持任意数量，任意类型的数据）作为参数，一起传递给accumulate方法。
 -   retract和merge方法
 
-    createAccumulator、getValue和accumulate3个方法一起使用，可以设计出一个最基本的UDAF。但是实时计算Flink版一些特殊的场景需要您提供retract和merge两个方法才能完成。
+    createAccumulator、getValue和accumulate 3个方法一起使用，可以设计出一个最基本的UDAF。但是实时计算Flink版一些特殊的场景需要您提供retract和merge两个方法才能完成。
 
     通常，计算都是对无限流的一个提前的观测值（early firing）。既然有early firing，就会有对发出的结果的修改，这个操作叫作撤回（retract）。SQL翻译优化器会帮助您自动判断哪些情况下会产生撤回的数据，哪些操作需要处理带有撤回标记的数据。但是您需要实现一个retract方法来处理撤回的数据。
 
@@ -97,12 +97,12 @@ public class CountUdaf extends AggregateFunction<Long, CountUdaf.CountAccum> {
         return acc;
     }
 
-    //getValue提供了，如何通过存放状态的accumulator，计算count UDAF的结果的方法。
+    //getValue提供了如何通过存放状态的accumulator计算count UDAF的结果的方法。
     public Long getValue(CountAccum accumulator) {
         return accumulator.total;
     }
 
-    //accumulate提供了，如何根据输入的数据，更新count UDAF存放状态的accumulator。
+    //accumulate提供了如何根据输入的数据更新count UDAF存放状态的accumulator。
     public void accumulate(CountAccum accumulator, Object iValue) {
         accumulator.total++;
     }
@@ -122,8 +122,8 @@ public class CountUdaf extends AggregateFunction<Long, CountUdaf.CountAccum> {
 1.  登录[实时计算控制台](https://stream.console.aliyun.com)。
 2.  在顶部菜单中，单击**开发**。
 3.  在左侧的导航栏中，单击**资源引用**。
-4.  在**资源引用**页签的右上角，单击**新建资源**。
-5.  在上传资源页面，输入资源配置信息。
+4.  在**资源引用**页签的左上角，单击**新建资源**。
+5.  在**上传资源**页面，输入资源配置信息。
 
     |参数名称|说明|
     |----|--|
@@ -133,9 +133,9 @@ public class CountUdaf extends AggregateFunction<Long, CountUdaf.CountAccum> {
     |资源备注|输入资源备注信息。|
     |资源类型|选择引用资源类型，JAR、DICTIONARY或PYTHON。|
 
-6.  在**资源引用**页签中，将鼠标悬停在对应作业的右侧的**更多**上。
-7.  在下拉列表中，选择**引用**。
-8.  在作业的编辑窗口的顶部，输入自定义函数声明，示例如下。
+6.  在**资源列表**中，将鼠标悬停在目标资源右侧的**更多**上。
+7.  在下拉列表中，单击**引用**。
+8.  在作业编辑窗口，输入自定义函数声明，示例如下。
 
     ```
     CREATE FUNCTION stringLengthUdf AS 'com.hjc.test.blink.sql.udx.StringLengthUdf';
@@ -149,39 +149,39 @@ public class CountUdaf extends AggregateFunction<Long, CountUdaf.CountAccum> {
 ## 示例
 
 ```
--- UDAF 计算count
+-- UDAF计算count
 CREATE FUNCTION countUdaf AS 'com.hjc.test.blink.sql.udx.CountUdaf';
 
 create table sls_stream(
-a int,
-b bigint,
-c varchar
+   a int,
+   b bigint,
+   c varchar
 ) with (
-type='sls',
-endPoint='yourEndpoint',
-accessKeyId='yourAccessId',
-accessKeySecret='yourAccessSecret',
-startTime = '2017-07-04 00:00:00',
-project='<yourPorjectName>',
-logStore='stream-test2',
-consumerGroup='consumerGroupTest3'
+   type='sls',
+   endPoint='yourEndpoint',
+   accessKeyId='yourAccessId',
+   accessKeySecret='yourAccessSecret',
+   startTime='2017-07-04 00:00:00',
+   project='<yourPorjectName>',
+   logStore='stream-test2',
+   consumerGroup='consumerGroupTest3'
 );
 
 create table rds_output(
-len1 bigint,
-len2 bigint
+   len1 bigint,
+   len2 bigint
 ) with (
-type='rds',
-url='yourDatabaseURL',
-tableName='<yourDatabaseTableName>',
-userName='<yourDatabaseUserName>',
-password='<yourDatabasePassword>'
+   type='rds',
+   url='yourDatabaseURL',
+   tableName='<yourDatabaseTableName>',
+   userName='<yourDatabaseUserName>',
+   password='<yourDatabasePassword>'
 );
 
 insert into rds_output
 select
-count(a),
-countUdaf(a)
+   count(a),
+   countUdaf(a)
 from sls_stream;
 ```
 
