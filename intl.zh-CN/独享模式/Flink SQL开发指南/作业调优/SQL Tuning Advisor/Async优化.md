@@ -12,7 +12,7 @@ keyword: [Async, 吞吐率, CPU使用率]
 
 Flink SQL基于Flink Async I/O和异步客户端实现了维表JOIN的异步化，极大地提高了吞吐率。同步模式和异步模式对比图如下。
 
-![对比](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3714929951/p161580.png)
+![对比](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3714929951/p161580.png)
 
 ## 调优方式
 
