@@ -12,7 +12,7 @@ This topic describes how to create a Message Queue \(MQ\) source table in Realti
 
 MQ is a professional messaging middleware that is developed by Alibaba Cloud. It is a core product of the enterprise-level Internet architecture. In Realtime Compute for Apache Flink, you can use MQ tables as source tables for the processing of streaming data.
 
-## Example
+## Sample code
 
 ```
 create table mq_stream(
@@ -117,8 +117,8 @@ FROM source_table;
 
 -   Internal MQ service does not support cross-origin access. For example, if your Realtime Compute for Apache Flink service is located in the China \(Hangzhou\) region but your MQ service is located in the China \(Shanghai\) region, Realtime Compute for Apache Flink cannot access this MQ service.
 -   Due to changes in the network security policies of Alibaba Cloud, connection issues may occur when Realtime Compute for Apache Flink connects to the Internet MQ service. We recommend that you use the internal MQ service. If an exception occurs when you use the Internet MQ service,[submit a ticket](https://account.alibabacloud.com/login/login.htm?oauth_callback=https%3A//ticket-intl.console.aliyun.com/%23). |
-|accessId|The AccessKey ID that is used to log on to the database.|Yes|None.|
-|accessKey|The AccessKey secret that is used to log on to the database.|Yes|None.|
+|accessId|AccessKey ID|Yes|None.|
+|accessKey|AccessKey Secret|Yes|None.|
 |consumerGroup|The name of a consumer group.|Yes|None.|
 |pullIntervalMs|The interval at which messages are pulled.|No|Unit: milliseconds.|
 |startTime|The start time of message consumption.|No|None.|
@@ -135,10 +135,10 @@ Other valid values are SKIP, EXCEPTION, and PAD. -   SKIP: If the number of fiel
 -   PAD: Data is padded from left to right based on the order of defined fields.
     -   If the number of fields parsed from a row of data is greater than the number of defined fields, data is padded from left to right based on the order of defined fields.
     -   If the number of fields parsed from a row of data is less than the number of defined fields, the values of the missing fields are padded with null. |
-|columnErrorDebug|Specifies whether debugging is enabled.|No|Default value: FALSE. If you set this parameter to TRUE, a log entry is printed when a parsing exception occurs.|
+|columnErrorDebug|Specifies whether to enable debugging.|No|Default value: FALSE. If you set this parameter to TRUE, a log entry is printed when a parsing exception occurs.|
 |instanceID|The ID of an MQ instance.|No|If the MQ instance does not have a separate namespace, you do not need to set this parameter. If the MQ instance has a separate namespace, this parameter is required.|
 
-## Field type mapping
+## Mapping between field data types
 
 |MQ data type|Data type of Realtime Compute for Apache Flink|
 |------------|----------------------------------------------|
