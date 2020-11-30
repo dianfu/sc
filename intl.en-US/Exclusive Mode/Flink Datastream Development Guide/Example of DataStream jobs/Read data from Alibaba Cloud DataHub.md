@@ -23,7 +23,7 @@ Windows operating system and macOS are used in the demo.
 
 1.  DataStream of Realtime Compute for Apache Flink is compatible with open source Flink 1.5.2. Download and decompress [flink-1.5.2-compatible](https://github.com/alibaba/alibaba-flink-connectors/tree/flink-1.5.2-compatible) to your machine.
 
-    **Note:** datahub-connetor in the downloaded file functions as the DataHub sink. For more information, see DatahubSinkFunction.java and DatahubSinkFunctionExample.java in the downloaded file.
+    **Note:** datahub-connector in the downloaded file functions as the DataHub sink. For more information, see DatahubSinkFunction.java and DatahubSinkFunctionExample.java in the downloaded file.
 
 2.  In the command window, go to the alibaba-flink-connectors-flink-1.5.2-compatible directory and run the following command:
 
@@ -33,9 +33,9 @@ Windows operating system and macOS are used in the demo.
 
     The following results are displayed:
 
-    ![Execution results ](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9265749951/p89088.png)
+    ![Execution results ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9265749951/p89088.png)
 
-    If the command execution is successful, the JAR package that corresponds to datahub-connector is installed in the Maven repository on your machine. By default, the package is installed in the .m2 folder under the folder of the current logon user.
+    If the command execution succeeds, the JAR package that corresponds to datahub-connector is installed in the Maven repository on your machine. By default, the package is installed in the .m2 folder under the folder of the current logon user.
 
 3.  Run the following command to check whether the package datahub-connector-0.1-SNAPSHOT-jar-with-dependencies.jar exists. This package contains a JAR package and its dependent third-party JAR packages. It will be used in subsequent operations.
 
@@ -50,12 +50,12 @@ Windows operating system and macOS are used in the demo.
     -   macOS:
 
         ```
-        ls C:\Users\Username\.m2\repository\com\alibaba\flink\datahub-connector\0.1-SNAPSHOT
+        ls /Users/Username/.m2/repository/com/alibaba/flink/datahub-connector/0.1-SNAPSHOT
         ```
 
 4.  In IntelliJ IDEA, choose **File** \> **Open** to open the decompressed package datahub-demo-master. Then, double-click pom.xml to view the code.
 
-    ![Open the file](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9265749951/p91045.png)
+    ![Open the file](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9265749951/p91045.png)
 
     **Note:**
 
@@ -70,7 +70,7 @@ Windows operating system and macOS are used in the demo.
     private static String topicSourceName = "yourTopic";
     private static String accessId = "yourAK";
     private static String accessKey = "yourAS";
-    private static Long datahubStartInMs = 0L;// Sets the time that corresponds to the start offset.
+    private static Long datahubStartInMs = 0L;// Set the time that corresponds to the start offset.
     ```
 
 6.  Go to the directory where the pom.xml file is saved and run the following command to package the file:
@@ -86,7 +86,7 @@ Windows operating system and macOS are used in the demo.
 
 For more information about how to publish a job, see [Publish a job](/intl.en-US/Exclusive Mode/Flink Datastream Development Guide/Publish a job.md).
 
-**Note:** Before you publish the job, set the Parallelism parameter for the source table on the **Configurations** tab of the **Development** page. The parallelism of the source table cannot be greater than the number of shards of the source table. Otherwise, a JobManager error occurs when the job starts.
+**Note:** Before you publish the job, set the Parallelism parameter for the source table on the **Configurations** tab of the **Development** page. The parallelism setting of the source table cannot be greater than the number of shards in the source table. Otherwise, a JobManager error occurs when the job starts.
 
 The following example shows the job content:
 
@@ -94,7 +94,7 @@ The following example shows the job content:
 -- The complete main class name, for example, com.alibaba.realtimecompute.DatastreamExample. This field is required.
 blink.main.class=com.alibaba.blink.datastreaming.DatahubDemo
 
--- The job name.
+-- The name of the job.
 blink.job.name=datahub_demo
 
 -- The resource name of the JAR package that contains the complete main class name, for example, blink_datastream.jar.
@@ -104,14 +104,14 @@ blink.main.jar=${Resource name of the JAR package that contains the complete mai
 state.backend.type=niagara
 state.backend.niagara.ttl.ms=129600000
 
--- The default checkpoint configuration. This field takes effect when the job code is not explicitly configured.
+-- The default checkpoint configuration. The configuration takes effect when the job code is not explicitly configured.
 blink.checkpoint.interval.ms=180000
 ```
 
 **Note:**
 
 -   Modify blink.main.class and blink.job.name as required.
--   You can configure custom parameters. For more information, see [t1148279.md\#]().
+-   You can configure custom parameters. For more information, see [Set custom parameters](/intl.en-US/Exclusive Mode/Flink Datastream Development Guide/Set custom parameters.md).
 
 ## Verify the data reading result
 
@@ -119,19 +119,19 @@ On the Container Log tab of the **Job Administration** page, view information in
 
 If information shown in the following figure appears, Realtime Compute for Apache Flink has read data from Alibaba Cloud DataHub.
 
-![Verify the data reading result](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9265749951/p88531.png)
+![Verify the data reading result](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9265749951/p88531.png)
 
 ## FAQ
 
-Q: If an error similar to the following appears when a job is running, a JAR package conflict occurs. What do I do?
+Q: If an error similar to the following information appears when a job is running, a JAR package conflict occurs. What do I do?
 
 ```
 java.lang.AbstractMethodError: com.alibaba.fastjson.support.jaxrs.FastJsonAutoDiscoverable.configure(Lcom/alibaba/blink/shaded/datahub/javax/ws/rs/core/FeatureContext;)
 ```
 
-![JAR package conflict](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9265749951/p88532.png)
+![JAR package conflict](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0033860061/p88532.png)
 
-A: We recommend that you use the relocation feature of maven-shade-plugin.
+A: We recommend that you use the relocation feature of maven-shade-plugin to resolve the JAR package conflict.
 
 ```
 <relocations combine.self="override">
