@@ -37,7 +37,7 @@ PUT /api/v2/projects/[projectName]/jobs/[jobName]/commit HTTPS
 
 -   仅支持通过AutoScale后台服务提供PlanJson建议。
 -   仅在AutoScale设置为true时，recommendOnly生效。
--   仅Blink 3.6.3以上版本支持recommendOnly。
+-   仅Blink 3.7.8以上版本支持recommendOnly。
 -   仅Blink 3.x版本支持AutoScale功能。
 -   当开启AutoScale时，需要传入maxCu和configure参数。 |
 |recommendOnly|Boolean|Body|否|false|启用AutoScale后，系统是否自动修改您的PlanJson：
