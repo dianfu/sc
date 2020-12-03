@@ -32,8 +32,8 @@
 |**Region**|选择RDS所在的地域。|
 |**Instance**|填写RDS实例ID。 **说明：** 请填写实例ID，不是实例名称。 |
 |**DBName**|填写RDS中Database的名称。 **说明：** Database是RDS的数据库名称，不是实例名称。 |
-|**User Name**|RDS数据库登录名称。|
-|**Password**|RDS数据库登录密码。|
+|**User Name**|登录数据库的用户名。|
+|**Password**|登录数据库的密码。|
 
 ## 常见问题
 
