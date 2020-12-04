@@ -27,7 +27,6 @@ CREATE TEMPORARY TABLE rds_sink (
 -   Flink写入RDS或DRDS数据库结果表原理：针对Flink每行结果数据，拼接成一行SQL语句，输入至目标端数据库，然后执行。如果使用批量写，需要在URL后面加上参数`?rewriteBatchedStatements=true`，以提高系统性能。
 -   RDS MySQL数据库支持自增主键。如果Flink写入数据支持自增主键，则在DDL中不声明该自增字段即可。例如ID是自增字段，Flink DDL不声明该自增字段，则数据库在一行数据写入过程中会自动填补相关自增字段。
 -   如果DRDS有分区表，拆分键必须在DDL里PRIMARY KEY（）中声明，否则拆分的表无法写入。
--   建议使用数据存储注册方式，请参见[注册云数据库RDS版](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL开发指南/数据存储/注册数据存储/注册云数据库RDS版.md)。
 -   DDL声明的字段必须至少存在一个非主键的字段，否则产生报错。
 
 ## WITH参数
