@@ -54,7 +54,9 @@ create table Hologres_sink(
 |mutateType|流式写入语义，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
 |partitionrouter|分区表写入|否|默认值为false。**说明：** 3.6.x版本Hologres Sink暂不支持自动创建分区表。因此，在写入分区表之前，需要您在Hologres中手工创建对应的子表。 |
 |ignoredelete|是否忽略撤回消息。|否|默认值为false。**说明：** 仅在使用流式语义时生效。 |
-|createPartTable|当写入分区表时，是否根据分区值自动创建不存在的分区表。|否|-   false（默认值）：不会自动创建。
+|createPartTable|当写入分区表时，是否根据分区值自动创建不存在的分区表。**说明：** 如果分区值中存在短划线（-），暂不支持自动创建分区表。
+
+|否|-   false（默认值）：不会自动创建。
 -   true：自动创建。
 
 **说明：** 仅Blink 3.7以上版本支持该参数。 |
