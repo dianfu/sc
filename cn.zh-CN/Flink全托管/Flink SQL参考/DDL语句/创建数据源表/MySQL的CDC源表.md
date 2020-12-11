@@ -6,11 +6,13 @@ keyword: [MySQL的CDC, CDC]
 
 本文为您介绍MySQL的CDC（Change Data Capture）源表DDL定义、WITH参数、类型映射和代码示例。
 
+**说明：** 本文仅适用于VVP 2.3.0及以上版本。
+
 ## 什么是MySQL的CDC源表
 
 MySQL的CDC源表，即MySQL的流式源表，支持对MySQL数据库的全量和增量读取，并保证Exactly Once，不多读一条也不少读一条数据。其工作机制是，在启动扫描全表前，先加一个全局读锁（FLUSH TABLES WITH READ LOCK），然后获取此时的Binlog位点以及表的schema，紧接着释放全局读锁。随后开始扫描全表，当全表数据读取完后，会从之前获取的Binlog位点获取增量的变更记录。在Flink作业运行期间会周期性执行checkpoint，记录下Binlog位点，当作业发生Failover，便会从之前记录的Binlog位点继续处理，从而实现Exactly Once语义。
 
-**说明：** MySQL的CDC源表需要一个有特定权限（包括SELECT、RELOAD、SHOW DATABASES、REPLICATION SLAVE和REPLICATION CLIENT）的MySQL用户，才能读取全量和增量数据。Flink全托管的MySQL CDC Connector支持读取的MySQL版本为5.7和8.0X。
+**说明：** MySQL的CDC源表需要一个有特定权限（包括SELECT、RELOAD、SHOW DATABASES、REPLICATION SLAVE和REPLICATION CLIENT）的MySQL用户，才能读取全量和增量数据。MySQL CDC Connector支持读取的MySQL版本为5.7和8.0X。
 
 ## 注意事项
 
@@ -72,17 +74,17 @@ CREATE TABLE mysqlcdc_source (
 |port|MySQL数据库服务的端口号|否|INTEGER|默认值为3306。|
 |server-id|数据库客户端的一个ID|否|STRING|该ID必须是MySQL集群中全局唯一的。建议针对同一个数据库的每个作业都设置一个不同的ID。默认会随机生成一个5400~6400的值。|
 |server-time-zone|数据库在使用的会话时区|否|STRING|例如Asia/Shanghai，该参数控制了MySQL中的TIMESTAMP类型如何转成STRING类型。|
-|debezium.min.row.count.to.stream.results|当表的条数大于该值时，会使用分批读取模式。|否|INTEGER|默认值为1000。Flink全托管采用以下方式读取MySQL源表数据：-   全量读取：直接将整个表的数据读取到内存里。优点是速度快，缺点是会消耗对应大小的内存，如果源表数据量非常大，可能会有OOM风险。
+|debezium.min.row.count.to.stream.results|当表的条数大于该值时，会使用分批读取模式。|否|INTEGER|默认值为1000。Flink采用以下方式读取MySQL源表数据：-   全量读取：直接将整个表的数据读取到内存里。优点是速度快，缺点是会消耗对应大小的内存，如果源表数据量非常大，可能会有OOM风险。
 -   分批读取：分多次读取，每次读取一定数量的行数，直到读取完所有数据。优点是读取数据量比较大的表没有OOM风险，缺点是读取速度相对较慢。 |
 |debezium.snapshot.fetch.size|在Snapshot阶段，每次读取MySQL源表数据行数的最大值。|否|INTEGER|仅当分批读取模式时，该参数生效。|
 |debezium.\*|Debezium属性参数|否|STRING|从更细粒度控制Debezium客户端的行为。例如`'debezium.snapshot.mode' = 'never'`，详情请参见[配置属性](https://debezium.io/documentation/reference/1.2/connectors/mysql.html#mysql-connector-configuration-properties_debezium)。|
 
 ## 类型映射
 
-MySQL的CDC和实时计算Flink版字段类型对应关系如下。
+MySQL的CDC和Flink字段类型对应关系如下。
 
-|MySQL CDC字段类型|实时计算Flink版字段类型|
-|-------------|--------------|
+|MySQL CDC字段类型|Flink字段类型|
+|-------------|---------|
 |TINYINT|TINYINT|
 |SMALLINT|SMALLINT|
 |TINYINT UNSIGNED|
