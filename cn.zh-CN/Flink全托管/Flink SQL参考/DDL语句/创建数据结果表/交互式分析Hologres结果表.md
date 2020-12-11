@@ -42,6 +42,15 @@ create table hologres_sink(
 |mutateType|数据写入模式，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
 |partitionrouter|是否写入分区表。|否|默认值为false。|
 |ignoredelete|是否忽略撤回消息。|否|默认值为false。**说明：** 仅在使用流式语义时生效。 |
+|createPartTable|当写入分区表时，是否根据分区值自动创建不存在的分区表。**说明：** 如果分区值中存在短划线（-），暂不支持自动创建分区表。
+
+|否|-   false（默认值）：不会自动创建。
+-   true：自动创建。
+
+**说明：**
+
+-   VVR 2.1以上版本支持该参数。
+-   请确保分区值不会出现脏数据，否则会创建错误的分区表导致Failover，建议慎用该参数。 |
 
 ## 流式语义
 
@@ -63,15 +72,15 @@ create table hologres_sink(
     **说明：**
 
     -   当mutateType设置为insertorupdate或insertorreplace时，系统根据主键更新数据。
-    -   Flink全托管定义的结果表中的数据列数不一定要和Hologres物理表的列数一致，您需要保证缺失的列没有非空约束，即列值可以为Null，否则会报错。
+    -   Flink定义的结果表中的数据列数不一定要和Hologres物理表的列数一致，您需要保证缺失的列没有非空约束，即列值可以为Null，否则会报错。
 -   默认情况下，Hologres Sink只能向一张表导入数据。如果导入数据至分区表的父表，即使导入成功，也会查询数据失败。您可以设置参数partitionRouter为true，开启自动将数据路由到对应分区表的功能。注意事项如下：
     -   tablename参数需要填写为父表的表名。
     -   Connector不会自动创建分区表，因此，需要您提前手动创建需要导入数据的分区表，否则会导入失败。
 
 ## 类型映射
 
-|Hologres字段类型|Flink全托管字段类型|
-|------------|------------|
+|Hologres字段类型|Flink字段类型|
+|------------|---------|
 |INT|INT|
 |INT\[\]|ARRAY|
 |BIGINT|BIGINT|
