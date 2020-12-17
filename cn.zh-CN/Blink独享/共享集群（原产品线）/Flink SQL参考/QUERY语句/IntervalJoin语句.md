@@ -24,7 +24,7 @@ ON table1.column-name1 = table2.key-name1 AND TIMEBOUND_EXPRESSION
     -   ltime \>= rtime AND ltime < rtime + INTERVAL '10' MINUTE
     -   ltime BETWEEN rtime - INTERVAL '10' SECOND AND rtime + INTERVAL '5' SECOND
 
-## 示例1 \(基于Event Time\)
+## 示例1（基于Event Time）
 
 统计下单后4个小时内的物流信息。
 
@@ -110,7 +110,7 @@ ON table1.column-name1 = table2.key-name1 AND TIMEBOUND_EXPRESSION
     |4|pad|shipped|
 
 
-## 示例2 \(基于Processing Time\)
+## 示例2（基于Processing Time）
 
 -   测试数据
     -   datahub\_stream1
