@@ -62,7 +62,8 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
     -   GROUP\_OFFSETS模式下，GroupID的第一次消费，没有设置偏移（Offset）值，默认从Kafka分区末尾开始读取数据。
     -   仅Kafka010和Kafka011版本支持TIMESTAMP。 |
     |partitionDiscoveryIntervalMS|定时检查是否有新分区产生|否|    -   Kafka 08版本：系统默认开启该功能。
-    -   Kafka 09及以上版本：需要您在WITH参数中明文指定该参数后，该功能才能生效。
+    -   Kafka 09和Kafka 010版本：需要您在WITH参数中明文指定该参数后，该功能才能生效。
+    -   kafka 011版本不支持partitionDiscoveryIntervalMS参数。
 单位为毫秒，默认值为60000，即1分钟。 |
     |extraConfig|额外的KafkaConsumer配置项目|否|不在可选配置项中，但是期望额外增加的配置。例如：``fetch.message.max.bytes=104857600``，多个配置使用分号（;）分隔。|
 
