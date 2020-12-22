@@ -82,8 +82,11 @@
 
     ```
     GetGlobalDeploymentDefaultsRequest getGlobalDeploymentDefaultsRequest = new GetGlobalDeploymentDefaultsRequest();
-    
-    getGlobalDeploymentDefaultsRequest.setWorkspace(workspaceName);
+    // 您可以在Flink开发控制台，工作空间详情中获取工作空间ID（workspaceId）。
+    // 请不要在workspaceId中直接写入工作空间名称。
+    String workspaceId = "<workspaceId>";
+    String namespace = "<namespace>";
+    getGlobalDeploymentDefaultsRequest.setWorkspace(workspaceId);
     getGlobalDeploymentDefaultsRequest.setNamespace(namespace);
     ```
 
@@ -111,7 +114,7 @@ IClientProfile profile = DefaultProfile.getProfile(regionId, "AccessKey", "Secre
 DefaultAcsClient client = new DefaultAcsClient(profile);
 
 GetGlobalDeploymentDefaultsRequest getGlobalDeploymentDefaultsRequest = new GetGlobalDeploymentDefaultsRequest();
-getGlobalDeploymentDefaultsRequest.setWorkspace(workspaceName);
+getGlobalDeploymentDefaultsRequest.setWorkspace(workspaceId);
 getGlobalDeploymentDefaultsRequest.setNamespace(namespace);
 
 ResultModel<GetGlobalDeploymentDefaultsResp> globalDefaults = JsonUtil.toBean(client.doAction(getGlobalDeploymentDefaultsRequest).getHttpContentString(), new TypeReference<ResultModel<GetGlobalDeploymentDefaultsResp>>() {
@@ -162,7 +165,7 @@ public class SdkSample {
 
         final String AccessKey = "<AccessKey>";
         final String Secret = "<Secret>";
-        final String workspaceName = "<workspaceName>";
+        final String workspaceId = "<workspaceId>";
         final String namespace = "<namespace>";
 
         String regionId = "cn-hangzhou";
@@ -188,11 +191,11 @@ public class SdkSample {
         });
         List<Namespace> namespaceList = listNamespacesRespResultModel.getData().getNamespaces();
         System.out.println(JsonUtil.toJson(namespaceList));
-        String workspaceName = "";
+        String workspaceId = "";
         String namespace = "";
 
         if (null != namespaceList && namespaceList.size() != 0) {
-            workspaceName = namespaceList.get(0).getWorkspace();
+            workspaceId = namespaceList.get(0).getWorkspace();
             String namespaces = namespaceList.get(0).getName();
             String[] ns = namespaces.split("/");
             namespace = ns[1];
@@ -205,7 +208,7 @@ public class SdkSample {
 
         //sql语法检查，成功则validationResult：VALIDATION_RESULT_VALID_INSERT_QUERY或者VALIDATION_RESULT_VALID_DDL_STATEMENT，其他查看errorDetails
         ValidateSqlScriptRequest validateSqlScriptRequest = new ValidateSqlScriptRequest();
-        validateSqlScriptRequest.setWorkspace(workspaceName);
+        validateSqlScriptRequest.setWorkspace(workspaceId);
         validateSqlScriptRequest.setNamespace(namespace);
         ValidateSqlScriptParams validateSqlScriptParams = new ValidateSqlScriptParams();
         validateSqlScriptParams.setStatement("CREATE TABLE datagen_source ( name VARCHAR, score BIGINT ) COMMENT 'datagen source table' WITH ( 'connector' = 'datagen' )");
@@ -218,7 +221,7 @@ public class SdkSample {
 
         // 执行ddl操作：如果成功data.result='RESULT_SUCCESS|RESULT_SUCCESS_WITH_ROWS'，否则查看message。
         ExecuteSqlScriptRequest executeSqlScriptRequest = new ExecuteSqlScriptRequest();
-        executeSqlScriptRequest.setWorkspace(workspaceName);
+        executeSqlScriptRequest.setWorkspace(workspaceId);
         executeSqlScriptRequest.setNamespace(namespace);
         ExecuteSqlScriptParams executeSqlScriptParams = new ExecuteSqlScriptParams();
         executeSqlScriptParams.setStatement("create table RAN_TABLE (a varchar) with ('connector' = 'random', 'type' = 'random');");
@@ -232,7 +235,7 @@ public class SdkSample {
 
         //创建deployment(sql作业)
         GetGlobalDeploymentDefaultsRequest getGlobalDeploymentDefaultsRequest = new GetGlobalDeploymentDefaultsRequest();
-        getGlobalDeploymentDefaultsRequest.setWorkspace(workspaceName);
+        getGlobalDeploymentDefaultsRequest.setWorkspace(workspaceId);
         getGlobalDeploymentDefaultsRequest.setNamespace(namespace);
         String dataStr = SdkUtil.getHttpContentString(client, getGlobalDeploymentDefaultsRequest);
         System.out.println(dataStr);
@@ -250,7 +253,7 @@ public class SdkSample {
 
         // 获取artifacts列表
         ListArtifactsRequest listArtifactsRequest = new ListArtifactsRequest();
-        listArtifactsRequest.setWorkspace(workspaceName);
+        listArtifactsRequest.setWorkspace(workspaceId);
         listArtifactsRequest.setNamespace(namespace);
         ResultModel<ListArtifactsResp> artifacts = JsonUtil.toBean(SdkUtil.getHttpContentString(client, listArtifactsRequest), new TypeReference<ResultModel<ListArtifactsResp>>() {
         });
@@ -258,7 +261,7 @@ public class SdkSample {
 
         // 获取artifact，指定Filename，后续创建datastream作业时使用
         GetArtifactMetadataRequest getArtifactMetadataRequest = new GetArtifactMetadataRequest();
-        getArtifactMetadataRequest.setWorkspace(workspaceName);
+        getArtifactMetadataRequest.setWorkspace(workspaceId);
         getArtifactMetadataRequest.setNamespace(namespace);
         getArtifactMetadataRequest.setFilename(artifactFilename);
         dataStr = SdkUtil.getHttpContentString(client, getArtifactMetadataRequest);
@@ -274,7 +277,7 @@ public class SdkSample {
 
         // 获取部署目标列表
         ListDeploymentTargetsRequest listDeploymentTargetsRequest = new ListDeploymentTargetsRequest();
-        listDeploymentTargetsRequest.setWorkspace(workspaceName);
+        listDeploymentTargetsRequest.setWorkspace(workspaceId);
         listDeploymentTargetsRequest.setNamespace(namespace);
         ResultModel<ListDeploymentTargetsResp> deploymentTargets = JsonUtil.toBean(SdkUtil.getHttpContentString(client, listDeploymentTargetsRequest), new TypeReference<ResultModel<ListDeploymentTargetsResp>>() {
         });
@@ -288,7 +291,7 @@ public class SdkSample {
         createDeploymentParams.setSpec(spec);
 
         CreateDeploymentRequest createDeploymentRequest = new CreateDeploymentRequest();
-        createDeploymentRequest.setWorkspace(workspaceName);
+        createDeploymentRequest.setWorkspace(workspaceId);
         createDeploymentRequest.setNamespace(namespace);
 
         String paramsStr = JsonUtil.toJson(createDeploymentParams);
@@ -305,7 +308,7 @@ public class SdkSample {
 
         // 获取deployment
         GetDeploymentRequest getDeploymentRequest = new GetDeploymentRequest();
-        getDeploymentRequest.setWorkspace(workspaceName);
+        getDeploymentRequest.setWorkspace(workspaceId);
         getDeploymentRequest.setNamespace(namespace);
         getDeploymentRequest.setDeploymentId(deploymentId);
         dataStr = SdkUtil.getHttpContentString(client, getDeploymentRequest);
@@ -323,7 +326,7 @@ public class SdkSample {
         updateDeploymentDesiredStateParams.setState(DeploymentState.CANCELLED);
 
         UpdateDeploymentDesiredStateRequest updateDeploymentDesiredStateRequest = new UpdateDeploymentDesiredStateRequest();
-        updateDeploymentDesiredStateRequest.setWorkspace(workspaceName);
+        updateDeploymentDesiredStateRequest.setWorkspace(workspaceId);
         updateDeploymentDesiredStateRequest.setNamespace(namespace);
         updateDeploymentDesiredStateRequest.setDeploymentId(deploymentId);
         updateDeploymentDesiredStateRequest.setParamsJson(JsonUtil.toJson(updateDeploymentDesiredStateParams));
@@ -343,7 +346,7 @@ public class SdkSample {
          */
 
         CreateSavepointRequest createSavepointRequest = new CreateSavepointRequest();
-        createSavepointRequest.setWorkspace(workspaceName);
+        createSavepointRequest.setWorkspace(workspaceId);
         createSavepointRequest.setNamespace(namespace);
         CreateSavepointParams createSavepointParams = new CreateSavepointParams();
         createSavepointParams.setDeploymentId(deploymentId);
@@ -358,7 +361,7 @@ public class SdkSample {
 
         // 获取savepoints列表
         ListSavepointsRequest listSavepointsRequest = new ListSavepointsRequest();
-        listSavepointsRequest.setWorkspace(workspaceName);
+        listSavepointsRequest.setWorkspace(workspaceId);
         listSavepointsRequest.setNamespace(namespace);
         listSavepointsRequest.setDeploymentId(deploymentId);
         ResultModel<ListSavepointsResp> savepoints = JsonUtil.toBean(SdkUtil.getHttpContentString(client, listSavepointsRequest), new TypeReference<ResultModel<ListSavepointsResp>>() {
@@ -369,7 +372,7 @@ public class SdkSample {
 
         // 获取jobs列表
         ListJobsRequest listJobsRequest = new ListJobsRequest();
-        listJobsRequest.setWorkspace(workspaceName);
+        listJobsRequest.setWorkspace(workspaceId);
         listJobsRequest.setNamespace(namespace);
         listJobsRequest.setDeploymentId(deploymentId);
         ResultModel<ListJobsResp> jobs = JsonUtil.toBean(SdkUtil.getHttpContentString(client, listJobsRequest), new TypeReference<ResultModel<ListJobsResp>>() {
@@ -379,7 +382,7 @@ public class SdkSample {
 
         // 删除artifact
         DeleteArtifactRequest deleteArtifactRequest = new DeleteArtifactRequest();
-        deleteArtifactRequest.setWorkspace(workspaceName);
+        deleteArtifactRequest.setWorkspace(workspaceId);
         deleteArtifactRequest.setNamespace(namespace);
         deleteArtifactRequest.setFilename(artifactFilename);
         DeleteArtifactResponse deleteArtifactResponse = client.getAcsResponse(deleteArtifactRequest);
@@ -388,7 +391,7 @@ public class SdkSample {
 
         // 获取deployments列表
         ListDeploymentsRequest listDeploymentsRequest = new ListDeploymentsRequest();
-        listDeploymentsRequest.setWorkspace(workspaceName);
+        listDeploymentsRequest.setWorkspace(workspaceId);
         listDeploymentsRequest.setNamespace(namespace);
         ResultModel<ListDeploymentsResp> deployments = JsonUtil.toBean(SdkUtil.getHttpContentString(client, listDeploymentsRequest), new TypeReference<ResultModel<ListDeploymentsResp>>() {
         });
@@ -397,7 +400,7 @@ public class SdkSample {
 
         // 删除deployment指定已存在的且状态为CANCELLED的DeploymentId
         DeleteDeploymentRequest deleteDeploymentRequest = new DeleteDeploymentRequest();
-        deleteDeploymentRequest.setWorkspace(workspaceName);
+        deleteDeploymentRequest.setWorkspace(workspaceId);
         deleteDeploymentRequest.setNamespace(namespace);
         deleteDeploymentRequest.setDeploymentId(deploymentId);
         DeleteDeploymentResponse deleteDeploymentResponse = client.getAcsResponse(deleteDeploymentRequest);
@@ -405,7 +408,7 @@ public class SdkSample {
 
         // 获取作业模板
         GetDeploymentDefaultsRequest getDeploymentDefaultsRequest = new GetDeploymentDefaultsRequest();
-        getDeploymentDefaultsRequest.setWorkspace(workspaceName);
+        getDeploymentDefaultsRequest.setWorkspace(workspaceId);
         getDeploymentDefaultsRequest.setNamespace(namespace);
         ResultModel<GetDeploymentDefaultsResp> deploymentDefaults = JsonUtil.toBean(client.doAction(getDeploymentDefaultsRequest).getHttpContentString(), new TypeReference<ResultModel<GetDeploymentDefaultsResp>>() {
         });
@@ -419,7 +422,7 @@ public class SdkSample {
         deployment.setMetadata(deploymentMetadata);
         
         UpdateDeploymentRequest updateDeploymentRequest = new UpdateDeploymentRequest();
-        updateDeploymentRequest.setWorkspace(workspaceName);
+        updateDeploymentRequest.setWorkspace(workspaceId);
         updateDeploymentRequest.setNamespace(namespace);
         updateDeploymentRequest.setHttpContentType(FormatType.JSON);
         updateDeploymentRequest.setDeploymentId(depid);
