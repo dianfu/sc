@@ -4,7 +4,7 @@ keyword: [读取DataHub, 写入HBase]
 
 # 读取DataHub数据写入阿里云HBase
 
-本文以Windows系统，Flink 1.10版本为例，为您介绍如何使用Flink全托管作业读取DataHub数据写入HBase。
+本文以Windows系统，Flink 1.10版本为例，为您介绍如何使用Flink作业实时同步DataHub数据至阿里云HBase。
 
 -   开发工具
     -   本地安装了Java JDK 8。
@@ -22,7 +22,7 @@ keyword: [读取DataHub, 写入HBase]
 
 -   上下游存储
     -   在DataHub上已创建了项目和Topic，本示例Topic中有a、b和c三个字段，数据类型依次为BOOLEAN、STRING和STRING。
-    -   在HBase上已创建了表hbase\_sink和列簇f1。详情请参见[使用Shell访问](https://help.aliyun.com/document_detail/52056.html?spm=a2c4g.11174283.6.595.ccba363fBF1uOn)和[创建表和列簇](http://hbase.apache.org/1.1/book.html?spm=a2c4g.11186623.2.18.6abe5cc1OSJzJj#shell_exercises)。
+    -   在HBase上已创建了表hbase\_sink和列簇f1。详情请参见详情请参见[使用Shell访问](https://help.aliyun.com/document_detail/52056.html?spm=a2c4g.11174283.6.595.ccba363fBF1uOn)和[创建表和列簇](http://hbase.apache.org/1.1/book.html?spm=a2c4g.11186623.2.18.6abe5cc1OSJzJj#shell_exercises)。
 
 ## 作业开发
 
@@ -70,7 +70,7 @@ keyword: [读取DataHub, 写入HBase]
 
 ## 作业提交
 
-请参见[提交](/cn.zh-CN/Flink全托管/作业开发/提交.md)完成作业上线。
+请参见[作业提交](/cn.zh-CN/Flink全托管/Flink Datastream开发指南/作业提交.md)完成作业上线。
 
 ## 查看结果
 
@@ -112,6 +112,6 @@ keyword: [读取DataHub, 写入HBase]
 
     出现类似如下输出，则表示已经成功将DataHub数据写入阿里云HBase。
 
-    ![验证结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8789287951/p139880.png)
+    ![验证结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8789287951/p139880.png)
 
 
