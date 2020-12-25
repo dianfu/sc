@@ -1,0 +1,36 @@
+# print结果表
+
+本文为您介绍print结果表的DDL定义，以及创建print结果表时使用的WITH参数。您可以通过print结果表测试流作业或者调试生产作业，验证数据结果是否符合预期。
+
+## DDL定义
+
+```
+CREATE TABLE print_table (
+  a INT,
+  b varchar
+) WITH (
+  'connector'='print',
+  'logger'='true'
+);
+```
+
+## WITH参数
+
+|参数|说明|是否必填|备注|
+|--|--|----|--|
+|connector|结果表类型|是|固定值为print。|
+|logger|控制台是否显示数据结果|否|取值如下：-   false（默认值）：不显示。
+-   true：显示。 |
+|print-identifier|数据结果标识|否|在日志中通过数据结果标识检索信息。|
+|sink.parallelism|结果表并行度|否|默认与上游并行度一致。|
+
+## 常见问题
+
+-   Q：如何在控制台查看print数据结果？
+-   A：查看print数据结果的步骤，如下所示：
+    1.  在目标作业**作业总览**页签，单击**Flink UI**。
+    2.  在**Overview**页签，单击Sink节点拓扑图。
+    3.  单击**Task Managers**
+    4.  单击**LOG**
+    5.  在**logs**页签，查看print数据结果。
+
