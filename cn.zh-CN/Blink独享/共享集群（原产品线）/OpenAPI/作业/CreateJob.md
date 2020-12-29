@@ -52,7 +52,7 @@ POST /api/v2/projects/[projectName]/jobs HTTPS
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|RequestId|String|B661F03F-0F9D-4EFF-A40F-4ED1519A549A| |
+|RequestId|String|B661F03F-0F9D-4EFF-A40F-4ED1519A549A|请求ID |
 
 ## 示例
 
