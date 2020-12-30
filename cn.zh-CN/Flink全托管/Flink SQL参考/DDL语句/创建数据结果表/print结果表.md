@@ -27,10 +27,14 @@ CREATE TABLE print_table (
 ## 常见问题
 
 -   Q：如何在控制台查看print数据结果？
--   A：查看print数据结果的步骤，如下所示：
-    1.  在目标作业**作业总览**页签，单击**Flink UI**。
-    2.  在**Overview**页签，单击Sink节点拓扑图。
-    3.  单击**Task Managers**
-    4.  单击**LOG**
-    5.  在**logs**页签，查看print数据结果。
+-   A：查看print数据结果的步骤，有以下两种方式：
+    -   在Flink全托管控制台查看：
+        1.  在目标作业**Task Manager**页签，单击**Path, ID**。
+        2.  在**logs**页签，查看print数据结果。
+    -   跳转到Flink UI界面查看：
+        1.  在目标作业**作业总览**页签，单击**Flink UI**。
+        2.  在**Overview**页签，单击Sink节点拓扑图。
+        3.  单击**Task Managers**。
+        4.  单击**LOG**。
+        5.  在**logs**页签，查看print数据结果。
 
