@@ -11,6 +11,7 @@ Flink全托管支持**Per-Job集群**和**Session集群**两种集群模式。�
 
     -   每个项目空间可以配置多个Session集群，但只能选择一个Session集群开启SQL Preview 。
     -   Session集群暂不支持开启自动调优功能。
+    -   每个Session集群运行后，都会额外消耗0.5 CU资源。
 
 ## 创建Session集群
 
