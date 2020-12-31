@@ -6,7 +6,8 @@
 
 -   云原生数据仓库AnalyticDB MySQL版3.0结果表暂不支持注册存储功能。
 -   本文仅适用于`Blink 3.3.0`及以上版本。
--   云原生数据仓库AnalyticDB MySQL版2.0版本结果表创建说明，请参见[创建分析型数据库MySQL版2.0结果表](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL参考/DDL语句/创建数据结果表/创建分析型数据库MySQL版2.0结果表.md)。
+-   云原生数据仓库AnalyticDB MySQL版2.0结果表创建说明，请参见[创建云原生数据仓库AnalyticDB MySQL版2.0结果表](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL参考/DDL语句/创建数据结果表/创建云原生数据仓库AnalyticDB MySQL版2.0结果表.md)。
+-   云原生数据仓库AnalyticDB MySQL版3.0数据库支持自增主键。如果实时计算Flink版写入数据支持自增主键，则在DDL中不声明该自增字段。例如，ID是自增字段，实时计算Flink版DDL不声明该自增字段，则数据库在一行数据写入过程中会自动填补相关自增字段。
 
 ## DDL定义
 
