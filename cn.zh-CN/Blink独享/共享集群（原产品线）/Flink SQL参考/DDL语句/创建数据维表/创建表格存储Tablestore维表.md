@@ -21,11 +21,11 @@ CREATE TABLE ots_dim_table (
  PERIOD FOR SYSTEM_TIME--定义了维表的变化周期。
 ) WITH (
  type='ots',
- endPoint='<yourEndpoint>'
+ endPoint='<yourEndpoint>',
  instanceName='<yourInstanceName>',
  tableName='<yourTableName>',
  accessId='<yourAccessId>',
- accessKey='<yourAccessKey>',
+ accessKey='<yourAccessKey>'
 );
 ```
 
