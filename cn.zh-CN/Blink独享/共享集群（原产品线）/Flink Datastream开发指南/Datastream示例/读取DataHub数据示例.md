@@ -8,7 +8,7 @@ keyword: [DataHub数据示例, Datastream, 读取DataHub]
 
 -   本地安装了Java JDK 8。
 -   本地安装了Maven 3.x。
--   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ，且已配置完成JDK和Maven环境。
+-   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ IDEA，且已配置完成JDK和Maven环境。
 -   在DataHub上创建了Topic，并且Topic中存在[测试数据](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/159298/cn_zh/1585122460234/datahub_input.csv)。
 
     **说明：** 测试数据需要有4个字段，数据类型依次为STRING、STRING、DOUBLE和BIGINT。
@@ -23,7 +23,7 @@ keyword: [DataHub数据示例, Datastream, 读取DataHub]
 
 1.  实时计算Datastream完全兼容开源Flink 1.5.2版本。下载并解压[flink-1.5.2-compatible](https://github.com/alibaba/alibaba-flink-connectors/tree/flink-1.5.2-compatible)分支到本地。
 
-    **说明：** 下载文件中的datahub-connetor中同样实现了DataHub Sink功能，具体实现请参见下载文件中的DatahubSinkFunction.java和DatahubSinkFunctionExample.java。
+    **说明：** 下载文件中的datahub-connector中同样实现了DataHub Sink功能，具体实现请参见下载文件中的DatahubSinkFunction.java和DatahubSinkFunctionExample.java。
 
 2.  在CMD命令窗口，进入alibaba-flink-connectors-flink-1.5.2-compatible目录后，执行如下命令。
 
@@ -33,7 +33,7 @@ keyword: [DataHub数据示例, Datastream, 读取DataHub]
 
     可以看到如下结果。
 
-    ![执行结果 ](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9265749951/p89088.png)
+    ![执行结果 ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9265749951/p89088.png)
 
     命令执行成功后，datahub-connector对应的JAR包安装到本地的Maven仓库，通常默认安装在当前登录的用户文件夹下的.m2文件夹下。
 
@@ -53,9 +53,9 @@ keyword: [DataHub数据示例, Datastream, 读取DataHub]
         ls /Users/用户名/.m2/repository/com/alibaba/flink/datahub-connector/0.1-SNAPSHOT
         ```
 
-4.  在Intellij IDE中，单击**file** \> **open**，打开刚才解压缩完成的datahub-demo-master包后，双击pom.xml查看代码。
+4.  在Intellij IDEA中，单击**file** \> **open**，打开刚才解压缩完成的datahub-demo-master包后，双击pom.xml查看代码。
 
-    ![打开文件](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9265749951/p91045.png)
+    ![打开文件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9265749951/p91045.png)
 
     **说明：**
 
@@ -123,7 +123,7 @@ blink.checkpoint.interval.ms=180000
 
 如果出现如下结果，则表示已经成功读取了阿里云DataHub中的数据。
 
-![验证](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9265749951/p88531.png)
+![验证](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9265749951/p88531.png)
 
 ## 常见问题
 
@@ -133,7 +133,7 @@ blink.checkpoint.interval.ms=180000
 java.lang.AbstractMethodError：com.alibaba.fastjson.support.jaxrs.FastJsonAutoDiscoverable.configure(Lcom/alibaba/blink/shaded/datahub/javax/ws/rs/core/FeatureContext;)
 ```
 
-![jar包冲突](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9265749951/p88532.png)
+![jar包冲突](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9265749951/p88532.png)
 
 建议您使用maven-shade-plugin插件的Relocation功能，解决JAR包冲突的问题。
 
