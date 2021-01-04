@@ -19,7 +19,7 @@ TaskExecutor是实时计算集群的启动过程不可或缺的一部分。TaskE
 
 TaskExecutor是实时计算集群的启动过程不可或缺的一部分。实时计算集群的启动流程如下：
 
-1.  实时计算集群启动一个JobManger和若干个TaskExecutor。
+1.  实时计算集群启动一个JobManager和若干个TaskExecutor。
 2.  Client向JobManager提交任务。
 3.  JobManager向TaskExecutor分配任务。
 4.  TaskExecutor向JobManager汇报心跳和统计信息。
