@@ -38,7 +38,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错信息
 
-    ![ArrayIndexOutOfBoundsException](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9162749951/p94818.png)
+    ![ArrayIndexOutOfBoundsException](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9162749951/p94818.png)
 
 -   报错原因
 
@@ -80,7 +80,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错信息
 
-    ![报错信息](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9162749951/p84988.png)
+    ![报错信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9162749951/p84988.png)
 
 -   错误原因
 
@@ -162,7 +162,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
         如果有多个参数，请用and（&）符号进行连接。
 
-        ![代码](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9162749951/p133080.png)
+        ![代码](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9162749951/p133080.png)
 
     **说明：** 如果按照以上方案操作后，还是报错，请您[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?accounttraceid=f7b76db740fa486baa4b63bd5848fbc1idrb)。
 
@@ -171,7 +171,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错信息
 
-    ![seek out of range](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9162749951/p133081.png)
+    ![seek out of range](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9162749951/p133081.png)
 
 -   原因分析
     -   实时计算Flink版处理数据的速率小于数据进入DataHub的速率，会造成数据堆积，延时增加。当延时大于DataHub生命周期时，实时计算Flink版读取的数据已经过期，最终导致系统报错。
@@ -188,7 +188,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错信息
 
-    ![pool.GetConnectionTimeoutException](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9162749951/p85122.png)
+    ![pool.GetConnectionTimeoutException](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9162749951/p85122.png)
 
 -   报错原因
 
@@ -224,7 +224,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
         **说明：** 可以使用ctrl+f或command+f的组合键在页面中搜索您需要修改的参数。
 
-    6.  单击`net_read_timeout`和`net_write_timeout`后的![编辑图标](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9162749951/p85123.png)。
+    6.  单击`net_read_timeout`和`net_write_timeout`后的![编辑图标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9162749951/p85123.png)。
     7.  输入目标值，并单击**确定**。
     8.  单击**可修改参数**页签右上角的**提交参数**。
     9.  在弹出的对话框中，单击**确定**，完成参数修改。
@@ -233,7 +233,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错信息
 
-    ![Incorrect String value](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9162749951/p85130.png)
+    ![Incorrect String value](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9162749951/p85130.png)
 
 -   错误原因
 
@@ -267,7 +267,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错信息
 
-    ![The heartbeat of TaskManager](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p85440.png)
+    ![The heartbeat of TaskManager](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p85440.png)
 
 -   报错原因
     -   分布式物理机网络失联。
@@ -282,7 +282,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
     引用MaxCompute维表时，报错如下。
 
-    ![ODPS维表Failover](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p85441.png)
+    ![ODPS维表Failover](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p85441.png)
 
 -   报错原因
 
@@ -297,7 +297,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错信息
 
-    ![No pooled slot available](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p85447.png)
+    ![No pooled slot available](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p85447.png)
 
 -   错误原因
 
@@ -388,14 +388,14 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
         在运行拓扑图中查看资源健康分在60分以下的节点，上调该节点的CU数。具体步骤请参看[手动配置调优](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL开发指南/作业调优/手动配置调优.md)。
 
-        ![上调CU数](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p85466.png)
+        ![上调CU数](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p85466.png)
 
 
 ## 报错：OutOfMemoryError: Java heap space
 
 -   报错信息
 
-    ![Java heap space](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p85465.png)
+    ![Java heap space](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p85465.png)
 
 -   报错原因
 
@@ -405,7 +405,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
     在运行拓扑图中查看资源健康分在60分以下的节点，上调该节点的CU数。具体步骤请参看[手动配置调优](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL开发指南/作业调优/手动配置调优.md)。
 
-    ![上调CU数](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p85466.png)
+    ![上调CU数](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p85466.png)
 
 
 ## 报错：java.lang.StackOverflowError
@@ -526,11 +526,11 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   报错原因
 
-    由于GROUP BY、JION等节点的state\_size默认为0，不会申请Native Memory。当节点的Native Memory没有申请或太小时，就被YARN断开了。
+    由于GROUP BY、JOIN等节点的state\_size默认为0，不会申请Native Memory。当节点的Native Memory没有申请或太小时，就被YARN断开了。
 
 -   解决方案
     -   使用[手动配置调优](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL开发指南/作业调优/手动配置调优.md)进行资源调优。
-    -   配置GROUP BY、JION等节点的state\_size为1。每个Group，建议Native Memory配置为至少20M。
+    -   配置GROUP BY、JOIN等节点的state\_size为1。每个Group，建议Native Memory配置为至少20M。
 
 ## 报错：The sts token has been expired
 
@@ -588,7 +588,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
     -   stsUpdateSeconds主动更新roleArn的时间，时间单位为秒。
     -   stsUpdateSeconds设置的值，需比各存储中，登录Session的过期时间值小。例如，如果登录Session过期时间设置为6小时，则stsUpdateSeconds参数建议设置为stsUpdateSeconds=‘10800’。
 
-        ![stsupdate](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p86532.png)
+        ![stsupdate](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p86532.png)
 
 
 ## 报错：OTSParameterInvalid, Message: Invalid update row request: missing cells in request.
@@ -745,7 +745,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   STS Token过期
 
-    ![sts token过期](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0262749951/p86854.png)
+    ![sts token过期](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p86854.png)
 
     STS Token过期导致的报错，不影响线上作业。详情请参见[报错：The sts token has been expired](#section_lh4_3oq_a3r)。
 
