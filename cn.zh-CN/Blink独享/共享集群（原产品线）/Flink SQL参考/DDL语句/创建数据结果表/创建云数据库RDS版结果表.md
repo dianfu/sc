@@ -1,12 +1,12 @@
 # 创建云数据库RDS版结果表
 
-本文为您介绍如何创建实时计算Flink版云数据库RDS（DRDS）版结果表，以及创建结果表时使用的WITH参数、流式语义和类型映射。
+本文为您介绍如何创建实时计算Flink版云数据库RDS（DRDS）版结果表，以及创建结果表时使用的WITH参数和类型映射。
 
 **说明：** 实时计算Flink版暂不支持引用RDS MySQL 8.0版本作为数据存储。
 
 ## 什么是云数据库RDS版
 
-阿里云关系型数据库（Relational Database Service，RDS）是一种稳定可靠、可弹性伸缩的在线数据库服务。RDS基于阿里云分布式文件系统和高性能存储，支持MySQL、SQL Server、PostgreSQL和PPAS（Postgre Plus Advanced Server）引擎，并且提供了容灾、备份、恢复、监控和迁移等方面的全套解决方案。
+阿里云关系型数据库（Relational Database Service，RDS）是一种稳定可靠、可弹性伸缩的在线数据库服务。RDS基于阿里云分布式文件系统和高性能存储，支持MySQL、SQL Server、PostgreSQL和PPAS（Postgres Plus Advanced Server）引擎，并且提供了容灾、备份、恢复、监控和迁移等方面的全套解决方案。
 
 **说明：** 云数据库RDS、DRDS和PolarDB版插件中的WITH参数一致，可以通用。在使用云数据库RDS、DRDS和PolarDB作为结果表时，RDS、DRDS和PolarDB中必须存在真实的表。
 
