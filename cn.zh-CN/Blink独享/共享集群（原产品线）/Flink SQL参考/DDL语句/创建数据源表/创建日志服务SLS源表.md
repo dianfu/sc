@@ -56,7 +56,7 @@ create table sls_stream(
 |batchGetSize|单次读取logGroup的条数|否|默认值为100。|
 |columnErrorDebug|是否打开调试开关|否|默认值为false，不打开。如果选择打开，则打印解析异常的日志。|
 |startupMode|启动消费模式|否|取值如下： -   TIMESTAMP（默认值）：每个Shard从指定时间开始消费。
--   Earlist：每个Shard从最早位置开始消费。
+-   Earliest：每个Shard从最早位置开始消费。
 -   Latest：每个Shard从最新位置开始消费。
 -   Group\_Offsets：每个Shard优先从服务端保存的Checkpoint开始消费，必须指定consumerGroup。消费模式有以下几种情况：
     -   如果从Flink State中恢复状态成功，则从Flink状态中的Checkpoint开始消费。
