@@ -52,8 +52,8 @@ password='<yourDatabasePassword>'
 |batchSize|一次批量写入的条数|否|默认值为1000。**说明：** 需要指定主键后才能生效。 |
 |flushIntervalMs|清空缓存的时间间隔|否|单位为毫秒，默认值为3000。表示如果缓存中的数据在等待3秒后，依然没有达到输出条件，系统会自动输出缓存中的所有数据。|
 |ignoreDelete|是否忽略DELETE操作|否|默认值为false，表示支持DELETE功能。|
-|replaceMode|是否采用replace into语法插入数据|否|取值如下：-   true（默认）：采用replace into的语法插入数据。
--   false：采用insert into on duplicate key的语法插入数据。
+|replaceMode|是否采用replace into语法插入数据|否|取值如下：-   true（默认）：采用replace into语法插入数据。
+-   false：采用insert into on duplicate key语法插入数据。
 
 **说明：** replaceMode参数生效，需要满足以下两个条件：
 
