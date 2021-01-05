@@ -30,7 +30,7 @@ keyword: [读取DataHub, 写入HBase]
 
 2.  在Intellij IDE中，单击**file** \> **open**，打开刚才解压缩完成的Hbase\_ASI\_Demo-main。
 
-3.  双击打开\\Hbase\_ASI\_Demo-main\\src\\main\\java\\Hbase\_Demo后，修改HbaesDemo.java文件中的DataHub与HBase相关参数。
+3.  双击打开\\Hbase\_ASI\_Demo-main\\src\\main\\java\\Hbase\_Demo后，修改HbaseDemo.java文件中的DataHub与HBase相关参数。
 
     ```
     //DataHub相关参数
