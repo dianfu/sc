@@ -17,7 +17,7 @@ CREATE TABLE rds_dim (
   'password' = '<yourPassword>',
   'tableName' = '<yourTablename>',
   'url' = '<yourUrl>',
-  'userName' = '<yourUsername>'
+  'userName' = '<yourUsername>',
   'cache' = 'ALL'
 );
 ```
