@@ -29,7 +29,7 @@
     -   Hadoop依赖路径：oss://$\{bucket\}/artifacts/namespaces/$\{ns\}/$\{hms\}/hadoop-conf-dir/
     其中：
 
-    -   $\{bucket\} ：您对应Flink全托管实例使用的Bucket名称。
+    -   $\{bucket\} ：您Flink全托管实例使用的Bucket名称。
     -   $\{ns\}：您要使用Hive Metastore功能的Flink全托管项目名称。
     -   $\{hms\}：您在Flink全托管上显示的Hive Metastore名称。
 7.  将您的Hive配置文件（hive-site.xml）放置到hive-conf-dir目录下。
@@ -90,7 +90,7 @@
 
 5.  在顶部菜单栏下拉框中，切换到目标Hive Metastore。
 
-    ![Hive](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9556783061/p177086.png)
+    ![Hive](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9556783061/p177086.png)
 
 6.  在**Tables**列查看不同数据库下的表和字段信息。
 
