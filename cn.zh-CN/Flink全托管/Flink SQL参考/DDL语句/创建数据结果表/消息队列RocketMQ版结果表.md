@@ -50,7 +50,7 @@ create table mq_sink(
 |encoding|编码类型|否|默认值为`utf-8`。|
 |retryTimes|写入的重试次数|否|默认值为10。|
 |sleepTimeMs|重试间隔时间|否|默认值为1000（毫秒）。|
-|instanceID|Topic所属的分组|否|-   如果MQ实例无独立命名空间，则不可以使用instanceID参数。
+|instanceID|MQ实例ID|否|-   如果MQ实例无独立命名空间，则不可以使用instanceID参数。
 -   如果MQ实例有独立命名空间，则instanceID参数必选。 |
 
 ## 代码示例
