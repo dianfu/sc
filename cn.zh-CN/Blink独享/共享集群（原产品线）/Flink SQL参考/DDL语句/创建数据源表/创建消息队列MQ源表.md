@@ -137,7 +137,7 @@ FROM source_table;
     -   解析出的字段数大于定义字段数时，按从左到右的顺序，取定义字段数量的数据。
     -   解析出的字段数小于定义字段数时，在行尾用null填充缺少的字段。 |
 |columnErrorDebug|是否打开调试开关|否|默认值为FALSE。如果设置为TRUE，则打印解析异常的Log。|
-|instanceID|Topic所属的分组|否|如果MQ实例无独立命名空间，则不可以使用instanceID参数。如果MQ实例有独立命名空间，则instanceID参数必选。|
+|instanceID|MQ实例ID|否|如果MQ实例无独立命名空间，则不可以使用instanceID参数。如果MQ实例有独立命名空间，则instanceID参数必选。|
 
 ## 类型映射
 
