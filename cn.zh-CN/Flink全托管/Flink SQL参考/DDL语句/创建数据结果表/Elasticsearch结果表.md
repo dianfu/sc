@@ -17,7 +17,7 @@ keyword: [Elasticsearch, ES, 结果表]
    uv BIGINT,
    pv BIGINT,
    PRIMARY KEY (user_id) NOT ENFORCED  -- 主键可选，如果定义了主键，则作为文档ID，否则文档ID将为随机值。
-) WIHT (
+) WITH (
    'connector' = 'elasticsearch-7',
    'hosts' = '<yourHosts>',
    'index' = '<yourIndex>',
@@ -52,8 +52,8 @@ keyword: [Elasticsearch, ES, 结果表]
 -   custom class name：用于使用ActionRequestFailureHandler子类进行故障处理。 |
 |sink.flush-on-checkpoint|是否在checkpoint时执行flush。|否|默认值为true。禁用该功能后，在Elasticsearch进行Checkpoint时，connector将不等待确认所有pending请求已完成。因此，connector不会为请求提供at-least-once保证。|
 |sink.bulk-flush.backoff.strategy|如果由于临时请求错误导致flush操作失败，则设置sink.bulk-flush.backoff.strategy指定重试策略。|否|-   DISABLED（默认值）：不执行重试，即第一次请求错误后失败。
--   CONSTANT：常量回退。
--   EXPONENTIAL：指数回退。 |
+-   CONSTANT：常量回退，即每次回退等待时间相同。
+-   EXPONENTIAL：指数回退，即每次回退等待时间指数递增。 |
 |sink.bulk-flush.backoff.max-retries|最大回退重试次数。|否|默认值为8。|
 |sink.bulk-flush.backoff.delay|每次回退尝试之间的延迟。|否|-   CONSTANT：每次重试之间的延迟。
 -   EXPONENTIAL：这是初始基准延迟。 |
@@ -77,7 +77,7 @@ Elasticsearch Sink同时支持静态索引和动态索引：
 
 ## 类型映射
 
-Flink全托管以JSON来解析Elasticsearch数据，详情请参见[数据类型映射关系](https://ci.apache.org/projects/flink/flink-docs-master/zh/dev/table/connectors/formats/json.html)。
+Flink以JSON来解析Elasticsearch数据，详情请参见[数据类型映射关系](https://ci.apache.org/projects/flink/flink-docs-master/zh/dev/table/connectors/formats/json.html)。
 
 ## 代码示例
 
