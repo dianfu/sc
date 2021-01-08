@@ -38,23 +38,23 @@ CREATE TABLE hbase_sink(
 |userName|用户名|否|**说明：** 仅在HBase增强版中生效。 |
 |password|密码|否|**说明：** 仅在HBase增强版中生效。 |
 |haclient.cluster.id|HBase高可用实例ID|否|只有访问同城主备实例时才需要配置。**说明：** 仅在HBase增强版中生效。 |
-|retries.number|HBase客户端的重试次数|否|默认值为31。|
-|null-string-literal|字段类型为字符串时，如果Flink字段数据为null，则将该字段赋值为null-string-literal，并写入Hbase。|否|默认值为null。|
+|retries.number|连接HBase客户端的重试次数|否|默认值为31。|
+|null-string-literal|HBase字段类型为字符串时，如果Flink字段数据为null，则将该字段赋值为null-string-literal，并写入Hbase。|否|默认值为null。|
 |sink.buffer-flush.max-size|写入HBase前，内存中缓存的数据量（字节）大小。调大该值有利于提高HBase写入性能，但会增加写入延迟和内存使用。|否|默认值为2 MB，支持字节单位B、KB、MB和GB，不区分大小写。设置为0表示不进行缓存。|
 |sink.buffer-flush.max-rows|写入HBase前，内存中缓存的数据条数。调大该值有利于提高HBase写入性能，但会增加写入延迟和内存使用。|否|默认值为1000，设置为0表示不进行缓存。|
 |sink.buffer-flush.interval|将缓存数据周期性写入到HBase的间隔，可以控制写入HBase的延迟。|否|默认值为1秒，支持时间单位ms、s、min、h和d。设置为0表示关闭定期写入。|
 
 ## 转换关系
 
-HBase数据通过org.apache.hadoop.hbase.util.Bytes转换成**Flink全托管**的数据类型。解码过程有以下两种情况：
+HBase数据通过org.apache.hadoop.hbase.util.Bytes转换成Flink的数据类型。解码过程有以下两种情况：
 
 -   当数据为null时，对于非字符串类型的数据，会编码为空字节数组。
 -   对于字符串类型的数据，取决于null-string-literal的值。
 
-**Flink全托管**与HBase的数据转换关系如下。
+Flink与HBase的数据转换关系如下。
 
-|全托管Flink版类型|HBase转换函数|
-|-----------|---------|
+|Flink类型|HBase转换函数|
+|-------|---------|
 |CHAR|byte\[\] toBytes\(String s\)|
 |VARCHAR|
 |STRING|
@@ -78,7 +78,7 @@ HBase数据通过org.apache.hadoop.hbase.util.Bytes转换成**Flink全托管**�
 
 ## 动态表
 
-Flink全托管部分结果数据需要按某列的值，作为动态列输入HBase。例如，某商品每小时的成交额作为动态列的数据，示例如下。
+Flink部分结果数据需要按某列的值，作为动态列输入HBase。例如，某商品每小时的成交额作为动态列的数据，示例如下。
 
 ```
 CREATE TEMPORARY TABLE datagen_source (
