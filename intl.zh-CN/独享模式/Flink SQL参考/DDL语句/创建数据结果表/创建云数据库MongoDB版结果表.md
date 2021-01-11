@@ -17,11 +17,11 @@ keyword: [MongoDB, 结果表]
 
 ```
 CREATE TABLE mongodb_sink (
-  `a`             VARCHAR
+  `a`  VARCHAR
 ) WITH (
    type = 'mongodb',
    database = '<yourDatabaseName>',
-   collection= '<yourCollectionName>'
+   collection= '<yourCollectionName>',
    uri='mongodb://{<databaseAccount>}:{<atabasePassword>}@{host}:****?replicaSet=mgset-1224****',
    keepAlive='true',
    maxConnectionIdleTime='20000',
