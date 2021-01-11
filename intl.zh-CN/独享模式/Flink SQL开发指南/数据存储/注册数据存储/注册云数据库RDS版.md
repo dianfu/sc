@@ -8,7 +8,7 @@
 
 **说明：**
 
--   高频或高并发写入场景，不建议使用RDS作为实时计算Flink版作业的结果表，存在死锁风险。建议使用表格存储作为结果表（详情请参见[创建表格存储Tablestore结果表](/intl.zh-CN/独享模式/Flink SQL参考/DDL语句/创建数据结果表/创建表格存储 TableStore结果表.md)）。
+-   高频或高并发写入场景，不建议使用RDS作为实时计算Flink版作业的结果表，存在死锁风险。建议使用表格存储作为结果表（详情请参见[创建表格存储Tablestore结果表](/intl.zh-CN/独享模式/Flink SQL参考/DDL语句/创建数据结果表/创建表格存储Tablestore结果表.md)）。
 -   云数据库RDS 8.0版本不支持注册存储功能，请使用[明文方式](/intl.zh-CN/独享模式/Flink SQL开发指南/数据存储/数据存储概述.md)。
 
 ## 注册存储
@@ -32,6 +32,6 @@
 |**Region**|选择RDS所在的地域。|
 |**Instance**|填写RDS实例ID。 **说明：** 请填写实例ID，不是实例名称。 |
 |**DBName**|填写RDS中Database的名称。 **说明：** Database是RDS的数据库名称，不是实例名称。 |
-|**User Name**|RDS数据库登录名称。|
-|**Password**|RDS数据库登录密码。|
+|**User Name**|登录数据库的用户名。|
+|**Password**|登录数据库的密码。|
 
