@@ -9,11 +9,11 @@ ApsaraDB for RDS is a stable, reliable, and scalable online database service. Ba
 **Note:**
 
 -   If Realtime Compute for Apache Flink frequently writes data to a table or a resource file, a deadlock may occur. In scenarios that require highly frequent or highly concurrent writes, we recommend that you use Tablestore to store result tables. For more information, see [Create a Tablestore result table](/intl.en-US/Exclusive Mode/Flink SQL/DDL statements/Create a result table/Create a Tablestore result table.md).
--   Realtime Compute for Apache Flink does not allow you to register the ApsaraDB for RDS V8.0 data store in the console to store result tables. To use result tables of ApsaraDB for RDS V8.0, you must use the plaintext mode to create and reference the result tables. For more information, see [Use a plaintext AccessKey](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data storage/Overview.md).
+-   Realtime Compute for Apache Flink does not allow you to register the ApsaraDB for RDS V8.0 data store in the console to store result tables. To use result tables of ApsaraDB for RDS V8.0, you must use the plaintext mode to create and reference the result tables. For more information, see [Use a plaintext AccessKey pair](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data storage/Overview.md).
 
 ## Register storage resources
 
-**Note:** Before you use Realtime Compute for Apache Flink to register storage resources, you must grant Realtime Compute for Apache Flink the permission to access these resources. For more information, see [Grant a RAM role to Realtime Compute in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute in exclusive mode.md).
+**Note:** Before you use Realtime Compute for Apache Flink to register storage resources, you must grant Realtime Compute for Apache Flink the permission to access these resources. For more information, see [Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode.md).
 
 1.  Log on to the [Realtime Compute development platform](https://stream-ap-southeast-3.console.aliyun.com).
 2.  In the top navigation bar, click **Development**.
