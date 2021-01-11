@@ -8,7 +8,7 @@ Log Service is an end-to-end logging service. Log Service allows you to collect,
 
 ## Register storage resources
 
-**Note:** Before you use Realtime Compute for Apache Flink to register storage resources, you must grant Realtime Compute for Apache Flink the permission to access these resources. For more information, see [Grant a RAM role to Realtime Compute in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute in exclusive mode.md) .
+**Note:** Before you use Realtime Compute for Apache Flink to register storage resources, you must grant Realtime Compute for Apache Flink the permission to access these resources. For more information, see [Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode.md).
 
 1.  Log on to the [Realtime Compute development platform](https://stream-ap-southeast-3.console.aliyun.com).
 2.  In the top navigation bar, click **Development**.
@@ -31,7 +31,7 @@ Log Service is an end-to-end logging service. Log Service allows you to collect,
 
     The name of the Log Service project that you want to register.
 
-    **Note:** In Realtime Compute for Apache Flink, you can register only the Log Service projects that are owned by the current Alibaba Cloud account. Assume that User A owns Project A of Log Service. If User B needs to use the storage resources of Project A in Realtime Compute for Apache Flink, this system does not allow User B to register Project A. If you need to use the Log Service project that is owned by another Alibaba Cloud account, you can use the plaintext mode to use the project. For more information, see [Use a plaintext AccessKey](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data storage/Overview.md).
+    **Note:** In Realtime Compute for Apache Flink, you can register only the Log Service projects that are owned by the current Alibaba Cloud account. Assume that User A owns Project A of Log Service. If User B needs to use the storage resources of Project A in Realtime Compute for Apache Flink, this system does not allow User B to register Project A. If you need to use the Log Service project that is owned by another Alibaba Cloud account, you can use the plaintext mode to use the project. For more information, see [Use a plaintext AccessKey pair](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data storage/Overview.md).
 
 
 ## FAQ
