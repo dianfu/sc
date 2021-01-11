@@ -3,7 +3,7 @@
 This topic describes how to activate Realtime Compute for Apache Flinkin exclusive mode and how to createRealtime Compute for Apache Flink clusters and projects in exclusive mode.
 
 -   A Realtime Compute for Apache Flink cluster in exclusive mode can access only storage resources in the same VPC, region, and security group as the cluster. To allow the cluster to access resources in another VPC, use [Express Connect](/intl.en-US/Product Introduction/What is Express Connect?.md) to access the network.
--   Role authorization for Realtime Compute for Apache Flink in exclusive mode is completed. For more information, see [Grant a RAM role to Realtime Compute in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute in exclusive mode.md).
+-   Role authorization for Realtime Compute for Apache Flink in exclusive mode is completed. For more information, see [Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode.md).
 
 ## Activate Realtime Compute for Apache Flink in exclusive mode and create a cluster and project
 
@@ -41,7 +41,7 @@ This topic describes how to activate Realtime Compute for Apache Flinkin exclusi
 
         -   **OSS Bucket**
 
-            You can upload UDF packages for a Realtime Compute for Apache Flink cluster in exclusive mode. To ensure data security, Realtime Compute for Apache Flink stores the UDF packages in an Object Storage Service \(OSS\) bucket. You must specify an existing OSS bucket. If you do not have an OSS bucket, create one first. For more information about how to create an OSS bucket, see [Create buckets](/intl.en-US/Quick Start/Create buckets.md).
+            You can upload UDF packages for a Realtime Compute for Apache Flink cluster in exclusive mode. To ensure data security, Realtime Compute for Apache Flink stores the UDF packages in an Object Storage Service \(OSS\) bucket. You must specify an existing OSS bucket. If you do not have an OSS bucket, create one first. For more information about how to create an OSS bucket, see [Create buckets](/intl.en-US/Quick Start/OSS console/Create buckets.md).
 
             When you create an OSS bucket, you must specify **Standard** for **Storage Class**. We recommend that you specify **Private** for **Access Control List \(ACL\)**. Do not select **Public Read**.
 
