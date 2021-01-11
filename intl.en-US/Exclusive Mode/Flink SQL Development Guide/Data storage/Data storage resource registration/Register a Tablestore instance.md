@@ -12,7 +12,7 @@ Tablestore is a NoSQL database service that is built based on Alibaba Cloud Apsa
 
 ## Register storage resources
 
-**Note:** Before you use Realtime Compute for Apache Flink to register storage resources, you must grant Realtime Compute for Apache Flink the permission to access these resources. For more information, see [Grant a RAM role to Realtime Compute in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute in exclusive mode.md) .
+**Note:** Before you use Realtime Compute for Apache Flink to register storage resources, you must grant Realtime Compute for Apache Flink the permission to access these resources. For more information, see [Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode](/intl.en-US/Exclusive Mode/Preparation/Role authorization/Grant a RAM role to Realtime Compute for Apache Flink in exclusive mode.md).
 
 1.  Log on to the [Realtime Compute development platform](https://stream-ap-southeast-3.console.aliyun.com).
 2.  In the top navigation bar, click **Development**.
