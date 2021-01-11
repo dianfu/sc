@@ -21,7 +21,7 @@ CREATE TABLE mongodb_sink (
 ) WITH (
    type = 'mongodb',
    database = '<yourDatabaseName>',
-   collection= '<yourCollectionName>'
+   collection= '<yourCollectionName>',
    uri='mongodb://{<databaseAccount>}:{<atabasePassword>}@{host}:****? replicaSet=mgset-1224****',
    keepAlive='true',
    maxConnectionIdleTime='20000',
