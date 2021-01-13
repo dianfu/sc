@@ -62,7 +62,7 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
     -   GROUP\_OFFSETS模式下，GroupID的第一次消费，没有设置偏移（Offset）值，默认从Kafka分区末尾开始读取数据。
     -   仅Kafka010和Kafka011版本支持TIMESTAMP。 |
     |partitionDiscoveryIntervalMS|定时检查是否有新分区产生|否|    -   Kafka 08版本：系统默认开启该功能。
-    -   Kafka 09及以上版本：需要您在WITH参数中明文指定该参数后，该功能才能生效。
+    -   Kafka 09版本及以上版本：不支持partitionDiscoveryIntervalMS参数。您可以通过设置WITH参数，extraConfig=‘flink.partition-discovery.interval-millis=60000’达到相同的效果。
 单位为毫秒，默认值为60000，即1分钟。 |
     |extraConfig|额外的KafkaConsumer配置项目|否|不在可选配置项中，但是期望额外增加的配置。例如：``fetch.message.max.bytes=104857600``，多个配置使用分号（;）分隔。|
 
@@ -113,9 +113,9 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
 
     -   Kafka09/Kafka010/Kafka011可选配置，请参见如下Kafka官方文档进行配置：
 
-        -   [Kafka09](https://kafka.apache.org/0110/documentation.html#consumerconfigs)
-        -   [Kafka010](https://kafka.apache.org/090/documentation.html#newconsumerconfigs)
-        -   [Kafka011](https://kafka.apache.org/0102/documentation.html#newconsumerconfigs)
+        -   [Kafka09](https://kafka.apache.org/090/documentation.html?spm=a2c4g.11186623.2.18.5fda779biQ4ToG#newconsumerconfigs)
+        -   [Kafka010](https://kafka.apache.org/0100/documentation.html?spm=a2c4g.11186623.2.18.5fda779biQ4ToG#newconsumerconfigs)
+        -   [Kafka011](https://kafka.apache.org/0110/documentation.html?spm=a2c4g.11186623.2.17.5fda779biQ4ToG#consumerconfigs)
         当需要配置某选项时，在DDL中的WITH部分增加对应的参数即可。例如，配置SASL登录，需增加``security.protocol``、``sasl.mechanism``和``sasl.jaas.config``3个参数，示例如下。
 
         ```
@@ -638,18 +638,18 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
 
     -   问题原因
 
-        Kafka各broker会向zookeeper汇报自身Meta信息，Kafka consumer最终会根据broker Meta信息listener\_security\_protocol中的endpoint地址（例如IP或本机域名加端口）访问broker拉取数据。如果实时计算Flink版作业所在机器无法访问endpoint地址，则connector中consumer将无法拉取数据，导致流程的停滞。
+        Kafka各broker会向zookeeper汇报自身Meta信息，Kafka consumer最终会根据broker Meta信息listener\_security\_protocol中的Endpoint地址（例如IP或本机域名加端口）访问broker拉取数据。如果实时计算Flink版作业所在机器无法访问Endpoint地址，则connector中consumer将无法拉取数据，导致流程的停滞。
 
     -   排查思路
-        1.  查看**zookeeper** \> **broker** \> **listener\_security\_protocol** \> **endpoint**信息。
+        1.  查看**zookeeper** \> **broker** \> **listener\_security\_protocol** \> **Endpoint**信息。
 
             ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9084359951/p64421.jpg)
 
-        2.  通过**网络探测**功能检测endpoint的IP或域名是否可访问。
+        2.  通过**网络探测**功能检测Endpoint的IP或域名是否可访问。
         3.  登录机器再次确认。
     -   解决方案
-        -   如果endpoint采用的是IP形式，则确认Kafka服务端是否配置了[数据存储白名单配置](/intl.zh-CN/独享模式/Flink SQL开发指南/数据存储/数据存储白名单配置.md)。如果未配置，请配置后重试。
-        -   如果endpoint采用的是域名形式，由于实时计算Flink版独享集群内部无法解析域名，所以需要在白名单已配置的情况下，通过以下两种解方案解决：
+        -   如果Endpoint采用的是IP形式，则确认Kafka服务端是否配置了[数据存储白名单配置](/intl.zh-CN/独享模式/Flink SQL开发指南/数据存储/数据存储白名单配置.md)。如果未配置，请配置后重试。
+        -   如果Endpoint采用的是域名形式，由于实时计算Flink版独享集群内部无法解析域名，所以需要在白名单已配置的情况下，通过以下两种解方案解决：
             -   不能重启Kafka服务
 
                 购买[云解析PrivateZone](https://www.aliyun.com/product/pvtz?spm=5176.10695662.1395782.1.305e10614trdiP)，配置所有Kafka Broker的域名解析，通过域名进行网络探测成功后，重启实时计算Flink版作业。
