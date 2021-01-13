@@ -24,7 +24,7 @@ CREATE TABLE hbase_dim(
 -   HBase的列族（Column Family）必须声明为ROW类型，列族名即该ROW的字段名。例如，DDL定义中声明了family1、family2和family3三个列族。
 -   HBase列族中的列（Cloumn）与对应ROW中嵌套的每个字段对应，列名即字段名。例如，DDL定义中列族family2声明了q2和q3两列。
 -   除了类型为ROW的字段外，只能有一个原始类型（Atomic Type）的字段（例如STRING或BIGINT），该字段将被视作HBase的行键（Row Key），例如DDL定义中的rowkey。
--   必须将HBase的行键定义为结果表的主键\(Primary Key\)，如果没有显示定义主键，默认使用行键作为主键。
+-   必须将HBase的行键定义为结果表的主键（Primary Key），如果没有显示定义主键，默认使用行键作为主键。
 
 ## WITH参数
 
@@ -67,15 +67,15 @@ CREATE TABLE hbase_dim(
 
 ## 转换关系
 
-HBase数据通过org.apache.hadoop.hbase.util.Bytes转换成**Flink全托管**的数据类型。解码过程有以下两种情况：
+HBase数据通过org.apache.hadoop.hbase.util.Bytes转换成Flink的数据类型。解码过程有以下两种情况：
 
--   对于**Flink全托管**的非字符串类型，如果HBase中的值为空字节数组，则解码为null。
--   对于**Flink全托管**的字符串类型，如果HBase中的值为null-string-literal字节数组，则解码为null。
+-   对于Flink的非字符串类型，如果HBase中的值为空字节数组，则解码为null。
+-   对于Flink的字符串类型，如果HBase中的值为null-string-literal字节数组，则解码为null。
 
-**Flink全托管**与HBase的数据转换关系如下。
+Flink与HBase的数据转换关系如下。
 
-|全托管Flink版类型|HBase转换函数|
-|-----------|---------|
+|Flink类型|HBase转换函数|
+|-------|---------|
 |CHAR|String toString\(byte\[\] b\)|
 |VARCHAR|
 |STRING|
