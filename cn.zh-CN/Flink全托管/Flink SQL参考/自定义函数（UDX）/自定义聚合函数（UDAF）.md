@@ -1,6 +1,6 @@
 # 自定义聚合函数（UDAF）
 
-本文为您介绍如何为Flink全托管自定义聚合函数（UDAF）开发、注册和使用流程。
+本文为您介绍如何为Flink自定义聚合函数（UDAF）开发、注册和使用流程。
 
 ## 定义
 
@@ -8,14 +8,14 @@
 
 ## UDAF开发
 
-**说明：** Flink全托管为您提供了UDX示例，便于您快速开发业务。Flink全托管UDX示例中包含UDF、UDAF和UDTF的实现，示例中已为您配置对应版本的开发环境，您无需进行环境搭建。
+**说明：** Flink为您提供了UDX示例，便于您快速开发业务。Flink UDX示例中包含UDF、UDAF和UDTF的实现，示例中已为您配置对应版本的开发环境，您无需进行环境搭建。
 
 1.  下载并解压[ASI\_UDX\_Demo](https://github.com/RealtimeCompute/ASI_UDX)示例到本地。
 
     解压完成后，会生成ASI\_UDX-main文件夹。其中：
 
     -   pom.xml：项目级别的配置文件，主要描述了项目的Maven坐标、依赖关系，开发者需要遵循的规则、缺陷管理系统，组织和Licenses，以及其他所有的项目相关因素。
-    -   \\ASI\_UDX-main\\src\\main\\java\\ASI\_UDAF\\ASI\_UDAF.java：自定义聚合函数（UDAF）示例的JAVA代码。
+    -   \\ASI\_UDX-main\\src\\main\\java\\ASI\_UDAF\\ASI\_UDAF.java：自定义聚合函数（UDAF）示例的Java代码。
 2.  在Intellij IDEA中，单击**file** \> **open**，打开刚才解压缩完成的ASI\_UDX-main。
 3.  双击打开\\ASI\_UDX-main\\src\\main\\java\\ASI\_UDAF后，根据您的业务，配置ASI\_UDAF.java。
 
@@ -54,7 +54,7 @@
     该示例中，pom.xml文件已配置了Flink 1.11版依赖的主要JAR包信息。如果您的业务：
 
     -   不依赖其他JAR包：不用配置pom.xml文件，继续下一步。
-    -   依赖其他JAR包：在pom.xml文件中添加您所需依赖的JAR包信息。此外，您还需要在[MvnrePository](https://mvnrepository.com/)库中下载依赖包到您本地，以防打包报错。
+    -   依赖其他JAR包：在pom.xml文件中添加您所需依赖的JAR包信息。
     Flink 1.11版依赖的主要JAR包如下。
 
     ```
