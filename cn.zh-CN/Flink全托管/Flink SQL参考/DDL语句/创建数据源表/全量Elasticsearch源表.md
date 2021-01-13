@@ -35,8 +35,8 @@ keyword: [Elasticsearch, ES, 源表]
 |--|--|----|--|
 |connector|源表类型|是|固定值为`elasticsearch`。|
 |endPoint|Server地址|是|例如：http://127.0.0.1:9200。|
-|accessId|AccessKey ID|否|无|
-|accessKey|AccessKey Secret|否|无|
+|accessId|Elasticsearch实例的用户名|否|无|
+|accessKey|Elasticsearch实例的密码|否|无|
 |indexName|文档索引名称|是|无|
 |typeNames|Type名称|否|默认值为`_doc`。**说明：** Elasticsearch 7.0以上版本不建议设置该参数。 |
 |batchSize|每个scroll请求从Elasticsearch集群获取的最大文档数|否|默认值为2000。|
