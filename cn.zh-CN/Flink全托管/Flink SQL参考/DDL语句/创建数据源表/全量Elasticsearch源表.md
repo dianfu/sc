@@ -15,11 +15,11 @@ keyword: [Elasticsearch, ES, 源表]
 ## DDL定义
 
 ```
- CREATE TABLE es_stream_source(
+ CREATE TABLE elasticsearch_source(
    name STRING, 
    location STRING, 
    `value` FLOAT
-) WIHT (
+) WITH (
    'connector' ='elasticsearch',
    'endPoint' = '<yourEndPoint>',
    'accessId' = '<yourAccessId>',
@@ -40,16 +40,16 @@ keyword: [Elasticsearch, ES, 源表]
 |indexName|文档索引名称|是|无|
 |typeNames|Type名称|否|默认值为`_doc`。**说明：** Elasticsearch 7.0以上版本不建议设置该参数。 |
 |batchSize|每个scroll请求从Elasticsearch集群获取的最大文档数|否|默认值为2000。|
-|keepScrollAliveSecs|scroll上下文保留的最长时间|否|单位为妙，默认值为3600秒。|
+|keepScrollAliveSecs|scroll上下文保留的最长时间|否|单位为秒，默认值为3600。|
 
 ## 类型映射
 
-Flink全托管以JSON来解析Elasticsearch数据，详情请参见[数据类型映射关系](https://ci.apache.org/projects/flink/flink-docs-master/zh/dev/table/connectors/formats/json.html)。
+Flink以JSON来解析Elasticsearch数据，详情请参见[数据类型映射关系](https://ci.apache.org/projects/flink/flink-docs-master/zh/dev/table/connectors/formats/json.html)。
 
 ## 代码示例
 
 ```
-CREATE TABLE elasticsearch_scan_source (
+CREATE TEMPORARY TABLE elasticsearch_source (
    name STRING,
    location STRING,
    `value` FLOAT
@@ -62,7 +62,7 @@ CREATE TABLE elasticsearch_scan_source (
    'typeNames' = '<yourTypeName>'
 );
 
-CREATE TABLE your_sink (
+CREATE TEMPORARY TABLE blackhole_sink (
    name STRING,
    location STRING,
    `value` FLOAT
@@ -70,8 +70,8 @@ CREATE TABLE your_sink (
    'connector' ='blackhole'
 );
 
-INSERT INTO your_sink
+INSERT INTO blackhole_sink
 SELECT name, location, `value`
-FROM elasticsearch_scan_source;
+FROM elasticsearch_source;
 ```
 
