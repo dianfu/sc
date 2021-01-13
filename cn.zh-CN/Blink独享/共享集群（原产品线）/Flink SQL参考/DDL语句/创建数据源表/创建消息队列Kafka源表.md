@@ -638,18 +638,18 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
 
     -   问题原因
 
-        Kafka各broker会向zookeeper汇报自身Meta信息，Kafka consumer最终会根据broker Meta信息listener\_security\_protocol中的endpoint地址（例如IP或本机域名加端口）访问broker拉取数据。如果实时计算Flink版作业所在机器无法访问endpoint地址，则connector中consumer将无法拉取数据，导致流程的停滞。
+        Kafka各broker会向zookeeper汇报自身Meta信息，Kafka consumer最终会根据broker Meta信息listener\_security\_protocol中的Endpoint地址（例如IP或本机域名加端口）访问broker拉取数据。如果实时计算Flink版作业所在机器无法访问Endpoint地址，则connector中consumer将无法拉取数据，导致流程的停滞。
 
     -   排查思路
-        1.  查看**zookeeper** \> **broker** \> **listener\_security\_protocol** \> **endpoint**信息。
+        1.  查看**zookeeper** \> **broker** \> **listener\_security\_protocol** \> **Endpoint**信息。
 
             ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9084359951/p64421.jpg)
 
-        2.  通过**网络探测**功能检测endpoint的IP或域名是否可访问。
+        2.  通过**网络探测**功能检测Endpoint的IP或域名是否可访问。
         3.  登录机器再次确认。
     -   解决方案
-        -   如果endpoint采用的是IP形式，则确认Kafka服务端是否配置了[数据存储白名单配置](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL开发指南/数据存储/数据存储白名单配置.md)。如果未配置，请配置后重试。
-        -   如果endpoint采用的是域名形式，由于实时计算Flink版独享集群内部无法解析域名，所以需要在白名单已配置的情况下，通过以下两种解方案解决：
+        -   如果Endpoint采用的是IP形式，则确认Kafka服务端是否配置了[数据存储白名单配置](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL开发指南/数据存储/数据存储白名单配置.md)。如果未配置，请配置后重试。
+        -   如果Endpoint采用的是域名形式，由于实时计算Flink版独享集群内部无法解析域名，所以需要在白名单已配置的情况下，通过以下两种解方案解决：
             -   不能重启Kafka服务
 
                 购买[云解析PrivateZone](https://www.aliyun.com/product/pvtz?spm=5176.10695662.1395782.1.305e10614trdiP)，配置所有Kafka Broker的域名解析，通过域名进行网络探测成功后，重启实时计算Flink版作业。
