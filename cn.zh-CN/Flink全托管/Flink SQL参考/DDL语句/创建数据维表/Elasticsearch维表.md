@@ -11,11 +11,11 @@ keyword: [Elasticsearch, ES, 维表]
 ## DDL定义
 
 ```
- CREATE TABLE es_stream_sink(
+ CREATE TABLE es_dim(
    field1 LONG, ---作为JOIN时的key，必须为STRING类型。
    field2 VARBINARY, 
    field3 VARCHAR
-) WIHT (
+) WITH (
    'connector' ='elasticsearch',
    'endPoint' = '<yourEndPoint>',
    'accessId' = '<yourAccessId>',
@@ -36,8 +36,8 @@ keyword: [Elasticsearch, ES, 维表]
 |--|--|----|--|
 |connector|维表类型|是|固定值为`elasticsearch`。|
 |endPoint|Server地址|是|例如：http://127.0.0.1:9200。|
-|accessId|AccessKey ID|否|无|
-|accessKey|AccessKey Secret|否|无|
+|accessId|Elasticsearch实例的用户名|否|无|
+|accessKey|Elasticsearch实例的密码|否|无|
 |indexName|文档索引名称|是|无|
 |typeNames|Type名称|否|默认值为`_doc`。**说明：** Elasticsearch 7.0以上版本不建议设置该参数。 |
 
@@ -56,12 +56,12 @@ keyword: [Elasticsearch, ES, 维表]
 
 ## 类型映射
 
-Flink全托管以JSON来解析Elasticsearch数据，详情请参见[数据类型映射关系](https://ci.apache.org/projects/flink/flink-docs-master/zh/dev/table/connectors/formats/json.html)。
+Flink以JSON来解析Elasticsearch数据，详情请参见[数据类型映射关系](https://ci.apache.org/projects/flink/flink-docs-master/zh/dev/table/connectors/formats/json.html)。
 
 ## 代码示例
 
 ```
-CREATE TABLE event (
+CREATE TEMPORARY TABLE datagen_source (
    id STRING, 
    data STRING,
    proctime as PROCTIME()
@@ -69,7 +69,7 @@ CREATE TABLE event (
    'connector' = 'datagen' 
 );
 
-CREATE TABLE white_list (
+CREATE TEMPORARY TABLE es_dim (
    id STRING,
    `value` FLOAT
 ) WITH (
@@ -81,7 +81,7 @@ CREATE TABLE white_list (
    'typeNames' = '<yourTypeName>'
 );
 
-CREATE TABLE sink (
+CREATE TEMPORARY TABLE blackhole_sink (
   id STRING,
   data STRING,
   `value` FLOAT
@@ -89,10 +89,10 @@ CREATE TABLE sink (
   'connector' = 'blackhole' 
 );
 
-INSERT INTO sink
+INSERT INTO blackhole_sink
 SELECT e.*, w.*
-  FROM event AS e
-JOIN white_list FOR SYSTEM_TIME AS OF e.proctime AS w
+  FROM datagen_source AS e
+JOIN es_dim FOR SYSTEM_TIME AS OF e.proctime AS w
 ON e.id = w.id;
 ```
 
