@@ -14,7 +14,7 @@
 
 2.  在**Flink全托管**页签，单击目标工作空间**操作**列下的**开发控制台**。
 
-3.  在左侧导航栏，单击**应用** \> **SQL编辑器**。
+3.  在左侧导航栏，选择**应用** \> **SQL编辑器**。
 
 4.  单击**Connectors**页签。
 
@@ -24,17 +24,17 @@
 
 6.  上传自定义Connectors JAR文件。
 
-    ![上传JAR](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5741796061/p187443.png)
+    ![上传JAR](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5924160161/p187443.png)
 
-    您可以通过以下任意一种方式上传自定义Connectors JAR文件：
+    您可以通过以下任何一种方式上传自定义Connectors JAR文件：
 
-    -   单击灰色区域，打开您的目标自定义Connectors JAR文件。
-    -   拖动自定义Connectors JAR文件到灰色区域，即可上传。
+    -   **上传文件**：单击**选择文件**后，选择您的目标Connectors JAR文件。
+    -   **外部URL**：输入外部URL地址。
 7.  上传完成后，单击**继续**。
 
     系统会对您上传的自定义Connectors内容进行解析。如果解析成功，您可以继续下一步。如果解析失败，请确认您上传的自定义Connectors代码是否符合Flink社区标准。
 
-8.  单击**完成**
+8.  单击**完成**。
 
     创建完成的自定义Connectors会出现在Connectors列表中。
 
@@ -45,7 +45,7 @@
 
 2.  在**Flink全托管**页签，单击目标工作空间**操作**列下的**开发控制台**。
 
-3.  在左侧导航栏，单击**应用** \> **SQL编辑器**。
+3.  在左侧导航栏，选择**应用** \> **SQL编辑器**。
 
 4.  单击**Connectors**页签。
 
@@ -53,17 +53,17 @@
 
 6.  上传自定义Connectors JAR文件。
 
-    ![修改connector](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5741796061/p187445.png)
+    ![修改connector](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5924160161/p187445.png)
 
-    您可以通过以下任意一种方式上传自定义Connectors JAR文件：
+    您可以通过以下任何一种方式上传自定义Connectors JAR文件：
 
-    -   单击灰色区域，打开您的目标自定义Connectors JAR文件。
-    -   拖动自定义Connectors JAR文件到灰色区域，即可上传。
+    -   **上传文件**：单击**选择文件**后，选择您的目标Connectors JAR文件。
+    -   **外部URL**：输入外部URL地址。
 7.  上传完成后，单击**继续**。
 
     系统会对您上传的自定义Connectors内容进行解析。如果解析成功，您可以继续下一步。如果解析失败，请确认您上传的自定义Connectors代码是否符合Flink社区标准。
 
-8.  单击**完成**
+8.  单击**完成**。
 
     创建完成的自定义Connectors会出现在Connectors列表中。
 
@@ -76,7 +76,7 @@
 
 2.  在**Flink全托管**页签，单击目标工作空间**操作**列下的**开发控制台**。
 
-3.  在左侧导航栏，单击**应用** \> **SQL编辑器**。
+3.  在左侧导航栏，选择**应用** \> **SQL编辑器**。
 
 4.  单击**Connectors**页签。
 
