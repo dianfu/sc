@@ -4,21 +4,21 @@ keyword: create a Hologres source table
 
 # Create a Hologres source table
 
-This topic describes how to create a Hologres source table. It also describes the data definition language \(DDL\) syntax, parameters in the WITH clause, data type mapping, and sample code used when you create such a source table.
+This topic describes how to create a Hologres source table. It also describes the data definition language \(DDL\) syntax, parameters in the WITH clause, data type mapping, and sample code used when you create a Hologres source table.
 
 **Note:**
 
 -   This topic applies only to Blink 3.6.0 and later. If your Blink version is earlier than 3.6.0, you can[submit a ticket](https://workorder-intl.console.aliyun.com/) to obtain the required JAR files for installation.
 -   We recommend that you use Hologres 0.7 or later.
--   Only a database table that uses the row-oriented storage mode in Hologres can be used as a source table of Realtime Compute for Apache Flink.
--   Hologres source tables support the projection pushdown rule, which allows you to read data only from the specified columns in a source table.
+-   You can use only the Hologres tables that use the row store structure as source tables for Realtime Compute for Apache Flink.
+-   Hologres source tables support projection pushdown. This allows you to read data from only the required columns in the Hologres source tables.
 -   Concurrent Blink jobs can read data from one or more Hologres shards. We recommend that the number of concurrent Blink jobs be no more than the number of Hologres shards.
--   You can use Hologres source tables for both stream processing and batch processing.
--   Snapshot statements are executed to read existing data from a Hologres source table at a high speed. After data reading is completed, the job is terminated. If data fails to read, the read operation is performed again.
+-   You can use Hologres source tables to process streaming data and batch data.
+-   Blink jobs execute snapshot statements to read existing data from Hologres source tables at a high rate. After the read operation is complete, the jobs end. If the jobs fail to read data, they read the data again.
 
 ## Introduction to Hologres
 
-Hologres is compatible with the PostgreSQL protocol and closely connected to the big data ecosystem. Hologres supports real-time analysis and processing of petabytes of data with high concurrency and low latency. This allows you to use existing Business Intelligence \(BI\) tools to easily perform multidimensional analysis and business exploration.
+Hologres is compatible with the PostgreSQL protocol and closely connected to the big data ecosystem. Hologres allows you to analyze and process petabytes of data in high concurrency and low latency scenarios. Hologres provides an easy method for you to use the existing business intelligence \(BI\) tools to perform multidimensional analysis and explore your business.
 
 ## DDL syntax
 
@@ -47,10 +47,10 @@ create table mysource(
 |tablename|The name of the table.|Yes|None.|
 |username|The username that is used to log on to the database. You must enter the AccessKey ID of your Alibaba Cloud account.|Yes|None.|
 |password|The password that is used to log on to the database. You must enter the AccessKey secret of your Alibaba Cloud account.|Yes|None.|
-|endpoint|The endpoint of Hologres.|Yes|For more information, see [Endpoints used to access Hologres](/intl.en-US/Manage instances/Endpoints used to access Hologres.md).|
-|field\_delimiter|The delimiter used between rows when data is being exported. **Note:** Do not insert delimiters in data.
+|endpoint|The endpoint of Hologres.|Yes|For more information, see [Endpoints that are used to access Hologres](/intl.en-US/Manage instances/Endpoints that are used to access Hologres.md).|
+|field\_delimiter|The delimiter used between rows when data is being exported. **Note:** Delimiters cannot be inserted into the data.
 
-|Yes|Default value: \\u0002.|
+|Yes|Default value: "\\u0002".|
 
 ## Field type mapping
 
