@@ -1,6 +1,6 @@
 # Create an InfluxDB result table
 
-This topic describes how to create an InfluxDB result table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH clause and data type mapping involved when you create such a result table.
+This topic describes how to create an InfluxDB result table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH clause and data type mapping involved when you create an InfluxDB result table.
 
 **Note:**
 
@@ -27,20 +27,20 @@ create table stream_test_influxdb(
 );
 ```
 
-Default format for tables:
+Default format for the created table:
 
 -   Column 0: metric \(VARCHAR\). This column is required.
--   Column 1: timestamp \(BIGINT\), in milliseconds. This column is required.
+-   Column 1: timestamp \(BIGINT\). This column is required. Unit: milliseconds.
 -   Column 2: tag\_value1 \(VARCHAR\). This column is required. You must enter at least one value in this column.
 -   Column 3: field\_fieldValue1 \(DOUBLE\). This column is required. You must enter at least one value in this column.
 
-    To enter multiple values of field\_fieldValue, use the following format:
+    To specify multiple field\_fieldValue values, use the following format:
 
     ```
-    field_fieldValue1 Data type,
-    field_fieldValue2 Data type,
+    field_fieldValue1 <Data type>,
+    field_fieldValue2 <Data type>,
     ...      
-    field_fieldValueN Data type
+    field_fieldValueN <Data type>
     ```
 
     The following code shows an example:
@@ -53,19 +53,19 @@ Default format for tables:
     ```
 
 
-**Note:** An InfluxDB result table can contain only the metric, timestamp, tag\_\*, and field\_\* fields.
+**Note:** An InfluxDB result table can contain only metric, timestamp, tag\_\*, and field\_\*.
 
 ## Parameters in the WITH clause
 
 |Parameter|Description|Required|Remarks|
 |---------|-----------|--------|-------|
 |type|The type of the result table.|Yes|Set the value to InfluxDB.|
-|endpoint|The endpoint of an InfluxDB database.|Yes|The endpoint of an InfluxDB database is the VPC endpoint of the InfluxDB database, for example, https://localhost:3242 or http://localhost:8086.
+|endpoint|The endpoint of the InfluxDB database.|Yes|The endpoint of an InfluxDB database is the VPC endpoint of the InfluxDB database. For example, you can set this parameter to https://localhost:3242 or http://localhost:8086.
 
-Endpoints support both HTTP and HTTPS. |
-|database|The name of an InfluxDB database.|Yes|For example, db-blink or blink.|
-|batchPutSize|The number of data records submitted at a time.|No|Default value: 500.|
-|username|The username that is used to access the InfluxDB database.|Yes|You must have the write permission on the destination database.|
+Endpoints support HTTP and HTTPS. |
+|database|The name of the InfluxDB database.|Yes|For example, you can set this parameter to db-blink or blink.|
+|batchPutSize|The number of data records that are submitted at a time.|No|Default value: 500.|
+|username|The username that is used to access the InfluxDB database.|Yes|You must have the write permission on the InfluxDB database.|
 |password|The password that is used to access the InfluxDB database.|Yes|Default value: 0.|
 |retentionPolicy|The retention policy.|No|If this parameter is empty, the default retention policy is used for each database.|
 
