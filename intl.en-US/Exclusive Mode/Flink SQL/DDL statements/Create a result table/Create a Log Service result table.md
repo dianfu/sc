@@ -4,7 +4,7 @@ keyword: [Log Service, result table]
 
 # Create a Log Service result table
 
-This topic describes how to create a Log Service result table.
+This topic describes how to create a Log Service result table in Realtime Compute for Apache Flink.
 
 **Note:**
 
@@ -34,27 +34,27 @@ create table sls_stream(
 );
 ```
 
-**Note:** We recommend that you use the storage registration feature. For more information, see [Register Log Service resources](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data storage/Data storage resource registration/Register Log Service resources.md).
+**Note:** We recommend that you use the storage registration feature of Log Service. For more information, see [Register a Log Service project](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data storage/Data storage resource registration/Register a Log Service project.md).
 
 ## Parameters in the WITH clause
 
 |Parameter|Description|Required|Remarks|
 |---------|-----------|--------|-------|
 |endPoint|The endpoint of Log Service.|Yes|[Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md)|
-|project|The name of a Log Service project.|Yes|None.|
+|project|The name of a project.|Yes|None.|
 |logstore|The name of the table in the database.|Yes|None.|
-|accessId|The AccessKey ID that is used to log on to the database.|Yes|None.|
-|accessKey|The AccessKey secret that is used to log on to the database.|Yes|None.|
-|topic|An attribute field.|No|This parameter is empty by default. You can select a field as the `topic` attribute field.|
-|timestampColumn|An attribute field.|No|This parameter is empty by default. You can select a field as the `timestamp` attribute field. The selected field must be of the INT type. If you do not specify an attribute field, the current time is used by default. **Note:** This parameter is available in Realtime Compute for Apache Flink V2.2.2 and later. |
-|source|An attribute field. The source of a log entry. For example, the value of this parameter can be the IP address of the machine where the log entry is generated.|No|This parameter is empty by default. You can select a field as the `source` attribute field.|
+|accessId|AccessKey ID|Yes|None.|
+|accessKey|AccessKey Secret|Yes|None.|
+|topic|An attribute field.|No|This parameter is empty by default. You can use the selected field as the `topic` attribute field.|
+|timestampColumn|An attribute field.|No|This parameter is empty by default. You can use the selected field as the `timestamp` attribute field. The data type of this parameter must be INT. If no field is selected, the current time is used as the attribute field. **Note:** This parameter is available in Realtime Compute for Apache Flink V2.2.2 and later. |
+|source|An attribute field. The source of a log entry. For example, the value of this parameter can be the IP address of the server where the log entry is generated.|No|This parameter is empty by default. You can use the selected field as the `source` attribute field.|
 |partitionColumn|The partition key column.|No|This parameter is required if the `mode` parameter is set to `partition`.|
 |flushIntervalMs|The interval at which data writing is triggered.|No|Default value: 2000. Unit: milliseconds.|
-|reserveMilliSecond|Specifies whether to reserve the millisecond component in a value of the TIMESTAMP type.|No|Default value: false. This value indicates that the millisecond component is not reserved. **Note:** This parameter is available in Realtime Compute for Apache Flink V2.2.6 and later. |
+|reserveMilliSecond|Specifies whether to reserve the millisecond component in a value of the TIMESTAMP data type.|No|Default value: false. This value indicates that the millisecond component is not reserved. **Note:** This parameter is available in Realtime Compute for Apache Flink V2.2.6 and later. |
 
 ## Field type mapping
 
-The following table describes the mapping between the data types of Log Service and Realtime Compute for Apache Flink. We recommend that you declare the mapping in a data definition language \(DDL\) statement.
+The following table describes the mapping between the data types of Log Service and Realtime Compute for Apache Flink. We recommend that you declare the mapping in DDL statements.
 
 |Data type of Log Service|Data type of Realtime Compute for Apache Flink|
 |------------------------|----------------------------------------------|
@@ -62,7 +62,7 @@ The following table describes the mapping between the data types of Log Service 
 
 ## Sample code
 
-The following sample code demonstrates how to create a Log Service result table in a Realtime Compute for Apache Flink job.
+The following sample code demonstrates how to create a Log Service result table in a Realtime Compute for Apache Flink job:
 
 ```
 CREATE TABLE random_input (
@@ -90,9 +90,9 @@ FROM random_input;
 
 ## FAQ
 
-Q: How do I configure the topic field for a Log Service result table?
+Q: How do I specify the topic field in a Log Service result table?
 
-A: You can configure the topic field as a field in the result table, for example, set `topic='age'` in the sample code. After the configuration is completed, the value of the `age` field is written into Log Service but Log Service does not write the `age` field into the downstream storage systems.
+A: You can specify the topic field as a field in the result table. For example, specify `topic='age'` in the sample code. After the configuration is completed, the value of the `age` field is written into Log Service but Log Service does not write the `age` field into the downstream storage systems.
 
 ## References
 
