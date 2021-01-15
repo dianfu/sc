@@ -46,7 +46,7 @@ CREATE TABLE white_list (
 |--|--|----|--|
 |type|维表类型|是|固定值为`odps`。|
 |endPoint|MaxCompute服务地址|是|请参见[开通MaxCompute服务的Region和服务连接对照表](/intl.zh-CN/准备工作/配置Endpoint.md)。|
-|tunnelEndpoint|MaxCompute Tunnel服务的连接地址|是|请参见[开通MaxCompute服务的Region和服务连接对照表](/intl.zh-CN/准备工作/配置Endpoint.md)。 **说明：** VPC环境下为必填。 |
+|tunnelEndpoint|MaxCompute Tunnel服务的连接地址|是|请参见[开通MaxCompute服务的Region和服务连接对照表](/intl.zh-CN/准备工作/配置Endpoint.md)。**说明：** VPC环境下为必填。 |
 |project|MaxCompute项目名称|是|无|
 |tableName|表名|是|无|
 |accessId|AccessKey ID|是|无|
@@ -78,7 +78,7 @@ CREATE TABLE white_list (
 **说明：**
 
 -   因为系统会异步加载维表数据，所以在使用CACHE ALL时，需要增加维表JOIN节点的内存，增加的内存大小为远程表数据量的至少4倍，具体值与MaxCompute存储压缩算法有关。
--   在使用超大MaxCompute维表时，如果频繁GC\(Allocation Failure\)导致作业异常，且在增加维表JOIN节点的内存仍无改善的情况下，建议：
+-   在使用超大MaxCompute维表时，如果频繁GC（Allocation Failure）导致作业异常，且在增加维表JOIN节点的内存仍无改善的情况下，建议：
     -   Blink 3.6.0及以后版本，设置参数partitionedJoin = 'true'，即打开PartitionedJoin优化。
     -   改为支持LRU 缓存策略的KV型维表，例如云数据库Hbase版维表。 |
 |cacheSize|缓存大小|可以设置缓存大小，MaxCompute默认缓存值为100000行。|
