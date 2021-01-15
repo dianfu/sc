@@ -56,7 +56,7 @@ keyword: [HBase, 结果表]
     );
     ```
 
--   Blink 3.5.0以上HBase增强版示例代码如下。
+-   Blink 3.5.0及以上HBase增强版示例代码如下。
 
     ```
     create table liuxd_user_behavior_test_front (
@@ -76,7 +76,7 @@ keyword: [HBase, 结果表]
     );
     ```
 
--   Blink 3.5.0以上HBase写入主备切换示例代码如下。
+-   Blink 3.5.0及以上HBase写入主备切换示例代码如下。
 
     ```
     create table liuxd_user_behavior_test_front (
@@ -110,17 +110,18 @@ keyword: [HBase, 结果表]
 
 |参数|说明|是否必填|备注|
 |--|--|----|--|
+|type|结果表类型|是|固定值为cloudhbase。|
 |zkQuorum|HBase集群配置的zk地址|是|可以在hbase-site.xml文件中查看hbase.zookeeper.quorum相关配置。 **说明：** 仅在HBase标准版中生效。 |
-|zkNodeParent|集群配置在zk上的路径|否|可以在hbase-site.xm文件中查看hbase.zookeeper.quorum相关配置。 **说明：** 仅在HBase标准版中生效。 |
-|endPoint|HBase地域名称|是|可在购买的HBase实例控制台中获取。 **说明：** 仅在HBase增强版中生效。 |
-|userName|用户名|否|**说明：** 仅在HBase增强版中生效。 |
-|password|密码|否|**说明：** 仅在HBase增强版中生效。 |
+|zkNodeParent|集群配置在zk上的路径|否|可以在hbase-site.xml文件中查看hbase.zookeeper.quorum相关配置。 **说明：** 仅在HBase标准版中生效。 |
+|endPoint|HBase地域名称|是|可在购买的HBase实例控制台中获取。**说明：** 仅在HBase增强版中生效。 |
+|userName|用户名|否|仅在HBase增强版中生效。|
+|password|密码|否|仅在HBase增强版中生效。|
 |tableName|HBase表名|是|无|
 |columnFamily|列族名|是|仅支持插入同一列族。|
 |maxRetryTimes|最大尝试次数|否|默认值为10。**说明：** 仅实时计算3.2.3及以上版本支持maxRetryTimes参数。 |
 |bufferSize|流入多少条数据后进行去重|否|默认值为5000。|
 |batchSize|一次批量写入的条数|否|默认值为100。**说明：** 建议batchSize参数值为200~300。过大的batchSize值可能导致任务OOM（内存不足）报错。 |
-|flushIntervalMs|周期性清理buffer的间隔，可以减少写入HBase的延迟|否|默认值为2000，单位为毫秒。|
+|flushIntervalMs|周期性清理buffer的间隔，可以减少写入HBase的延迟。|否|默认值为2000，单位为毫秒。|
 |writePkValue|是否写入主键值|否|默认值为false。|
 |stringWriteMod|是否都按照STRING插入|否|默认值为false。|
 |rowkeyDelimiter|rowKey的分隔符|否|默认值为冒号（:）。|
