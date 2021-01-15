@@ -6,7 +6,7 @@ This topic describes how to create a Tablestore dimension table in Realtime Comp
 
 ## Introduction to Tablestore
 
-Tablestore is a distributed NoSQL database service that is built in the Apsara distributed operating system of Alibaba Cloud. Tablestore adopts data sharding and load balancing technologies to scale out and handle concurrent transactions. You can use Tablestore to store and query a large amount of structured data in real time.
+Tablestore is a distributed NoSQL database service that allows you to store data based on the Apsara distributed system of Alibaba Cloud. Tablestore adopts sharding and load balancing technologies to scale out services and handle concurrent transactions. You can use Tablestore to store and query large amounts of structured data in real time.
 
 ## Example
 
@@ -18,7 +18,7 @@ CREATE TABLE ots_dim_table (
  len int,
  content VARCHAR,
  PRIMARY KEY (id),
- PERIOD FOR SYSTEM_TIME -- The identifier of a dimension table.
+ PERIOD FOR SYSTEM_TIME--Define the change period of the dimension table.
 ) WITH (
  type='ots',
  endPoint='<yourEndpoint>'
@@ -32,30 +32,30 @@ CREATE TABLE ots_dim_table (
 **Note:**
 
 -   When you declare a dimension table, you must specify a primary key.
--   When you join a dimension table with another dimension table, the ON condition must contain equivalent conditions that include all primary keys.
--   The primary key of Tablestore is the rowkey of the table.
+-   When you join a dimension table with another table, the ON condition must contain equivalent conditions that include all primary keys.
+-   The primary key of a Tablestore table is the row key of the table.
 
 ## Parameters in the WITH clause
 
 |Parameter|Description|Remarks|
 |---------|-----------|-------|
 |type|The type of the dimension table.|Set the value to `ots`.|
-|endPoint|The endpoint of a Tablestore instance.|If the instance is deployed in a VPC, enter the VPC endpoint of the instance.|
+|endPoint|The endpoint of the Tablestore instance.|Enter the VPC endpoint if the instance is deployed in a VPC.|
 |instanceName|The name of the Tablestore instance.|None.|
 |tableName|The name of the Tablestore table.|None.|
-|accessId|The AccessKey ID read by Tablestore.|None.|
-|accessKey|The AccessKey secret read by Tablestore.|None.|
+|accessId|The AccessKey ID that is used to access Tablestore.|None.|
+|accessKey|The AccessKey secret that is used to access Tablestore.|None.|
 
 ## Parameters in the CACHE clause
 
 |Parameter|Description|Remarks|
 |---------|-----------|-------|
-|cache|The cache policy.|Valid values for a Tablestore dimension table: -   None \(default value\): indicates that no data is cached.
--   LRU: indicates that partial data in the dimension table is cached. The system searches the cache each time it receives a data record. If the system does not find the record in the cache, it searches for the data record in the physical dimension table.
+|cache|The cache policy.|Tablestore dimension tables support the following cache policies: -   None: indicates that data is not cached. This is the default cache policy.
+-   LRU: indicates that only the specified data in the dimension table is cached. The system searches the cache each time it receives a data record from the source table. If the system does not find the record in the cache, the system searches for the data record in the physical dimension table.
 
-If this cache policy is used, you must configure the cacheSize and cacheTTLMs parameters. |
-|cacheSize|The cache size, in lines.|You can set this parameter when the cache parameter is set to LRU. Default value: 10000.|
-|cacheTTLMs|The cache timeout period. Unit: milliseconds.|You can set this parameter when the cache parameter is set to LRU.|
+If you use this cache policy, you must specify the following parameters: cacheSize and cacheTTLMs. |
+|cacheSize|The maximum number of rows that can be cached.|This parameter is available only if you set the cache parameter to LRU. Default value: 10000.|
+|cacheTTLMs|The cache timeout period. Unit: milliseconds.|This parameter is available only if you set the cache parameter to LRU.|
 
 ## Sample code
 
@@ -91,9 +91,9 @@ t.id,
 w.phoneNumber,
 t.name
 FROM datahub_input1 as t
-JOIN phoneNumber FOR SYSTEM_TIME AS OF PROCTIME() as w -- You must include this clause in the INSERT INTO statement when you join a dimension table with another table.
+JOIN phoneNumber FOR SYSTEM_TIME AS OF PROCTIME() as w --You must include this clause when you perform a JOIN operation on the dimension table.
 ON t.name = w.name;     
 ```
 
-For more information about the detailed syntax of a dimension table, see [JOIN \(for dimension tables\)](/intl.en-US/Exclusive Mode/Flink SQL/Query statements/Dimension table JOIN statement.md).
+For more information about the syntax for dimension tables, see [JOIN statements for dimension tables](/intl.en-US/Exclusive Mode/Flink SQL/Query statements/JOIN statements for dimension tables.md).
 
