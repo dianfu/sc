@@ -39,10 +39,10 @@
 |--|--|---|----|
 |type|connector类型|elasticsearch|是|
 |endPoint|Server地址，例入：http://127.0.0.1:9211。|无|是|
-|accessId|AccessKey ID。 **说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录ID。
+|accessId|创建ES时的登录名**说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录ID。
 
 |无|是|
-|accessKey|AccessKey Secret。 **说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录密码。
+|accessKey|创建ES时的登录密码 **说明：** 如果您通过Kibana插件操作ES，请填写Kibana登录密码。
 
 |无|是|
 |index|索引名称，类似于数据库Database的名称。|无|是|
@@ -72,14 +72,24 @@
 |indexInterval|切换索引的周期|d|dynamicIndex为true时必填 ，可选参数值如下： -   d：天
 -   m：月
 -   w：周 |
+|mapping|启用动态索引时，设置文档各字段的类型与格式。|空|否。Blink 3.7.0版本及以上版本支持该参数。例如，设置名为sendTime字段的格式：```
+{
+ "properties": {    
+ "sendTime": {     
+ "type":   "date",     
+ "format": "yyyy-MM-dd HH:mm:ss"    
+    }
+  }
+}
+``` |
 
 **说明：**
 
 -   仅Blink 2.2.7及以上版本支持动态索引功能。
 -   当开启动态索引后，基本配置中的`index`名称会作为后续创建索引的统一Alias，Alias和索引为一对多关系。
 -   不同的`indexInterval`对应的真实索引名称：
-    -   d -\> Alias + "yyyyMMdd"
-    -   m -\> Alias + "yyyyMM"
-    -   w -\> Alias + "yyyyMMW"
+    -   d -\> Alias "yyyyMMdd"
+    -   m -\> Alias "yyyyMM"
+    -   w -\> Alias "yyyyMMW"
 -   对于单个的真实索引可使用Index API进行修改，但对于Alias只支持`get`功能。如果需要更新Alias，请参见[Index Aliases](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html)。
 
