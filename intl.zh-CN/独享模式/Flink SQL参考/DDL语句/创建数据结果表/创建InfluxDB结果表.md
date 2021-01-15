@@ -60,9 +60,9 @@ create table stream_test_influxdb(
 |参数|说明|是否必填|备注|
 |--|--|----|--|
 |type|结果表类型|是|固定值为InfluxDB。|
-|endpoint|InfluxDB的endpoint|是|在InfluxDB中，endpoint是VPC网络地址，例如：https://localhost:3242或http://localhost:8086。
+|endpoint|InfluxDB的Endpoint|是|在InfluxDB中，Endpoint是VPC网络地址，例如：https://localhost:3242或http://localhost:8086。
 
-endpoint支持HTTP和HTTPS。 |
+Endpoint支持HTTP和HTTPS。 |
 |database|InfluxDB的数据库名|是|例如：db-blink或者blink。|
 |batchPutSize|批量提交的记录条数|否|默认每次提交500个数据点。|
 |username|InfluxDB的用户名|是|需要对写入的数据库有写权限。|
