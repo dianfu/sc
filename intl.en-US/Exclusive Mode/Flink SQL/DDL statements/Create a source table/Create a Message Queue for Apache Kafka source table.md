@@ -14,7 +14,7 @@ This topic describes how to create a Message Queue for Apache Kafka source table
 
 ## Introduction to the Message Queue for Apache Kafka source table
 
-Message Queue for Apache Kafka is a distributed, high-throughput, and scalable message queue service provided by Alibaba Cloud. This service is widely used in big data fields, such as log collection, monitoring data aggregation, streaming data processing, and online and offline data analysis. Realtime Compute for Apache Flink can use Message Queue for Apache Kafka tables as source tables or result tables for the processing of streaming data.
+Message Queue for Apache Kafka is a distributed, high-throughput, and scalable message queue service that is provided by Alibaba Cloud. Message Queue for Apache Kafka is widely used in big data scenarios, such as log collection, monitoring data aggregation, streaming data processing, and online and offline data analysis. Realtime Compute for Apache Flink can use Message Queue for Apache Kafka tables as source tables or result tables for the processing of streaming data.
 
 The output data of Message Queue for Apache Kafka is in the serialized VARBINARY format. For each data record obtained from the Message Queue for Apache Kafka source table, you must compile a user-defined table-valued function \(UDTF\) to parse the data into a data structure before serialization. Realtime Compute for Apache Flink first extracts data from a Message Queue for Apache Kafka source table, compiles a UDTF to parse the data, and then exports the result data to a sink. Flink SQL also allows you to use the CAST function to parse data of the VARBINARY type into data of the VARCHAR type. For more information about UDTFs, see [UDTF](/intl.en-US/Exclusive Mode/Flink SQL/UDX/UDTF.md).
 
@@ -43,7 +43,7 @@ create table kafka_stream(   --The sequence and data types of the following fiel
 
     |Parameter|Description|Required|Remarks|
     |---------|-----------|--------|-------|
-    |type|The Kafka version.|Yes|Valid values: Kafka08, Kafka09, Kafka010, and Kafka011. For more information about the mapping between the values of the type parameter and Kafka versions, see [Mappings between the values of the type parameter and Kafka versions](#section_o4c_b4z_bgb).|
+    |type|The Kafka version.|Yes|Valid values: Kafka08, Kafka09, Kafka010, and Kafka011. For more information about the mapping between the values of the type parameter and Kafka versions, see [Mapping between the values of the type parameter and Kafka versions](#section_o4c_b4z_bgb).|
     |topic|The name of the topic to read.|Yes|None.|
     |topicPattern|The regular expression used to read multiple topics.|No|Topics are separated by vertical bars \(\|\), for example, `topic1|topic2|topic3`. For more information, see [Class Pattern](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html).|
     |startupMode|The start offset for reading data.|No **Note:** We recommend that you set this parameter based on your business requirements.
@@ -67,7 +67,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
     |extraConfig|Additional KafkaConsumer configuration items.|No|You want to add configuration items that are required in special scenarios but are not included in the optional configuration items. Example: `'fetch.message.max.bytes=104857600'`. Multiple configuration items are separated by semicolons \(;\).|
 
 -   Configurations for Kafka08
-    -   Required configurations for Kafka08
+    -   Required parameters
 
         |Parameter|Description|Required|
         |---------|-----------|--------|
@@ -109,13 +109,13 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
         |Parameter|Description|
         |---------|-----------|
         |group.id|The ID of a consumer group.|
-        |bootstrap.servers|The Kafka cluster address.|
+        |bootstrap.servers|The endpoint for access to a Message Queue for Apache Kafka cluster.|
 
     -   For more information about the optional configurations for Kafka09, Kafka010, and Kafka011, see the following Kafka documentation:
 
-        -   [Kafka09](https://kafka.apache.org/0110/documentation.html#consumerconfigs)
-        -   [Kafka010](https://kafka.apache.org/090/documentation.html#newconsumerconfigs)
-        -   [Kafka011](https://kafka.apache.org/0102/documentation.html#newconsumerconfigs)
+        -   [Kafka09](https://kafka.apache.org/090/documentation.html?spm=a2c4g.11186623.2.18.5fda779biQ4ToG#newconsumerconfigs)
+        -   [Kafka010](https://kafka.apache.org/0100/documentation.html?spm=a2c4g.11186623.2.18.5fda779biQ4ToG#newconsumerconfigs)
+        -   [Kafka011](https://kafka.apache.org/0110/documentation.html?spm=a2c4g.11186623.2.17.5fda779biQ4ToG#consumerconfigs)
         If you want to modify the configurations, you can add parameters to the WITH clause in the DDL statement. For example, if you want to configure Simple Authentication and Security Layer \(SASL\), add the `security.protocol`, `sasl.mechanism`, and `sasl.jaas.config` parameters.
 
         ```
@@ -137,7 +137,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
         ```
 
 
-## Mappings between the values of the type parameter and Kafka versions
+## Mapping between the values of the type parameter and Kafka versions
 
 |type|Kafka version|
 |----|-------------|
@@ -232,7 +232,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
               password='<yourDatabasePassword>'
             );
             
-            -- Use a UDTF to parse data of the VARBINARY type into formatted data.
+            -- Use a UDTF to parse data of the VARBINARY data type into formatted data.
             CREATE VIEW input_view (
               name,
               age,
@@ -352,7 +352,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
 
 -   Scenario 2: Realtime Compute for Apache Flink reads data from a Message Queue for Apache Kafka source table and then processes the data by using window functions.
 
-    Based on the design of Realtime Compute for Apache Flink, you must define watermarks in the DDL statement of a source table for windows such as tumbling and sliding windows. For more information, see [Watermark](/intl.en-US/Exclusive Mode/Flink SQL/Basic concepts/Watermark.md). The method you use to define a watermark in a Message Queue for Apache Kafka source table is different from the method you use for other types of source tables. If you need to perform an event time-based computation by using a window function, you must use a user-defined extension \(UDX\) to parse the event time in the message field of a source table. Then, you can define a watermark based on the parsed event time. You must use a [Computed column](/intl.en-US/Exclusive Mode/Flink SQL/Basic concepts/Computed column.md) to convert data types for the event time parsed from a Message Queue for Apache Kafka source table. Assume that the data `2018-11-11 00:00:00|1|Anna|female` is written to the Message Queue for Apache Kafka source table. During the computing process, Realtime Compute for Apache Flink first extracts data from the Message Queue for Apache Kafka source table, compiles a UDTF to parse the data, and then exports the result data to ApsaraDB RDS.
+    Based on the design of Realtime Compute for Apache Flink, you must define watermarks in the DDL statement of a source table for windows such as tumbling and sliding windows. For more information, see [Watermark](/intl.en-US/Exclusive Mode/Flink SQL/Basic concepts/Watermark.md). The method you use to define a watermark in a Message Queue for Apache Kafka source table is different from the method you use for other types of source tables. If you need to perform an event time-based computation by using a window function, you must use a user-defined extension \(UDX\) to parse the event time in the message field of a source table. Then, you can define a watermark based on the parsed event time. You must use a [Computed column](/intl.en-US/Exclusive Mode/Flink SQL/Basic concepts/Computed column.md) to convert data types for the event time parsed from a Message Queue for Apache Kafka source table. Assume that the data `2018-11-11 00:00:00|1|Anna|female` is written into the Message Queue for Apache Kafka source table. During the computing process, Realtime Compute for Apache Flink first extracts data from the Message Queue for Apache Kafka source table, compiles a UDTF to parse the data, and then exports the result data to ApsaraDB RDS.
 
     -   Data processing method 1: Realtime Compute for Apache Flink reads and processes data from the Message Queue for Apache Kafka source table and then exports the result data to ApsaraDB RDS.
 
@@ -425,7 +425,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
             );
             
             
-            -- Use a UDTF to parse data of the VARBINARY type to formatted data.
+            -- Use a UDTF to parse data of the VARBINARY data type to formatted data.
             CREATE VIEW input_view AS
             SELECT
               S.ctime,
@@ -567,7 +567,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
                 
                     public String eval(byte[] message) {
                 
-                         // Read data of the VARBINARY type and convert it to the STRING type.
+                         // Read data of the VARBINARY data type and convert it to the STRING data type.
                         String msg = new String(message, "UTF-8");
                         return msg.split('\\|')[0];
                     }
@@ -584,7 +584,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
 
 ## Create a source table of a self-managed Kafka database
 
--   Example
+-   Sample code
 
     ```
     create table kafka_stream(
@@ -636,7 +636,7 @@ Unit: milliseconds. Default value: 60000 \(1 minute\). |
 
     A:
 
-    -   Cause
+    -   Causes
 
         Each broker of the Kafka cluster sends its meta information to ZooKeeper. Then, Kafka consumer accesses the brokers to extract data by using the endpoint in listener\_security\_protocol in the meta information of the brokers. The endpoint is either the IP address or the local server domain name and port number. If the machine where your Realtime Compute for Apache Flink job resides cannot access the endpoint, the consumer of connector cannot extract data. As a result, the data consumption process stops.
 
