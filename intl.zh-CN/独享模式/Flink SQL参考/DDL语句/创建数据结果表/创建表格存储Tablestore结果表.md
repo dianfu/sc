@@ -39,9 +39,10 @@ CREATE TABLE stream_test_hotline_agent (
 
 |参数|说明|备注|
 |--|--|--|
+|type|结果表类型|固定值为ots。|
 |instanceName|实例名|无|
 |tableName|表名|无|
-|endPoint|实例访问地址|参见 [服务地址](/intl.zh-CN/功能介绍/基础概念/服务地址.md)。|
+|endPoint|实例访问地址|参见[服务地址](/intl.zh-CN/功能介绍/基础概念/服务地址.md)。|
 |accessId|AccessKey ID|无|
 |accessKey|AccessKey Secret|无|
 |valueColumns|指定插入的字段列名|插入多个字段以英文逗号（,）分割。例如`'ID,NAME'`。|
