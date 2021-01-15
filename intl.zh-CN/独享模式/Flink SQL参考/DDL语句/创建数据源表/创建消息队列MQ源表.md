@@ -105,7 +105,7 @@ FROM source_table;
 |--|--|----|--|
 |type|源表类型|是|固定值为mq。|
 |topic|topic名称|是|无。|
-|endPoint|endPoint地址|是|阿里云消息队列提供内网服务MQ（非公网region）和公网服务MQ（公网region）两种类型，请务必根据您购买的MQ的类型选择对应正确的接入地址（endPoint）： -   内网服务MQ（阿里云经典网络/VPC）接入地址：
+|endPoint|endPoint地址|是|阿里云消息队列提供内网服务MQ（非公网region）和公网服务MQ（公网region）两种类型，请务必根据您购买的MQ的类型选择对应正确的接入地址（endPoint）：-   内网服务MQ（阿里云经典网络/VPC）接入地址：
     -   华东1（杭州）、华东2（上海）、华北1（青岛）、华北2（北京）、华南1（深圳）、中国（香港）：`onsaddr-internal.aliyun.com:8080`。
     -   亚太东南1（新加坡）：`ap-southeastaddr-internal.aliyun.com:8080`。
     -   中东东部1（迪拜）：`ons-me-east-1-internal.aliyuncs.com:8080`。
@@ -136,7 +136,7 @@ FROM source_table;
     -   解析出的字段数大于定义字段数时，按从左到右的顺序，取定义字段数量的数据。
     -   解析出的字段数小于定义字段数时，在行尾用null填充缺少的字段。 |
 |columnErrorDebug|是否打开调试开关|否|默认值为FALSE。如果设置为TRUE，则打印解析异常的Log。|
-|instanceID|Topic所属的分组|否|如果MQ实例无独立命名空间，则不可以使用instanceID参数。如果MQ实例有独立命名空间，则instanceID参数必选。|
+|instanceID|MQ实例ID|否|如果MQ实例无独立命名空间，则不可以使用instanceID参数。如果MQ实例有独立命名空间，则instanceID参数必选。|
 
 ## 类型映射
 
