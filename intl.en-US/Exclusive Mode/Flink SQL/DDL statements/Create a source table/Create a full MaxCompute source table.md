@@ -4,7 +4,7 @@ keyword: [source table, MaxCompute]
 
 # Create a full MaxCompute source table
 
-This topic describes how to create a full MaxCompute source table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH clause and data type mapping involved when you create such a source table.
+This topic describes how to create a full MaxCompute source table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH clause and data type mapping involved when you create a full MaxCompute source table.
 
 **Note:**
 
@@ -112,7 +112,7 @@ FROM odps_source GROUP BY cid;
 
     A: For more information about the endPoint and tunnelEndpont parameters, see [Regions where MaxCompute is available and corresponding endpoints](/intl.en-US/Prepare/Configure endpoints.md). Incorrect configuration of parameters may lead to the following issues:
 
-    -   If the value of the endPoint parameter is invalid, the task publish progress stalls at 91%.
+    -   If the configuration of the endPoint parameter is invalid, the task publish progress stops at 91%.
     -   If the value of the tunnelEndpont parameter is invalid, the task fails.
 -   Q: How does the full MaxCompute data storage read data in a full MaxCompute source table?
 
@@ -124,7 +124,7 @@ FROM odps_source GROUP BY cid;
 
 -   Q: How does the full MaxCompute data storage read data that is newly written to the full MaxCompute source table or partitions after a Realtime Compute for Apache Flink job is started?
 
-    A: Realtime Compute for Apache Flink V3.4 and later support the subscribeNewPartition parameter that determines whether to listen to new partitions. New data can be written into new partitions. The sample code is as follows:
+    A: Realtime Compute for Apache Flink V3.4 and later versions support the subscribeNewPartition parameter that determines whether to listen to new partitions. New data can be written into new partitions. The following code shows an example:
 
     ```
     CREATE TABLE blink_source (
@@ -171,10 +171,10 @@ FROM odps_source GROUP BY cid;
 
 -   Q: If a full MaxCompute source table is referenced as a data source, can the data that is appended to an existing partition or table be read after a job is started?
 
-    A: No, the new data cannot be read, and the job may fail. The full MaxCompute data storage uses `ODPS DOWNLOAD SESSION` to read data from tables or partitions. When you create a `DOWNLOAD SESSION`, the MaxCompute server creates an index file, which contains the data mapping obtained when the `DOWNLOAD SESSION` is created. Subsequent data reading is performed based on the data mapping. Therefore, the data that is appended to the full MaxCompute source table or partitions after the `DOWNLOAD SESSION` is created cannot be read in normal cases. This issue occurs in the following scenarios:
+    No, the data cannot be read and the job may fail. The full MaxCompute data storage uses `ODPS DOWNLOAD SESSION` to read data from tables or partitions. When you create a `DOWNLOAD SESSION`, the MaxCompute server creates an index file, which contains the data mapping obtained when the `DOWNLOAD SESSION` is created. Subsequent data reading is performed based on the data mapping. Therefore, the data that is appended to the full MaxCompute source table or partitions after the `DOWNLOAD SESSION` is created cannot be read in normal cases. This issue occurs in the following scenarios:
 
     -   When the MaxCompute data storage reads data by using a tunnel, the following error is reported if new data is written into a partition: `ErrorCode=TableModified,ErrorMessage=The specified table has been modified since the download initiated.`
-    -   New data is written into a partition. However, the tunnel through which data is read is disabled. Therefore, the new data cannot be read. If a job fails or is resumed, the data may be incorrect. For example, existing data is read again but the newly added data may not be read.
+    -   New data is written into a partition. However, the tunnel through which data is read is disabled. the data cannot be read. If a job fails or is resumed, the data may be incorrect. For example, existing data is read again but the newly added data may not be read.
 -   Q: Can I suspend and resume a job for a full MaxCompute source table? Can I also change the parallelism of the full MaxCompute source table?
 
     A: No, you cannot suspend or resume a job for a full MaxCompute source table, or change the parallelism of the full MaxCompute source table. MaxCompute determines which data in which partitions need to be read for each concurrent job and records the consumption information for each concurrent job in the state based on the parallelism. This way, MaxCompute can continue reading data from the last read position after the job is suspended and then resumed or fails. This logic is based on the premise that the parallelism is configured. If you suspend and then resume a job for a full MaxCompute source table after you change the parallelism of the source table, the impact on the job cannot be estimated because some data may be repeatedly read but some data may not be read.
