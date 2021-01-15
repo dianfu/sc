@@ -1,6 +1,6 @@
 # Create an AnalyticDB for MySQL V2.0 result table
 
-This topic describes how to create an AnalyticDB for MySQL V2.0 result table in Realtime Compute for Apache Flink. It also describes the mapping between the field data types of AnalyticDB for MySQL and Realtime Compute for Apache Flink.
+This topic describes how to create an AnalyticDB for MySQL V2.0 result table. It also describes the mapping between the field data types of AnalyticDB for MySQL and Realtime Compute for Apache Flink.
 
 **Note:** This topic applies only to Blink 1.4.5 and later.
 
@@ -10,7 +10,7 @@ AnalyticDB for MySQL is a real-time online analytical processing \(OLAP\) servic
 
 ## DDL syntax
 
-**Note:** You can execute a data definition language \(DDL\) statement to create an AnalyticDB for MySQL V3.0 result table in Realtime Compute for Apache Flink. For more information, see [Create an AnalyticDB for MySQL V3.0 result table](/intl.en-US/Exclusive Mode/Flink SQL/DDL statements/Create a result table/Create an AnalyticDB for MySQL V3.0 result table.md).
+**Note:** For more information about how to create an AnalyticDB for MySQL V3.0 result table, see [Create an AnalyticDB for MySQL V3.0 result table](/intl.en-US/Exclusive Mode/Flink SQL/DDL statements/Create a result table/Create an AnalyticDB for MySQL V3.0 result table.md).
 
 In Realtime Compute for Apache Flink, you can use AnalyticDB for MySQL V2.0 to store output data. The following code shows an example:
 
@@ -39,6 +39,7 @@ batchSize='20'
 
 |Parameter|Description|Remarks|
 |---------|-----------|-------|
+|type|The type of the result table.|Set the value to ads.|
 |url|The Java Database Connectivity \(JDBC\) URL.|The URL of the AnalyticDB for MySQL database, for example, `url ='jdbc:mysql://databaseName****-cn-shenzhen-a.ads.aliyuncs.com:10014/databaseName'`. -   Perform the following steps to query the URI:
     1.  Log on to the [AnalyticDB for MySQL console](https://ads.console.aliyun.com/?spm=a2c4g.11186623.2.23.2c952b809T8asM).
     2.  Click the name of the required cluster to go to the **Basic Information** page.
@@ -68,4 +69,6 @@ We recommend that you declare the mapping between the field data types of Analyt
 |DOUBEL|DOUBLE|
 |VARCHAR|VARCHAR|
 |DATE|DATE|
+|TIME|TIME|
+|TIMESTAMP|TIMESTAMP|
 
