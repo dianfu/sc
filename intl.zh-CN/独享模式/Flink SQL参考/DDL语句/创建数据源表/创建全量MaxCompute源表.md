@@ -4,7 +4,7 @@ keyword: [源表, MaxCompute]
 
 # 创建全量MaxCompute源表
 
-本文为您介绍如何创建全量MaxCompute源表，以及创建维表时使用的WITH参数和类型映射。
+本文为您介绍如何创建全量MaxCompute源表，以及创建源表时使用的WITH参数和类型映射。
 
 **说明：**
 
