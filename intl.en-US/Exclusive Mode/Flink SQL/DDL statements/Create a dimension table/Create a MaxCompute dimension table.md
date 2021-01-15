@@ -4,12 +4,12 @@ keyword: [dimension table, MaxCompute]
 
 # Create a MaxCompute dimension table
 
-This topic describes how to create a MaxCompute dimension table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH and CACHE clauses and data type mapping used when you create such a dimension table.
+This topic describes how to create a MaxCompute dimension table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH and CACHE clauses and data type mapping used when you create a MaxCompute dimension table.
 
 **Note:**
 
 -   Blink 2.1.1 and later versions support MaxCompute dimension tables.
--   For more information about the query syntax of a dimension table, see [JOIN \(for dimension tables\)](/intl.en-US/Exclusive Mode/Flink SQL/Query statements/Dimension table JOIN statement.md).
+-   For more information about the query syntax of a dimension table, see [JOIN statements for dimension tables](/intl.en-US/Exclusive Mode/Flink SQL/Query statements/JOIN statements for dimension tables.md).
 -   To use a MaxCompute dimension table, you must grant the read permissions to the account used to access MaxCompute.
 
 ## DDL syntax
@@ -48,32 +48,32 @@ CREATE TABLE white_list (
 |endPoint|The endpoint of MaxCompute.|Yes|For more information, see [Regions where MaxCompute is available and corresponding endpoints](/intl.en-US/Prepare/Configure endpoints.md).|
 |tunnelEndpoint|The endpoint of the MaxCompute Tunnel service.|Yes|For more information, see [Regions where MaxCompute is available and corresponding endpoints](/intl.en-US/Prepare/Configure endpoints.md). **Note:** This parameter is required if MaxCompute is deployed in a VPC. |
 |project|The name of a MaxCompute project.|Yes|None.|
-|tableName|The name of a table.|Yes|None.|
-|accessId|The AccessKey ID that is used to log on to the database.|Yes|None.|
-|accessKey|The AccessKey secret that is used to log on to the database.|Yes|None.|
+|tableName|The name of the table.|Yes|None.|
+|accessId|AccessKey ID|Yes|None.|
+|accessKey|AccessKey Secret|Yes|None.|
 |partition|The name of a partition.|No|-   Fixed partition
     -   A MaxCompute table with only one partition
 
-For example, if only one partition key column `ds` exists, ``partition` = 'ds=20180905'` indicates that data in the `ds=20180905` partition is read.
+For example, if only one partition key column `ds` exists, ``partition` = 'ds=20180905'` indicates that the data in the `ds=20180905` partition is read.
 
     -   A MaxCompute table with multiple partitions
 
-For example, if partition key columns `ds` and `hh` exist, ``partition`='ds=20180905,hh=*'` indicates that data in the `ds=20180905` partition is read.
+For example, if two partition key columns `ds` and `hh` exist, ``partition`='ds=20180905,hh=*'` indicates that the data in the `ds=20180905` partition is read.
 
-**Note:** You must declare the values of all partitions when you filter partitions. In the preceding example, if you declare only `'partition' = 'ds=20180905'`, no partition is read.
+**Note:** You must declare the values of all partitions when you filter partitions. In the preceding example, if you declare only ``partition` = 'ds=20180905'`, no partition is read.
 
 -   Non-fixed partition
     -   Blink 2.2.0 and later versions support `'partition' = 'max _pt()'`. This setting indicates that the partition ranked first in alphabetical order among all partitions is loaded each time the system loads data of partitions.
     -   Blink 3.2.2 and later versions support `'partition' = 'max_pt_with_done()'`. This setting indicates that the partition with the file name extension `.done` and ranked first in alphabetical order among all partitions is loaded each time the system loads data of partitions. |
-|maxRowCount|The number of rows that can be loaded in a table.|No|Default value: 100000. **Note:** If your data contains more than 100,000 rows, you must set this parameter. We recommend that you set this parameter to a value greater than the number of rows in your table. |
+|maxRowCount|The maximum number of rows that Realtime Compute for Apache Flink can load from a table.|No|Default value: 100000. **Note:** If your data contains more than 100,000 rows, you must set this parameter. We recommend that you set this parameter to a greater value than the actual number of rows to be loaded. |
 
 ## Parameters in the CACHE clause
 
 |Parameter|Description|Remarks|
 |---------|-----------|-------|
-|cache|The policy for caching data.|You must set the cache parameter to `ALL` for a MaxCompute dimension table and explicitly declare this setting in the DDL statement. ALL: indicates that all data in the dimension table is cached. Before a Realtime Compute for Apache Flink job starts to run, Realtime Compute for Apache Flink loads all data in the dimension table to the cache, and then searches the cache for all subsequent queries in the dimension table. If the system does not find the data record in the cache, the join key does not exist. The system reloads all data in the cache after cache entries expire.
+|cache|The cache policy.|You must set the cache parameter to `ALL` for a MaxCompute dimension table and explicitly declare this setting in the DDL statement. ALL: indicates that all data in the dimension table is cached. Before a Realtime Compute for Apache Flink job runs, Realtime Compute for Apache Flink loads all the data in the dimension table to the cache. Then, Realtime Compute for Apache Flink searches among the cache if requests are sent to retrieve data from the dimension table. If the system does not find the data record in the cache, the join key does not exist. The system reloads all data in the cache after cache entries expire.
 
-If the data amount of a remote table is small and a large number of missing keys exist, we recommend that you set this parameter to ALL. \(The source table and dimension table cannot be associated based on the ON clause.\) If this cache policy is used, you must configure the cacheTTLMs and cacheReloadTimeBlackList parameters.
+If the data amount of a remote table is small and a large number of missing keys exist, we recommend that you set this parameter to ALL. \(The source table and dimension table cannot be associated based on the ON clause.\) If you set this parameter to ALL, you must specify the following parameters: cacheTTLMs and cacheReloadTimeBlackList.
 
 **Note:**
 
@@ -81,11 +81,11 @@ If the data amount of a remote table is small and a large number of missing keys
 -   If a job exception occurs due to frequent garbage collection when you use a super-large MaxCompute dimension table, and this issue persists even if you increase the memory of the join node, we recommend that:
     -   For Blink 3.6.0 and later versions, set the partitionedJoin parameter to true to enable partitionedJoin optimization.
     -   Use a dimension table with key-value pairs for which you can set the cache parameter to LRU, for example, an ApsaraDB for HBase dimension table. |
-|cacheSize|The cache size, in lines.|Default value: 100000. You can set this parameter for a MaxCompute dimension table as required.|
-|cacheTTLMs|The cache timeout period.|Unit: milliseconds. If the cache parameter is set to `ALL`, the cacheTTLMs parameter specifies the interval at which the cache is loaded. The cache is not reloaded by default.|
-|cacheReloadTimeBlackList|The time periods during which the cache is not refreshed. This parameter takes effect when the cache parameter is set to ALL. The cache is not refreshed during the time periods that you specify for this parameter. This parameter is useful for large-scale online promotional events such as Double 11.|Example: `2017-10-24 14:00 -> 2017-10-24 15:00, 2017-11-10 23:30 -> 2017-11-11 08:00`. -   Separate multiple time periods with commas \(`,`\).
+|cacheSize|The maximum number of data records that can be cached.|You can specify the cacheSize parameter based on your business requirements. By default, Realtime Compute for Apache Flink can cache 100,000 rows that are stored in a MaxCompute dimension table.|
+|cacheTTLMs|The cache timeout period.|Unit: milliseconds. If you set the cache parameter to `ALL`, the timeout period specifies the interval at which Realtime Compute for Apache Flink refreshes the cache. The cache is not refreshed by default.|
+|cacheReloadTimeBlackList|The time periods during which the cache is not refreshed. This parameter takes effect when the cache parameter is set to ALL. The cache is not refreshed during the time periods that you specify for this parameter. This parameter is useful for large-scale online promotional events such as Double 11.|This parameter is empty by default. The following example shows the format of the values: `2017-10-24 14:00 -> 2017-10-24 15:00, 2017-11-10 23:30 -> 2017-11-11 08:00`. The following list describes the delimiters that you use for the parameter values: -   Separate multiple time periods with commas \(`,`\).
 -   Separate the start time and end time of each time period with a hyphen and a greater-than sign \(`->`\). |
-|partitionedJoin|Specifies whether to cache full data of a dimension table in the memory of each concurrent task.|This parameter is optional. Default value: false. This value indicates that full data of the dimension table is cached in the memory of each concurrent job. If you set this parameter to true, partial data of the dimension table is cached in the memory of each concurrent task.|
+|partitionedJoin|Specifies whether to cache full data of a dimension table in the memory of each concurrent job.|This parameter is optional. Default value: false. This value indicates that full data of the dimension table is cached in the memory of each concurrent job. If you set this parameter to true, partial data of the dimension table is cached in the memory of each concurrent task.|
 
 ## Sample code
 
@@ -113,7 +113,7 @@ CREATE TABLE odps_dim (
    tableName = '<yourTableName>',
    accessId = '<yourAccessId>',
    accessKey = '<yourAccessPassword>',
-  `partition` = 'ds=20180905',-- For more information about dynamic or fixed partitions, see the description for the parameters in the WITH clause.
+  `partition` = 'ds=20180905',--The fixed partition. For more information about dynamic partitions and fixed partitions, see the description of parameters in the WITH clause.
   cache = 'ALL'
 );
 
@@ -131,7 +131,7 @@ SELECT
   w.phoneNumber,
   t.name
 FROM datahub_input1 as t
-JOIN odps_dim FOR SYSTEM_TIME AS OF PROCTIME() as w -- You must include this clause in the INSERT INTO statement if you join a dimension table with another table.
+JOIN odps_dim FOR SYSTEM_TIME AS OF PROCTIME() as w --You must include this clause when you perform a JOIN operation on a dimension table.
 ON t.name = w.name;
 ```
 
@@ -181,10 +181,10 @@ The following table lists the mapping between the data types of MaxCompute and R
 
     A: Dimension table joining in Blink 1.0 has some issues. We recommend that you upgrade the Blink version to 2.1.1 or later. If you still want to use Blink 1.0, you must suspend your job and then resume it. You can troubleshoot this issue based on the first error message in the failover history.
 
--   Q: What do the endPoint and tunnelEndpoint parameters mean in the Alibaba Cloud public cloud? What happens if the parameter configuration is incorrect?
+-   Q: What do the endPoint and tunnelEndpoint parameters mean in the Alibaba Cloud public cloud? What happens if the parameter configurations are invalid?
 
     A: For more information about the endPoint and tunnelEndpoint parameters, see [Configure endpoints](/intl.en-US/Prepare/Configure endpoints.md). If the configuration of these two parameters is incorrect in a VPC, one of the following task exceptions may occur.
 
-    -   If the configuration of the endPoint parameter is incorrect, the task stops at the progress of 91%.
-    -   If the configuration of the tunnelEndpoint parameter is incorrect, the task fails.
+    -   If the configuration of the endPoint parameter is invalid, the task stops at a progress of 91%.
+    -   If the configuration of the tunnelEndpoint parameter is invalid, the task fails.
 
