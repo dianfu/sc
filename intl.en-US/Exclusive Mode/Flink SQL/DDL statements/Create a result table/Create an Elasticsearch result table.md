@@ -1,6 +1,6 @@
 # Create an Elasticsearch result table
 
-This topic describes how to create an Elasticsearch result table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH clause used when you create such a result table.
+This topic describes how to create an Elasticsearch result table in Realtime Compute for Apache Flink. It also describes the parameters in the WITH clause used when you create an Elasticsearch result table.
 
 **Note:** This topic applies only to Blink 3.2.2 and later.
 
@@ -39,7 +39,7 @@ In Realtime Compute for Apache Flink, you can use Elasticsearch to store output 
 |---------|-----------|-------------|--------|
 |type|The type of the connector.|elasticsearch|Yes|
 |endPoint|The server address of an Elasticsearch cluster, for example, http://127.0.0.1:9211.|None|Yes|
-|accessId|The AccessKey ID that is used to access an Elasticsearch cluster. **Note:** If you use the Kibana plug-in to connect to Elasticsearch, enter the Kibana logon ID.
+|accessId|The AccessKey ID that is used to access an Elasticsearch cluster.**Note:** If you use the Kibana plug-in to connect to Elasticsearch, enter the Kibana logon ID.
 
 |None|Yes|
 |accessKey|The AccessKey secret that is used to access an Elasticsearch cluster. **Note:** If you use the Kibana plug-in to connect to Elasticsearch, enter the Kibana logon password.
@@ -50,7 +50,7 @@ In Realtime Compute for Apache Flink, you can use Elasticsearch to store output 
 |bufferSize|The maximum number of data records that can be stored in the buffer before deduplication is triggered.|1000|No|
 |maxRetryTimes|The maximum number of retries for writing data into a table.|30|No|
 |timeout|The read timeout period. Unit: milliseconds.|600000|No|
-|discovery|Specifies whether node discovery is enabled. If it is enabled, the client refreshes the server list every five minutes.|false|No|
+|discovery|Specifies whether node discovery is enabled. If this feature is enabled, the client refreshes the server list every five minutes.|false|No|
 |compression|Specifies whether to compress request bodies in the GZIP format.|true|No|
 |multiThread|Specifies whether to enable multithreading for JestClient.|true|No|
 |ignoreWriteError|Specifies whether to ignore write exceptions.|false|No|
@@ -67,19 +67,29 @@ In Realtime Compute for Apache Flink, you can use Elasticsearch to store output 
 |dynamicIndex|Specifies whether to enable dynamic indexing.-   true: Dynamic indexing is enabled.
 -   false: Dynamic indexing is disabled.
 
-|false|No|
-|indexField|The field name of the index.|None.|This parameter is required when dynamicIndex is set to true. This parameter supports only the TIMESTAMP \(in seconds\), DATE, and LONG data types.|
+|false|No.|
+|indexField|The field name of the index.|None|This parameter is required when dynamicIndex is set to true. This parameter supports only the TIMESTAMP \(in seconds\), DATE, and LONG data types.|
 |indexInterval|The interval at which an index is changed.|d|This parameter is required when dynamicIndex is set to true. Valid values: -   d: day
 -   m: month
 -   w: week |
+|mapping|The mapping between the types and formats of fields in a document configured when dynamic indexing is enabled.|Empty string|No. Blink 3.7.0 and later versions support this parameter. The following example shows how to set the mapping between the type and format of the sendTime field:```
+{
+ "properties": {    
+ "sendTime": {     
+ "type":   "date",     
+ "format": "yyyy-MM-dd HH:mm:ss"    
+    }
+  }
+}
+``` |
 
 **Note:**
 
 -   Only Blink 2.2.7 and later versions support the dynamic indexing feature.
 -   After dynamic indexing is enabled, the `index` name in the basic configuration is used as the unified alias for indexes created subsequently. An alias can correspond to multiple indexes.
 -   Actual index names that correspond to different values of `indexInterval`:
-    -   d -\> Alias + "yyyyMMdd"
-    -   m -\> Alias + "yyyyMM"
-    -   w -\> Alias + "yyyyMMW"
+    -   d -\> Alias "yyyyMMdd"
+    -   m -\> Alias "yyyyMM"
+    -   w -\> Alias "yyyyMMW"
 -   You can use Index API to change a single actual index, but the alias supports only the `GET` method. If you want to change the alias, see [Index Aliases](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html).
 
