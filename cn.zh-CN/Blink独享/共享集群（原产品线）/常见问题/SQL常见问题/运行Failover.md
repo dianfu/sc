@@ -15,7 +15,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 -   [报错：pool.GetConnectionTimeoutException](#section_3sy_pwd_1l8)
 -   [报错：the last packet sent successfully to the server was milliseconds ago](#section_lz5_66q_603)
 -   [报错：Incorrect String value:'\\xF0\\x9F...'for column](#section_vmd_u8v_jrc)
--   [报错：Some executions status are not reported and failing the job now.](#section_8d9_laa_x9n)
+-   [报错：Some executions status are not reported and failing the job now](#section_8d9_laa_x9n)
 -   [报错：The heartbeat of TaskManager with id container...timed out](#section_tvp_sku_que)
 -   [报错：cause by:java.lang.IndexOutOfBoundsException](#section_hrd_1zb_95k)
 -   [报错：No pooled slot available and request to ResourceManager for new slot failed](#section_w19_4iw_z3g)
@@ -27,7 +27,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 -   [报错：MySQLSyntaxErrorException: Unknown column](#section_lkw_p1v_1t3)
 -   [报错：TaskManager lost/killed](#section_ku3_2g5_bo2)
 -   [报错：The sts token has been expired](#section_lh4_3oq_a3r)
--   [报错：OTSParameterInvalid, Message: Invalid update row request: missing cells in request.](#section_lue_fzg_7o6)
+-   [报错：OTSParameterInvalid, Message: Invalid update row request: missing cells in request](#section_lue_fzg_7o6)
 -   [报错：There is an invalid character in tagvalue](#section_ioq_5du_mmc)
 -   [报错：Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLTransactionRollbackException: Deadlock found when trying to get lock; try restarting transaction](#section_vxa_dlo_11h)
 -   [报错：Value '0000-00-00 00:00:00' can not be represented as java.sql.Timestamp](#section_w3r_aye_9vj)
@@ -248,7 +248,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
     -   character\_set\_server参数修改后，需要**重启实例**才能生效。
     -   如果需要将\\xF0\\x9F...字符串存入数据库，则将反斜线（\\）替换为双反斜线（\\\\）。
 
-## 报错：Some executions status are not reported and failing the job now.
+## 报错：Some executions status are not reported and failing the job now
 
 -   报错信息
 
@@ -591,7 +591,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
         ![stsupdate](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0262749951/p86532.png)
 
 
-## 报错：OTSParameterInvalid, Message: Invalid update row request: missing cells in request.
+## 报错：OTSParameterInvalid, Message: Invalid update row request: missing cells in request
 
 -   报错信息
 
@@ -718,7 +718,7 @@ keyword: [大小写敏感, AutoScale, Body, 字节编码, 链接超时, 处理�
 
 -   解决方案
 
-    在RDS维表WITH参数`url`后添加`?zeroDateTimeBehavior=convertToNull`，输出为null。
+    在RDS维表WITH参数`URL`后添加`?zeroDateTimeBehavior=convertToNull`，输出为null。
 
 
 ## 报错：Failover:offset \(0\) + length \(8\) exceed the capacity of the array: 1
