@@ -47,8 +47,8 @@ create table mq_source(
 |accessKey|AccessKey Secret|是|无|
 |consumerGroup|订阅消费group名称|是|无|
 |pullIntervalMs|拉取时间间隔|是|单位为毫秒。|
-|nameServerSubgroup|NameServer组|否|-   内网服务（阿里云经典网络/VPC）：nsaddr4client-internal
--   公网服务：nsaddr4client-internet
+|nameServerSubgroup|NameServer组|否|-   内网服务（阿里云经典网络/VPC）：必须配置'nameServerSubgroup' = 'nsaddr4client-internal'
+-   公网服务：无需配置nameServerSubgroup
 
 **说明：** 仅VVR 2.1.1及以上版本支持该参数。 |
 |startTime|消息消费启动的时间点|否|无|
