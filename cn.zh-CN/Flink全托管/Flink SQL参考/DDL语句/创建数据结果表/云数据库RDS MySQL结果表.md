@@ -36,7 +36,7 @@ CREATE TABLE rds_sink (
 |connector|结果表类型|是|固定值为`rds`。|
 |password|密码|是|无|
 |tableName|表名|是|无|
-|url|URL地址|是|云数据库RDS版专有网络VPC地址，即内网地址，详情请​参见[查看或修改内外网地址和端口](/cn.zh-CN/RDS MySQL 数据库/数据库连接/查看或修改内外网地址和端口.md)。**说明：** 如果使用批量写，需要在URL后面加上参数`?rewriteBatchedStatements=true`，以提高系统性能。 |
+|url|URL地址|是|云数据库RDS版专有网络VPC地址，即内网地址，详情请​参见[查看或修改内外网地址和端口](/cn.zh-CN/RDS MySQL 数据库/数据库连接/查看或修改内外网地址和端口.md)。URL的格式为：`jdbc:mysql://<内网地址>/<databaseName>`，其中databaseName为对应的数据库名称。**说明：** 如果使用批量写，需要在URL后面加上参数`?rewriteBatchedStatements=true`，以提高系统性能。 |
 |userName|用户名|是|无|
 |maxRetryTimes|写入数据失败后，重试写入的次数|否|默认值为3。|
 |batchSize|一次批量写入的条数|否|默认值为5000。|
