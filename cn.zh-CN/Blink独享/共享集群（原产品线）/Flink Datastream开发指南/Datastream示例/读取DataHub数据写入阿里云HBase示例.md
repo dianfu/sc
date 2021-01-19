@@ -8,7 +8,7 @@ keyword: [读取DataHub, Datastream, 写入HBase]
 
 -   本地安装了Java JDK 8。
 -   本地安装了Maven 3.x。
--   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ，且已配置完成JDK和Maven环境。
+-   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ IDEA，且已配置完成JDK和Maven环境。
 -   在DataHub上创建了Topic，并且Topic中存在测试数据。
 
     **说明：** 测试数据需要有3个字段，数据类型依次为BOOLEAN、STRING和STRING。
@@ -28,7 +28,7 @@ keyword: [读取DataHub, Datastream, 写入HBase]
 
 1.  下载并解压[Hbase\_Demo-master](https://github.com/RealtimeCompute/Hbase_Demo)示例到本地。
 
-2.  在Intellij IDE中，单击**file** \> **open**，打开刚才解压缩完成的Hbase\_Demo-master。
+2.  在Intellij IDEA中，单击**file** \> **open**，打开刚才解压缩完成的Hbase\_Demo-master。
 
 3.  双击打开\\Hbase\_Demo-master\\src\\main\\java\\Hbase\_Demo后，修改HbaseDemo.java文件中的DataHub与HBase相关参数。
 
