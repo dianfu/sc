@@ -10,7 +10,7 @@ keyword: [Postgres的CDC, Change Data Capture, CDC]
 
 Postgres的CDC源表，即Postgres的流式源表，用于依次读取PostgreSQL数据库全量快照数据和变更数据，保证不多读一条也不少读一条数据。即使发生故障，也能采用Exactly Once方式处理。
 
-**说明：** 如果您使用的是开源的PostgreSQL数据库，Flink全托管的Postgres CDC connector支持读取的Postgres版本为9.6及以上版本。
+**说明：** 如果您使用的是开源的PostgreSQL数据库，Postgres CDC connector支持读取的Postgres版本为9.6及以上版本。
 
 ## DDL定义
 
@@ -57,11 +57,11 @@ CREATE TABLE postgrescdc_source (
 
 ## 类型映射
 
-Postgres CDC和实时计算Flink版字段类型对应关系如下。
+Postgres CDC和Flink字段类型对应关系如下。
 
-|Postgres CDC字段类型|实时计算Flink版字段类型|
-|----------------|--------------|
-|SAMLLINT|SMALLINT|
+|Postgres CDC字段类型|Flink字段类型|
+|----------------|---------|
+|SMALLINT|SMALLINT|
 |INT2|
 |SMALLSERIAL|
 |SERIAL2|
