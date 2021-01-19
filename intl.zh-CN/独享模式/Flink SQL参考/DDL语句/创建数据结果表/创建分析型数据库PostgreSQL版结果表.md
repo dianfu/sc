@@ -61,8 +61,8 @@ create table rds_output(
 |分析型数据库PostgreSQL版字段类型|实时计算Flink版字段类型|
 |---------------------|--------------|
 |BOOLEAN|BOOLEAN|
-|SAMLLINT|TINYINT|
-|SAMLLINT|SAMLLINT|
+|SMALLINT|TINYINT|
+|SMALLINT|SMALLINT|
 |INT|INT|
 |BIGINT|BIGINT|
 |DOUBLE PRECISION|DOUBLE|
