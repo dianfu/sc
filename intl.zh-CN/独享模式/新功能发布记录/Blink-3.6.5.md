@@ -9,10 +9,10 @@
 -   日志服务SLS源表新增startupMode参数。参数取值如下：
 
     -   TIMESTAMP：每个Shard从指定时间开始消费。
-    -   Earlist：每个Shard从最早位置开始消费。
+    -   Earliest：每个Shard从最早位置开始消费。
     -   Latest：每个Shard从最新位置开始消费。
     -   Group\_Offsets：每个Shard优先从服务端保存的Checkpoint开始消费，必须指定ConsumerGroup。
-    **说明：** 仅当State中不存在Checkpoint时，Earlist、Latest、Group\_Offsets和Timestamp的配置才生效。
+    **说明：** 仅当State中不存在Checkpoint时，Earliest、Latest、Group\_Offsets和Timestamp的配置才生效。
 
 -   降低大规模作业拓扑的内存消耗。
 -   Oracle源表的timeFieldType参数支持多种时间格式：
