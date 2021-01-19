@@ -29,7 +29,7 @@ CREATE TABLE rds_dim (
 |connector|维表类型|是|固定值为`rds`。|
 |password|密码|是|无|
 |tableName|表名|是|无|
-|url|URL地址|是|云数据库RDS版专有网络VPC地址，即内网地址，详情请​参见[查看或修改内外网地址和端口](/cn.zh-CN/RDS MySQL 数据库/数据库连接/查看或修改内外网地址和端口.md)。|
+|url|URL地址|是|云数据库RDS版专有网络VPC地址，即内网地址，详情请​参见[查看或修改内外网地址和端口](/cn.zh-CN/RDS MySQL 数据库/数据库连接/查看或修改内外网地址和端口.md)。URL的格式为：`jdbc:mysql://<内网地址>/<databaseName>`，其中databaseName为对应的数据库名称。|
 |userName|用户名|是|无|
 |maxRetryTimes|写入数据失败后，重试写入的次数|否|默认值为3。|
 |CACHE|缓存策略、缓存大小和缓存超时时间|否|详情请参见[CACHE参数](#section_5g6_dkf_nd2)。|
