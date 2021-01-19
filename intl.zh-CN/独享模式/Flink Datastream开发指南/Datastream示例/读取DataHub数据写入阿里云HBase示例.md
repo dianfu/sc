@@ -8,12 +8,12 @@ keyword: [读取DataHub, Datastream, 写入HBase]
 
 -   本地安装了Java JDK 8。
 -   本地安装了Maven 3.x。
--   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ，且已配置完成JDK和Maven环境。
+-   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ IDEA，且已配置完成JDK和Maven环境。
 -   在DataHub上创建了Topic，并且Topic中存在测试数据。
 
     **说明：** 测试数据需要有3个字段，数据类型依次为BOOLEAN、STRING和STRING。
 
--   创建与实时计算独享模式同一地域下相同VPC的HBase示例，并创建表和列簇。通过Shell访问HBase集群步骤请参见[使用Shell访问](https://help.aliyun.com/document_detail/52056.html?spm=a2c4g.11174283.6.595.ccba363fBF1uOn)。
+-   创建与实时计算独享模式同一地域下相同VPC的HBase示例，并创建表和列簇。通过Shell访问HBase集群步骤请参见[使用Shell访问](https://www.alibabacloud.com/help/doc-detail/52056.htm?spm=a2c63.l28256.b99.52.5a9c5f1f6Mm6bu)。
 
     **说明：**
 
@@ -28,9 +28,9 @@ keyword: [读取DataHub, Datastream, 写入HBase]
 
 1.  下载并解压[Hbase\_Demo-master](https://github.com/RealtimeCompute/Hbase_Demo)示例到本地。
 
-2.  在Intellij IDE中，单击**file** \> **open**，打开刚才解压缩完成的Hbase\_Demo-master。
+2.  在Intellij IDEA中，单击**file** \> **open**，打开刚才解压缩完成的Hbase\_Demo-master。
 
-3.  双击打开\\Hbase\_Demo-master\\src\\main\\java\\Hbase\_Demo后，修改HbaesDemo.java文件中的DataHub与HBase相关参数。
+3.  双击打开\\Hbase\_Demo-master\\src\\main\\java\\Hbase\_Demo后，修改HbaseDemo.java文件中的DataHub与HBase相关参数。
 
     ```
     //DataHub相关参数
@@ -114,13 +114,13 @@ blink.checkpoint.interval.ms=180000
     FROM kafka_src;
     ```
 
-2.  连接HBase集群，详情请参见[使用Shell访问](https://help.aliyun.com/document_detail/52056.html?spm=a2c4g.11174283.6.595.ccba363fBF1uOn)。
+2.  连接HBase集群，详情请参见[使用Shell访问](https://www.alibabacloud.com/help/doc-detail/52056.htm?spm=a2c63.l28256.b99.52.5a9c5f1f6Mm6bu)。
 
 3.  执行`scan 'hbase_sink'`查看写入数据。
 
     出现类似如下输出，则表示已经成功将DataHub数据写入阿里云HBase。
 
-    ![验证结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8789287951/p139880.png)
+    ![验证结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8789287951/p139880.png)
 
 
 ## 常见问题
@@ -131,7 +131,7 @@ blink.checkpoint.interval.ms=180000
 java.lang.AbstractMethodError：com.alibaba.fastjson.support.jaxrs.FastJsonAutoDiscoverable.configure(Lcom/alibaba/blink/shaded/datahub/javax/ws/rs/core/FeatureContext;)
 ```
 
-![jar包冲突](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9265749951/p88532.png)
+![jar包冲突](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9265749951/p88532.png)
 
 建议您使用maven-shade-plugin插件的Relocation功能，解决JAR包冲突的问题。
 
