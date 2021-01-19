@@ -61,8 +61,8 @@ The following table lists the mapping between the data types of AnalyticDB for P
 |Data type of AnalyticDB for PostgreSQL|Data type of Realtime Compute for Apache Flink|
 |--------------------------------------|----------------------------------------------|
 |BOOLEAN|BOOLEAN|
-|SAMLLINT|TINYINT|
-|SAMLLINT|SAMLLINT|
+|SMALLINT|TINYINT|
+|SMALLINT|SMALLINT|
 |INT|INT|
 |BIGINT|BIGINT|
 |DOUBLE PRECISION|DOUBLE|
