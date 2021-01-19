@@ -86,7 +86,7 @@ When you define Java UDXs in Realtime Compute for Apache Flink, you can use Java
 |Data type of Realtime Compute for Apache Flink|Java data type|
 |----------------------------------------------|--------------|
 |TINYINT|java.lang.Byte|
-|SAMLLINT|java.lang.Short|
+|SMALLINT|java.lang.Short|
 |INT|java.lang.Integer|
 |BIGINT|java.lang.Long|
 |FLOAT|java.lang.Float|
