@@ -66,7 +66,7 @@ batchSize='20'
 |----------------------------|--------------|
 |BOOLEAN|BOOLEAN|
 |TINYINT|INT|
-|SAMLLINT|
+|SMALLINT|
 |INT|
 |BIGINT|BIGINT|
 |DOUBEL|DOUBLE|
