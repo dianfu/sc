@@ -8,7 +8,7 @@ keyword: [Datastream, 读取SLS, 日志服务]
 
 -   本地安装了Java JDK 8。
 -   本地安装了Maven 3.x。
--   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ，且已配置完成JDK和Maven环境。
+-   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ IDEA，且已配置完成JDK和Maven环境。
 -   SLS上已创建了logstore ，并且logstore中存在测试数据。
 
 本文以Windows操作系统为例进行演示。
@@ -19,9 +19,9 @@ keyword: [Datastream, 读取SLS, 日志服务]
 
 1.  下载并解压[SLS\_Demo](https://github.com/RealtimeCompute/SLS_Demo)示例到本地。
 
-2.  在Intellij IDE中，单击**file** \> **open**，打开刚才解压缩完成的SLS\_Demo-master。
+2.  在Intellij IDEA中，单击**file** \> **open**，打开刚才解压缩完成的SLS\_Demo-master。
 
-3.  双击打开SLS\_Demo/src/main/java/com/aliyun/openservices/log/flink/ConsumerSample后，修改ConsumerSample.java文件中的SLS的相关参数。
+3.  双击打开SLS\_Demo-master\\src\\main\\java\\com\\aliyun\\openservices\\log\\flink\\ConsumerSample后，修改ConsumerSample.java文件中的SLS的相关参数。
 
     ```
         private static final String SLS_ENDPOINT = "VPC endpoint";//线上使用经典网络及VPC Endpoint
@@ -80,5 +80,5 @@ blink.checkpoint.interval.ms=180000
 
 如果出现如下结果，则表示已经成功读取了阿里云SLS中的数据。
 
-![测试结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9789287951/p140078.png)
+![测试结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9789287951/p140078.png)
 
