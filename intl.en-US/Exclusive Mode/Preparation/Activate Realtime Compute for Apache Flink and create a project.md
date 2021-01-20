@@ -73,7 +73,7 @@ This topic describes how to activate Realtime Compute for Apache Flinkin exclusi
 
     1.  Choose **Cluster Management** \> **Clusters**. Find the cluster for which you want to create a project and click **Create Project** in the **Actions** column.
 
-    2.  In the **Create Project** dialog box, configure**Project Name**, **Project Description**, and **Specified CUs**.
+    2.  In the **Create Project** dialog box, configure **Project Name**, **Project Description**, and **Specified CUs**.
 
     3.  Click **OK**.
 
