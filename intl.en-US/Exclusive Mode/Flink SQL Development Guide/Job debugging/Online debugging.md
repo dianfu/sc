@@ -11,7 +11,7 @@ Online debugging uses real data storage resources to reduce the output differenc
     -   Source table: `type = 'random'`
     -   Result table: `type = 'print'`
 3.  Publish the job. For more information, see [Publish a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Publish a job.md).
-4.  Start the job. For more information, see [t147761.md\#](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Start a job.md).
+4.  Start the job. For more information, see [Start a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Start a job.md).
 
 ## Connectors
 
@@ -72,7 +72,7 @@ The Realtime Compute for Apache Flink development platform provides the followin
 
 ## Query online debugging results
 
-**Note:** Before you query the results of online debugging, make sure that you have published and started the job. For more information, see [Publish a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Publish a job.md)and [t147761.md\#](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Start a job.md).
+**Note:** Before you query the results of online debugging, make sure that you have published and started the job. For more information, see [Publish a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Publish a job.md) and [Start a job](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data development/Start a job.md).
 
 To query the results of online debugging, follow these steps:
 
