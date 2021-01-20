@@ -1,8 +1,8 @@
 # 创建分析型数据库MySQL版3.0维表
 
-本文为您介绍如何创建分析型数据库MySQL版3.0维表、以及创建维表时使用的WITH参数和Cache参数。
+本文为您介绍如何创建分析型数据库MySQL版3.0维表、以及创建维表时使用的WITH参数和CACHE参数。
 
-**说明：** 本文仅适用于Blink Blink-3.5.0-hotfix及以上版本。
+**说明：** 本文仅适用于Blink-3.5.0-hotfix及以上版本。
 
 ## 语法示例
 
@@ -34,7 +34,7 @@ CREATE TABLE dim_ads(
 |type|维表类型|是|固定值为ADB30。|
 |url|分析型数据库MySQL版数据库地址|是|分析型数据库MySQL版数据库地址。示例：`url='jdbc:mysql://databaseName****-cn-shenzhen-a.ads.aliyuncs.com:10014/databaseName'`。**说明：**
 
--   分析型数据库MySQL版数据库连接信息，请参见[注册分析型数据库MySQL版](/intl.zh-CN/独享模式/Flink SQL开发指南/数据存储/注册数据存储/注册分析型数据库MySQL版.md)。
+-   分析型数据库MySQL版数据库连接信息，请参见[注册云原生数据仓库AnalyticDB MySQL版](/intl.zh-CN/独享模式/Flink SQL开发指南/数据存储/注册数据存储/注册分析型数据库MySQL版.md)。
 -   databaseName：分析型数据库MySQL版数据库名称。 |
 |tableName|表名|是|无|
 |userName|用户名|是|无|
