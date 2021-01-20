@@ -8,9 +8,8 @@ keyword: [创建Oracle数据库源表, Oracle数据库字段, 查询Oracle源表
 
 **说明：**
 
--   本文仅适用于Blink 3.2.2及以上版本。
+-   本文仅适用于Blink 3.4.x及以上版本。
 -   仅支持使用Oracle 11g版本创建Oracle数据库源表。
--   如果Oracle数据库源表数据量较小，则需要您在Blink 3.2.x和3.3.x版本配置queryIntervalMs参数为5000。
 -   请不要手动修改Oracle Source节点的并发数量，默认一个Table对应一个并发。
 
 ## 语法示例
@@ -134,18 +133,10 @@ from oracle_source;
 
 Q：查询不到数据该如何处理？
 
-A：
+A： 查询不到数据是因为Blink运行故障。您需要查看TaskManager的`Round start:[{}], end:[{}]`和`Round read records`日志，如果未查询到日志数据，则Blink运行故障。
 
--   问题原因：Blink运行故障。
+**说明：**
 
-    解决方法：查看TaskManager的`Round start:[{}], end:[{}]`和`Round read records`日志，如果未查询到日志数据，则Blink运行故障。
-
-    **说明：**
-
-    -   `Round start:[{}], end:[{}]`用来显示查询数据的起始时间戳。
-    -   `Round read records`用来显示查询到的数据记录。
--   问题原因：如果您使用的Blink为3.2.x和3.3.x版本，查询结束时间超过当前时间。
-
-    解决方法：您需要配置queryIntervalMs为5000。
-
+-   `Round start:[{}], end:[{}]`用来显示查询数据的起始时间戳。
+-   `Round read records`用来显示查询到的数据记录。
 
