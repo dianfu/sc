@@ -49,7 +49,7 @@ You can modify the configuration of **Master Specifications** or **Slave Quantit
         -   You cannot change the slave specifications for an existing Realtime Compute for Apache Flink cluster in exclusive mode. You can only increase the value of **Slave Quantity**. If you want to change the slave specifications, you must purchase a new cluster.
 5.  Read and select Realtime Compute Exclusive Mode \(Subscription\) Terms of Service.
 
-6.  Click**Pay**.
+6.  Click **Pay**.
 
 
 ## Change resource configurations of a project
