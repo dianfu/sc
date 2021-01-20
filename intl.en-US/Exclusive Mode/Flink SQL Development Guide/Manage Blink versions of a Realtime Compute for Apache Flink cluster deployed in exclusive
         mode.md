@@ -21,7 +21,7 @@ Realtime Compute for Apache Flink provides the version management feature for yo
     |Tag|Description|
     |---|-----------|
     |**stable**|The recommended stable Blink version.|
-    |**beta**|The beta version programmed for testing. **Note:** We recommend that you install a beta version in only specified scenarios. The performance and the stability of the beta version cannot be ensured in other scenarios. |
+    |**beta**|The beta version programmed for testing.**Note:** We recommend that you install a beta version in only specified scenarios. The performance and the stability of the beta version cannot be ensured in other scenarios. |
     |No tag|The historical stable version.|
 
     **Note:**
@@ -103,7 +103,7 @@ You can select an installed Blink version and set the version to the current ver
     code:[30006], brief info:[blink script not exist, please check blink version], context info:[blink script:[/home/admin/blink/blink-2.2.6-hotfix0/bin/flink], blink version:[/home/admin/blink/blink-2.2.6-hotfix0/bin/flink]]
     ```
 
-    The error message is returned because the Blink version used by the job does not exist. In the Realtime Compute for Apache Flink console, choose**Version Management** \> **Installed Versions** to check whether the version exists.
+    The error message is returned because the Blink version used by the job does not exist. In the Realtime Compute for Apache Flink console, choose **Version Management** \> **Installed Versions** to check whether the version exists.
 
     -   If the version does not exist, switch to another version or install the version.
     -   If the version exists, [submit a ticket](https://account.alibabacloud.com/login/login.htm?oauth_callback=https%3A//ticket-intl.console.aliyun.com/%23).
