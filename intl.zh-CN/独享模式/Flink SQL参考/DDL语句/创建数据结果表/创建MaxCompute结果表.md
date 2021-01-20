@@ -49,7 +49,7 @@ create table odps_output(
 |--|--|----|--|
 |type|结果表类型|是|固定值为`odps`。|
 |endPoint|MaxCompute服务地址|是|参见[开通MaxCompute服务的Region和服务连接对照表](/intl.zh-CN/准备工作/配置Endpoint.md)。|
-|tunnelEndpoint|MaxCompute Tunnel服务的连接地址|是|参见[开通MaxCompute服务的Region和服务连接对照表](/intl.zh-CN/准备工作/配置Endpoint.md)。 **说明：** VPC环境下必填。 |
+|tunnelEndpoint|MaxCompute Tunnel服务的连接地址|是|参见[开通MaxCompute服务的Region和服务连接对照表](/intl.zh-CN/准备工作/配置Endpoint.md)。**说明：** VPC环境下必填。 |
 |project|MaxCompute项目名称|是|无|
 |tableName|表名|是|无|
 |accessId|AccessKey ID|是|无|
