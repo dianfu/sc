@@ -44,7 +44,7 @@ batchSize='20'
 |--|--|--|
 |type|结果表类型|固定值为ads。|
 |url|JDBC连接地址|云原生数据仓库AnalyticDB MySQL版数据库地址。示例：`url ='jdbc:mysql://databaseName****-cn-shenzhen-a.ads.aliyuncs.com:10014/databaseName'`。其中参数解释如下：-   URI地址查询步骤如下：
-    1.  登录[AnalyticDB 控制台](https://ads.console.aliyun.com/?spm=a2c4g.11186623.2.23.2c952b809T8asM)。
+    1.  登录[AnalyticDB控制台](https://ads.console.aliyun.com/?spm=a2c4g.11186623.2.23.2c952b809T8asM)。
     2.  单击对应的集群名称，进入**基本信息**页面。
     3.  在**连接信息**中查看相应的连接地址。
 -   云原生数据仓库AnalyticDB MySQL版数据库名称（databaseName）即云原生数据仓库AnalyticDB MySQL版实例名称。 |
