@@ -16,7 +16,7 @@ keyword: [消息队列Kafka, 源表]
 
 消息队列Kafka版是阿里云提供的分布式、高吞吐、可扩展的消息队列服务。消息队列Kafka版广泛用于日志收集、监控数据聚合、流式数据处理、在线和离线分析等大数据领域。实时计算Flink版支持将 Kafka作为流式数据的数据源表或结果表。
 
-从Kakfa输出的数据为序列化后的VARBINARY（二进制）格式。对于输出的每条数据，需要您编写自定义表值函数（UDTF）将其解析为序列化前的数据结构。Kafka源表数据解析流程通常为：Kafka Source Table -\> UDTF -\> Realtime Compute for Apache Flink -\> Sink。此外，Flink SQL中也支持通过CAST函数将VARBINARY解析为VARCHAR类型。自定义表值函数请参见[自定义表值函数（UDTF）](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL参考/自定义函数（UDX）/自定义表值函数（UDTF）.md)
+从Kakfa输出的数据为序列化后的VARBINARY（二进制）格式。对于输出的每条数据，需要您编写自定义表值函数（UDTF）将其解析为序列化前的数据结构。Kafka源表数据解析流程通常为：Kafka Source Table -\> UDTF -\> Realtime Compute for Apache Flink -\> Sink。此外，Flink SQL中也支持通过CAST函数将VARBINARY解析为VARCHAR类型。自定义表值函数请参见[自定义表值函数（UDTF）](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL参考/自定义函数（UDX）/自定义表值函数（UDTF）.md)。
 
 ## DDL定义
 
