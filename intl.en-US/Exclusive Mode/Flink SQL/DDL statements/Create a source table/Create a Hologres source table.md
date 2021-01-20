@@ -8,7 +8,7 @@ This topic describes how to create a Hologres source table. It also describes th
 
 **Note:**
 
--   This topic applies only to Blink 3.6.0 and later. If your Blink version is earlier than 3.6.0, you can[submit a ticket](https://workorder-intl.console.aliyun.com/) to obtain the required JAR files for installation.
+-   This topic applies only to Blink 3.6.0 and later. If your Blink version is earlier than 3.6.0, you can [submit a ticket](https://workorder-intl.console.aliyun.com/) to obtain the required JAR files for installation.
 -   We recommend that you use Hologres 0.7 or later.
 -   You can use only the Hologres tables that use the row store structure as source tables for Realtime Compute for Apache Flink.
 -   Hologres source tables support projection pushdown. This allows you to read data from only the required columns in the Hologres source tables.
