@@ -90,7 +90,7 @@ from sls_stream;
 
 ## 注册使用
 
-1.  登录[实时计算控制台](https://stream.console.aliyun.com)。
+1.  登录[实时计算控制台](https://stream-ap-southeast-3.console.aliyun.com)。
 2.  在顶部菜单中，单击**开发**。
 3.  在左侧的导航栏中，单击**资源引用**。
 4.  在**资源引用**页签的右上角，单击**新建资源**。
