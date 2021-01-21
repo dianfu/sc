@@ -54,7 +54,7 @@ ON table1.column-name1 = table2.key-name1 AND TIMEBOUND_EXPRESSION
       id BIGINT,
       productName VARCHAR,
       orderTime TIMESTAMP,
-      WATERMARK wk FOR ts as withOffset(orderTime, 2000)  --为rowtime定义Watermark。
+      WATERMARK wk FOR orderTime as withOffset(orderTime, 2000)  --为rowtime定义Watermark。
     ) WITH (
       type='datahub',
       endpoint='<yourEndpoint>',
@@ -70,7 +70,7 @@ ON table1.column-name1 = table2.key-name1 AND TIMEBOUND_EXPRESSION
       orderId BIGINT,
       status VARCHAR,
       shiptime TIMESTAMP,
-      WATERMARK wk FOR ts as withOffset(shiptime, 2000)  --为rowtime定义Watermark。
+      WATERMARK wk FOR shiptime as withOffset(shiptime, 2000)  --为rowtime定义Watermark。
     ) WITH (
       type='datahub',
       endpoint='<yourEndpoint>',
