@@ -62,7 +62,7 @@ keyword: [创建Package, IntelliJ IDEA, 自定义函数]
 
 3.  打开**IntelliJ IDEA**，单击**Open**打开下载的UDX示例。
 
-    ![IntelliJ IDEA](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9684359951/p34496.png)
+    ![IntelliJ IDEA](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9684359951/p34496.png)
 
 
 ## 实时计算Flink版作业引用JAR包
@@ -71,7 +71,7 @@ keyword: [创建Package, IntelliJ IDEA, 自定义函数]
 
     1.  右键单击**java** \> **New** \> **Package**。
 
-        ![java中创建Package](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9684359951/p34497.png)
+        ![java中创建Package](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9684359951/p34497.png)
 
     2.  在**New Package**中输入Package名称。本文以`com.hjc.test.blink.sql.udx`为例。
 
@@ -122,7 +122,7 @@ keyword: [创建Package, IntelliJ IDEA, 自定义函数]
     -   编译后的JAR包为RealtimeCompute-udxDemo/target/RTCompute-udx-1.0-SNAPSHOT.jar或RealtimeCompute-udxDemo/target/RTCompute-udx-1.0-SNAPSHOT-jar-with-dependencies.jar（将第三方依赖写入JAR包）。
 5.  实时计算Flink版作业引用JAR包。
 
-    1.  登录[实时计算控制台](https://stream.console.aliyun.com)。
+    1.  登录[实时计算控制台](https://stream-ap-southeast-3.console.aliyun.com)。
 
     2.  在顶部菜单中，单击**开发**。
 
