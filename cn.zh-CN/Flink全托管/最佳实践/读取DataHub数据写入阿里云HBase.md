@@ -9,7 +9,7 @@ keyword: [读取DataHub, 写入HBase]
 -   开发工具
     -   本地安装了Java JDK 8。
     -   本地安装了Maven 3.x。
-    -   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ，且已配置完成JDK和Maven环境。
+    -   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ IDEA，且已配置完成JDK和Maven环境。
 -   开通产品
     -   开通了专有网络VPC，详情请参见[创建专有网络](/cn.zh-CN/专有网络和交换机/管理专有网络/创建专有网络.md)。
     -   开通了对象存储OSS，详情请参见[开通OSS服务](https://help.aliyun.com/document_detail/31884.html#task-njz-hf4-tdb)。
@@ -28,7 +28,7 @@ keyword: [读取DataHub, 写入HBase]
 
 1.  下载并解压[Hbase\_ASI\_Demo-main](https://github.com/RealtimeCompute/Hbase_ASI_Demo)示例到本地。
 
-2.  在Intellij IDE中，单击**file** \> **open**，打开刚才解压缩完成的Hbase\_ASI\_Demo-main。
+2.  在Intellij IDEA中，单击**file** \> **open**，打开刚才解压缩完成的Hbase\_ASI\_Demo-main。
 
 3.  双击打开\\Hbase\_ASI\_Demo-main\\src\\main\\java\\Hbase\_Demo后，修改HbaseDemo.java文件中的DataHub与HBase相关参数。
 
