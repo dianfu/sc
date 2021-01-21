@@ -119,7 +119,7 @@ public class CountUdaf extends AggregateFunction<Long, CountUdaf.CountAccum> {
 
 ## Register and use resources
 
-1.  Log on to the [Realtime Compute for Apache Flink console](https://stream.console.aliyun.com).
+1.  Log on to the [Realtime Compute development platform](https://stream-ap-southeast-3.console.aliyun.com).
 2.  In the top navigation bar, click **Development**.
 3.  In the left-side navigation pane, click the **Resources** tab.
 4.  In the upper-right corner of the **Resources** pane, click **Create Resource**.
