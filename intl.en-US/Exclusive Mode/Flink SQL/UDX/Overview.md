@@ -56,7 +56,7 @@ The development of UDXs depends on the following JAR packages. You can download 
 
 ## Register and use resources
 
-1.  Log on to the [Realtime Compute for Apache Flink console](https://stream.console.aliyun.com).
+1.  Log on to the [Realtime Compute development platform](https://stream-ap-southeast-3.console.aliyun.com).
 2.  In the top navigation bar, click **Development**.
 3.  In the left-side navigation pane, click the **Resources** tab.
 4.  In the upper-right corner of the **Resources** pane, click **Create Resource**.
@@ -123,5 +123,5 @@ public void open(FunctionContext context) throws Exception {
 }
 ```
 
-**Note:** For more information, see [Job parameters](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Configuration optimization/Performance optimization by manual configuration.md).
+**Note:** For more information, see [Job parameters](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Configuration optimization/Optimize performance by manual configuration.md).
 
