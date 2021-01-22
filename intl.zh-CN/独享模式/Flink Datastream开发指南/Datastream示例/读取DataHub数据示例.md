@@ -8,7 +8,7 @@ keyword: [DataHub数据示例, Datastream, 读取DataHub]
 
 -   本地安装了Java JDK 8。
 -   本地安装了Maven 3.x。
--   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ，且已配置完成JDK和Maven环境。
+-   本地安装了用于Java或Scala开发的IDE，推荐IntelliJ IDEA，且已配置完成JDK和Maven环境。
 -   在DataHub上创建了Topic，并且Topic中存在[测试数据](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/159298/cn_zh/1585122460234/datahub_input.csv)。
 
     **说明：** 测试数据需要有4个字段，数据类型依次为STRING、STRING、DOUBLE和BIGINT。
@@ -53,7 +53,7 @@ keyword: [DataHub数据示例, Datastream, 读取DataHub]
         ls /Users/用户名/.m2/repository/com/alibaba/flink/datahub-connector/0.1-SNAPSHOT
         ```
 
-4.  在Intellij IDE中，单击**file** \> **open**，打开刚才解压缩完成的datahub-demo-master包后，双击pom.xml查看代码。
+4.  在Intellij IDEA中，单击**file** \> **open**，打开刚才解压缩完成的datahub-demo-master包后，双击pom.xml查看代码。
 
     ![打开文件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9265749951/p91045.png)
 
@@ -115,7 +115,7 @@ blink.checkpoint.interval.ms=180000
 
 ## 验证
 
-在**运维**页签，查看Sink节点的**taskmanager.out**信息，本示例中使用Print作为Sink。
+在**运维**页面，查看Sink节点的**taskmanager.out**信息，本示例中使用Print作为Sink。
 
 如果出现如下结果，则表示已经成功读取了阿里云DataHub中的数据。
 
