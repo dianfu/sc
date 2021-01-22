@@ -119,7 +119,7 @@ blink.checkpoint.interval.ms=180000
 
 ## 验证
 
-在**运维**页签，查看Sink节点的**taskmanager.out**信息，本示例中使用Print作为Sink。
+在**运维**页面，查看Sink节点的**taskmanager.out**信息，本示例中使用Print作为Sink。
 
 如果出现如下结果，则表示已经成功读取了阿里云DataHub中的数据。
 
