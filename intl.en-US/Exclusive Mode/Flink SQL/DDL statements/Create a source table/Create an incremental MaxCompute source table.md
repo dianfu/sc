@@ -82,7 +82,7 @@ If the values of startPartition for the partitions are different, the following 
 |TIMESTAMP|TIMESTAMP|
 |DECIMAL|DECIMAL|
 |BINARY|VARBINARY|
-|STRING|ARCHAR|
+|STRING|VARCHAR|
 
 **Note:**
 
