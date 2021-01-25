@@ -2,6 +2,12 @@
 
 本文为您介绍如何管理Flink全托管自定义函数（UDF），包括注册、更新和删除。
 
+为了避免JAR依赖冲突，您需要注意以下几点：
+
+-   Flink镜像和Pom依赖Flink版本请保持一致。
+-   请不要上传Runtime层的JAR，即在依赖中添加`<scope>provided</scope>`。
+-   其他第三方依赖请采用Shade方式打包，Shade打包详情参见[Apache Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/index.html)。
+
 ## 注册UDF
 
 如果您的SQL需要使用UDF，您需要先注册您的UDF，才能在SQL中使用。
