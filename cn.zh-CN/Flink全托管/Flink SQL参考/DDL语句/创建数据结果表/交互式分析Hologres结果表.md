@@ -39,10 +39,10 @@ create table hologres_sink(
 |password|密码|是|无|
 |endpoint|Hologres端点|是|格式为<ip\>:<port\>。|
 |field\_delimiter|Hologres Sink支持将一个STRING字段按照field\_delimiter切分成数组导入Hologres。|否|默认值为"\\u0002"。|
-|mutateType|数据写入模式，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
+|mutatetype|数据写入模式，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
 |partitionrouter|是否写入分区表。|否|默认值为false。|
 |ignoredelete|是否忽略撤回消息。|否|默认值为false。**说明：** 仅在使用流式语义时生效。 |
-|createPartTable|当写入分区表时，是否根据分区值自动创建不存在的分区表。**说明：** 如果分区值中存在短划线（-），暂不支持自动创建分区表。
+|createparttable|当写入分区表时，是否根据分区值自动创建不存在的分区表。**说明：** 如果分区值中存在短划线（-），暂不支持自动创建分区表。
 
 |否|-   false（默认值）：不会自动创建。
 -   true：自动创建。
@@ -64,14 +64,14 @@ create table hologres_sink(
 在Hologres结果表中使用流式语义，您需要注意以下几点：
 
 -   如果Hologres物理表未设置主键，则Hologres Sink使用At-least-once语义。
--   如果Hologres物理表已设置主键，则Hologres Sink通过主键确保Exactly-once语义。当同主键数据出现多次时，您需要设置mutateType参数确定更新结果表的方式，mutateType取值如下：
+-   如果Hologres物理表已设置主键，则Hologres Sink通过主键确保Exactly-once语义。当同主键数据出现多次时，您需要设置mutatetype参数确定更新结果表的方式，mutatetype取值如下：
 
     -   insertorignore（默认值）：保留首次出现的数据，忽略后续所有数据。
     -   insertorreplace：整行替换已有数据。
     -   insertorupdate：替换部分已有数据。例如一张表有a、b、c和d四个字段，a是PK（Primary Key），写入Hologres时只写入a和b两个字段，在PK重复的情况下，系统只会更新b字段，c和d保持不变。
     **说明：**
 
-    -   当mutateType设置为insertorupdate或insertorreplace时，系统根据主键更新数据。
+    -   当mutatetype设置为insertorupdate或insertorreplace时，系统根据主键更新数据。
     -   Flink定义的结果表中的数据列数不一定要和Hologres物理表的列数一致，您需要保证缺失的列没有非空约束，即列值可以为Null，否则会报错。
 -   默认情况下，Hologres Sink只能向一张表导入数据。如果导入数据至分区表的父表，即使导入成功，也会查询数据失败。您可以设置参数partitionRouter为true，开启自动将数据路由到对应分区表的功能。注意事项如下：
     -   tablename参数需要填写为父表的表名。
