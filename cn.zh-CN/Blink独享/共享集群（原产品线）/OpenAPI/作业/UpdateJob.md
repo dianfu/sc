@@ -65,7 +65,7 @@ PUT /api/v2/projects/[projectName]/jobs/[jobName] HTTP/1.1
 |例如1024 MB。 |
 |blink.job.option
 
-|传给flink命令run action的参数，可以传递多个参数，具体请参见Flink命令说明。
+|传给Flink Run的参数，可以传递多个参数，具体请参见Flink命令说明。
 
 |例如设置Task Manager的JVM线程的堆栈大小，可以配置：blink.job.option=-yD env.java.opts='-Xss8192K'。 |
 |client.jvm.option
@@ -80,7 +80,7 @@ PUT /api/v2/projects/[projectName]/jobs/[jobName] HTTP/1.1
 |添加或删除该参数Job状态会丢失，修改值大小状态不会丢失，数据类型为LONG， 例如10000，单位为毫秒。 |
 |blink.miniBatch.size
 
-|batch最大条数
+|Batch最大条数
 
 |添加或删除该参数Job状态会丢失，修改值大小状态不会丢失；此参数不能设置过大，如果一个Batch实际去完重的数据超过65536，在访问statebackend时可能触发JNI OOM异常；数据类型为LONG， 例如1000。 |
 |blink.microBatch.allowLatencyMs
@@ -97,7 +97,7 @@ PUT /api/v2/projects/[projectName]/jobs/[jobName] HTTP/1.1
 
 |是否开启Partial-Final Agg。Parital-Final Agg常用于解决COUNT DISTINCT热点问题。
 
-|默认值为false。Blink 2.2.0及以上版本支持该参数。 |
+|默认值为false，Blink 2.2.0及以上版本支持该参数。 |
 |sql.exec.mini-batch.window.enabled
 
 |是否开启minibatch window
