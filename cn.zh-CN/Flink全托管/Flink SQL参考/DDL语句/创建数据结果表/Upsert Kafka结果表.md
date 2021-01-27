@@ -44,7 +44,7 @@ CREATE TABLE upsert_kafka_sink (
 |value.format|Upsert Kafka消息中Value部分序列化的格式|是|STRING|支持的格式如下：-   csv
 -   json
 -   avro |
-|value.fields-include|指定出现在Value中的字段|否|String|取值如下：-   ALL：Schema中所有字段，包括主键字段。
+|value.fields-include|指定出现在Value中的字段|否|String|取值如下：-   ALL（默认值）：Schema中所有字段，包括主键字段。
 -   EXCEPT\_KEY：Schema中所有字段，不包括主键字段。 |
 |properties.\*|指定Kafka参数|否|String|后缀名必须匹配定义在[Apache Kafka文档](https://kafka.apache.org/documentation/#configuration)中的参数名。Flink会自动移除properties.前缀，并将转换后的参数名及值传入Kafka客户端。例如，您可以通过设置`'properties.allow.auto.create.topics' = 'false'`来禁止自动创建Topic。**说明：** 已在WITH参数定义的Kafka参数是不允许通过该方式指定参数，因为Flink会重写该参数的值。例如`'key.deserializer'`和`'value.deserializer'`。 |
 
@@ -81,7 +81,8 @@ CREATE TABLE pageviews_per_region (
 );
 
 --将统计的PV、UV数据写入结果表中。
-INSERT INTO pageviews_per_regionSELECT
+INSERT INTO pageviews_per_region 
+SELECT
   user_region,
   COUNT(*),
   COUNT(DISTINCT user_id)
