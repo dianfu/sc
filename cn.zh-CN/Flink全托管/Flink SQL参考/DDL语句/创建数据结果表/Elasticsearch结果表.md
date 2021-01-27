@@ -47,7 +47,7 @@ keyword: [Elasticsearch, ES, 结果表]
 |password|访问实例密钥|否|如果定义了username，则必须定义非空的password。|
 |document-id.key-delimiter|文档ID的分隔符|否|默认值为`_`。|
 |failure-handler|Elasticsearch请求失败时的故障处理策略。|否|可选策略如下：-   fail（默认值）：如果请求失败，则作业失败。
--   igonre：忽略失败并删除请求。
+-   ignore：忽略失败并删除请求。
 -   retry\_rejected：重新添加由于队列容量满而失败的请求。
 -   custom class name：用于使用ActionRequestFailureHandler子类进行故障处理。 |
 |sink.flush-on-checkpoint|是否在checkpoint时执行flush。|否|默认值为true。禁用该功能后，在Elasticsearch进行Checkpoint时，connector将不等待确认所有pending请求已完成。因此，connector不会为请求提供at-least-once保证。|
