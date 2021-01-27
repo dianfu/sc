@@ -41,7 +41,7 @@ CREATE TABLE rds_dim_table(
 |参数|说明|是否必填|备注|
 |--|--|----|--|
 |type|维表类型|是|固定值为`rds`。|
-|url|JDBC（Java DataBase Connectivity）连接地址|是|URL的格式为：`jdbc:mysql://<内网地址>/<databaseName>`，其中databaseName为对应的数据库名称。内网地址参见如下链接： -   [Apply for an Internet IP address for RDS](https://www.alibabacloud.com/help/doc-detail/26128.htm) |
+|url|JDBC（Java DataBase Connectivity）连接地址|是|URL的格式为：`jdbc:mysql://<内网地址>/<databaseName>`，其中databaseName为对应的数据库名称。内网地址参见如下链接：-   [Apply for an Internet IP address for RDS](https://www.alibabacloud.com/help/doc-detail/26128.htm) |
 |tableName|表名|是|无|
 |userName|用户名|是|无|
 |password|密码|是|无|
