@@ -13,7 +13,7 @@
 
 ## DDL定义
 
-**说明：** 云原生数据仓库AnalyticDB MySQL版3.0结果表DDL请参见[创建云原生数据仓库AnalyticDB MySQL版3.0结果表](/intl.zh-CN/独享模式/Flink SQL参考/DDL语句/创建数据结果表/创建分析型数据库MySQL版3.0结果表.md)。
+**说明：** 云原生数据仓库AnalyticDB MySQL版3.0结果表DDL请参见[创建云原生数据仓库AnalyticDB MySQL版3.0结果表](/intl.zh-CN/独享模式/Flink SQL参考/DDL语句/创建数据结果表/创建云原生数据仓库AnalyticDB MySQL版3.0结果表.md)。
 
 实时计算Flink版支持使用云原生数据仓库AnalyticDB MySQL版2.0作为结果输出。示例代码如下。
 
