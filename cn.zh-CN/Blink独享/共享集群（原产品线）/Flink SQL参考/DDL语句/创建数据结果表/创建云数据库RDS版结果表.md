@@ -42,7 +42,7 @@ CREATE TABLE rds_output(
 |参数|说明|是否必填|备注|
 |--|--|----|--|
 |type|结果表类型|是|固定值为`rds`。|
-|url|JDBC（Java DataBase Connectivity）连接地址|是|URL的格式为：`jdbc:mysql://<内网地址>/<databaseName>`，其中databaseName为对应的数据库名称。内网地址参见如下链接： -   [RDS的内网地址](https://help.aliyun.com/document_detail/26128.html?spm=5176.doc43185.6.581.rxQuNz)
+|url|JDBC（Java DataBase Connectivity）连接地址|是|URL的格式为：`jdbc:mysql://<内网地址>/<databaseName>`，其中databaseName为对应的数据库名称。内网地址参见如下链接：-   [RDS的内网地址](https://help.aliyun.com/document_detail/26128.html?spm=5176.doc43185.6.581.rxQuNz)
 -   [DRDS的内网地址](https://help.aliyun.com/document_detail/56494.html)
 
 **说明：** 如果访问通过VPC访问授权过的RDS，对应的URL配置请参见[VPC访问授权](/cn.zh-CN/Blink独享/共享集群（原产品线）/Flink SQL开发指南/数据存储/VPC访问授权.md)。 |
