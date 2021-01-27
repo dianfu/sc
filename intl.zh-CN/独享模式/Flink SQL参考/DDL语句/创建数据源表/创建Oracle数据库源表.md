@@ -40,13 +40,13 @@ create table oracle_source (
 |参数|说明|是否必选|备注|
 |--|--|----|--|
 |type|源表类型|是|固定值为oracle。|
-|url|数据库连接串，固定句式为`jdbc:oracle:thin:@//数据库IP:端口号/数据库名`。|是|jdbc:oracle:thin:@//127.0.0.1:1521/XE|
+|url|数据库连接串|是|固定句式为`jdbc:oracle:thin:@//数据库IP:端口号/数据库名`。例如jdbc:oracle:thin:@//127.0.0.1:1521/XE。|
 |userName|登录数据库的用户名|是|无|
 |password|登录数据库的密码|是|无|
 |tableName|数据库的表名。数据库的表名有以下两种表达方式： -   表名1,表名2
 -   数据库名.表名1,表名2
 
-**说明：** 多个表名之间用英文逗号（,）隔开。
+ **说明：** 多个表名之间用英文逗号（,）隔开。
 
 |是|-   table1,table2
 -   db1.table1,table2 |
