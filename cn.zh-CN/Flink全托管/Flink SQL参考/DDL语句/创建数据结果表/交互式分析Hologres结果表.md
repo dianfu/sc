@@ -77,6 +77,24 @@ create table hologres_sink(
     -   tablename参数需要填写为父表的表名。
     -   Connector不会自动创建分区表，因此，需要您提前手动创建需要导入数据的分区表，否则会导入失败。
 
+## 宽表Merge和局部更新功能
+
+在把多个流的数据写到一张Hologres宽表的场景中，会涉及到宽表Merge和数据的局部更新。下面通过一个示例来介绍如何设置。
+
+假设有两个Flink数据流，一个数据流中包含A、B和C字段，另一个数据流中包含A、D和E字段，Hologres宽表WIDE\_TABLE包含A、B、C、D和E字段，其中A字段为主键。具体操作如下：
+
+1.  使用Flink SQL创建两张Hologres结果表，其中一张表只声明A、B和C字段，另一张表只声明A、D和E字段。这两张表都映射至宽表WIDE\_TABLE。
+2.  两张结果表的属性设置：
+    -   mutatetype设置为insertorupdate，可以根据主键更新数据。
+    -   ignoredelete设置为true，防止回撤消息产生Delete请求。
+3.  将两个Flink数据流的数据分别INSERT至对应的结果表中。
+
+**说明：** 在上述场景中，有如下限制：
+
+-   宽表必须有主键。
+-   每个数据流的数据都必须包含完整的主键字段。
+-   列存模式的宽表Merge场景在高RPS的情况下，CPU使用率会偏高，建议关闭表中字段的Dictionary encoding功能。
+
 ## 类型映射
 
 |Hologres字段类型|Flink字段类型|
