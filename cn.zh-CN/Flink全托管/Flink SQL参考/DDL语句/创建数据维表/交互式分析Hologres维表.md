@@ -10,6 +10,23 @@ keyword: [Hologres, 维表, 交互式分析]
 
 交互式分析Hologres兼容PostgreSQL协议，与大数据生态紧密连接，支持高并发、低延时实时分析处理PB级数据，让您轻松使用现有BI（Business Intelligence）工具对数据进行多维分析和业务探索。
 
+## 使用限制
+
+-   创建Hologres维表时建议选择行存模式，列存模式对于点查场景性能开销较大。
+
+    选择行存模式创建维表时必须设置主键，并且将主键设置为clustering key才可以工作。示例语句如下：
+
+    ```
+    begin;
+    create table test(a int primary key, b text, c text, d float8, e int8);
+    call set_table_property('test', 'orientation', 'row');
+    call set_table_property('test', 'clustering_key', 'a');
+    commit;
+    ```
+
+-   Hologres维表的主键必须是Flink Join On的字段，Flink Join On的字段也必须是维表完整的主键字段，两者必须完全匹配。
+-   Hologres Flink Connector的维表功能不支持一对多的输出。
+
 ## DDL定义
 
 ```
@@ -71,7 +88,7 @@ CREATE TABLE hologres_dim(
 |DATE|DATE|
 |TIMESTAMP WITH TIMEZONE|TIMESTAMP|
 
-**说明：** 未列出的Hologres类型，Connector还未支持转换。
+**说明：** 上表中未列出的Hologres类型，Connector还未支持转换。
 
 ## 代码示例
 
