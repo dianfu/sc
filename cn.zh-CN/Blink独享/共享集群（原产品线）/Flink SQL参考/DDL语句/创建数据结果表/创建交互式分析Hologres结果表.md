@@ -52,14 +52,14 @@ create table Hologres_sink(
 
 |否|默认值为"\\u0002"。|
 |mutateType|流式写入语义，详情请参见[流式语义](#section_yce_507_nhr)。|否|默认值为insertorignore。|
-|partitionrouter|分区表写入|否|默认值为false。**说明：** 3.6.x版本Hologres Sink暂不支持自动创建分区表。因此，在写入分区表之前，需要您在Hologres中手工创建对应的子表。 |
-|ignoredelete|是否忽略撤回消息。|否|默认值为false。**说明：** 仅在使用流式语义时生效。 |
-|createPartTable|当写入分区表时，是否根据分区值自动创建不存在的分区表。**说明：** 如果分区值中存在短划线（-），暂不支持自动创建分区表。
+|partitionrouter|分区表写入|否|默认值为false。 **说明：** 3.6.x版本Hologres Sink暂不支持自动创建分区表。因此，在写入分区表之前，需要您在Hologres中手工创建对应的子表。 |
+|ignoredelete|是否忽略撤回消息。|否|默认值为false。 **说明：** 仅在使用流式语义时生效。 |
+|createPartTable|当写入分区表时，是否根据分区值自动创建不存在的分区表。 **说明：** 如果分区值中存在短划线（-），暂不支持自动创建分区表。
 
 |否|-   false（默认值）：不会自动创建。
 -   true：自动创建。
 
-**说明：** 仅Blink 3.7以上版本支持该参数。 |
+ **说明：** 仅Blink 3.7以上版本支持该参数。 |
 
 ## 流式语义
 
@@ -85,6 +85,24 @@ create table Hologres_sink(
 -   默认情况下，Hologres Sink只能向一张表导入数据。如果导入数据至分区表的父表，即使导入成功，也会查询数据失败。您可以设置参数partitionRouter为true，开启自动将数据路由到对应分区表的功能。注意事项如下：
     -   tablename参数需要填写为父表的表名。
     -   Blink Connector不会自动创建分区表，因此，需要您提前手动创建需要导入数据的分区表，否则会导入失败。
+
+## 宽表Merge和局部更新功能
+
+在把多个流的数据写到一张Hologres宽表的场景中，会涉及到宽表Merge和数据的局部更新。下面通过一个示例来介绍如何设置。
+
+假设有两个Flink数据流，一个数据流中包含A、B和C字段，另一个数据流中包含A、D和E字段，Hologres宽表WIDE\_TABLE包含A、B、C、D和E字段，其中A字段为主键。具体操作如下：
+
+1.  使用Flink SQL创建两张Hologres结果表，其中一张表只声明A、B和C字段，另一张表只声明A、D和E字段。这两张表都映射至宽表WIDE\_TABLE。
+2.  两张结果表的属性设置：
+    -   mutatetype设置为insertorupdate，可以根据主键更新数据。
+    -   ignoredelete设置为true，防止回撤消息产生Delete请求。
+3.  将两个Flink数据流的数据分别INSERT至对应的结果表中。
+
+**说明：** 在上述场景中，有如下限制：
+
+-   宽表必须有主键。
+-   每个数据流的数据都必须包含完整的主键字段。
+-   列存模式的宽表Merge场景在高RPS的情况下，CPU使用率会偏高，建议关闭表中字段的Dictionary encoding功能。
 
 ## 类型映射
 
