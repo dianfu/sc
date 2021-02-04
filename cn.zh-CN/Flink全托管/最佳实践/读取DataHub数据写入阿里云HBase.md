@@ -18,11 +18,11 @@ keyword: [读取DataHub, 写入HBase]
     -   开通了与Flink全托管同一地域下相同VPC的HBase实例（本示例为标准版HBase），详情请参见[HBase产品首页](https://www.aliyun.com/product/hbase?spm=a2c4g.11174283.2.1.7469363fCl3WwP)。
 -   权限配置
 
-    您已将Flink全托管集群IP需要添加至HBase白名单。详情请参见[设置白名单](/cn.zh-CN/Flink全托管/准备工作/设置白名单.md)。
+    您已将Flink全托管集群IP需要添加至HBase白名单，详情请参见[设置白名单](/cn.zh-CN/Flink全托管/准备工作/设置白名单.md)。
 
 -   上下游存储
     -   在DataHub上已创建了项目和Topic，本示例Topic中有a、b和c三个字段，数据类型依次为BOOLEAN、STRING和STRING。
-    -   在HBase上已创建了表hbase\_sink和列簇f1。详情请参见[使用Shell访问](https://help.aliyun.com/document_detail/52056.html?spm=a2c4g.11174283.6.595.ccba363fBF1uOn)和[创建表和列簇](http://hbase.apache.org/1.1/book.html?spm=a2c4g.11186623.2.18.6abe5cc1OSJzJj#shell_exercises)。
+    -   在HBase上已创建了表hbase\_sink和列簇f1，详情请参见[使用Shell访问](https://help.aliyun.com/document_detail/52056.html?spm=a2c4g.11174283.6.595.ccba363fBF1uOn)和[创建表和列簇](http://hbase.apache.org/1.1/book.html?spm=a2c4g.11186623.2.18.6abe5cc1OSJzJj#shell_exercises)。
 
 ## 作业开发
 
