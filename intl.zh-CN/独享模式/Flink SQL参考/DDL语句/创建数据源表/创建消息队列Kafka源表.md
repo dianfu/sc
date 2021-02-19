@@ -130,8 +130,8 @@ create table kafka_stream(   --必须和Kafka源表中的5个字段的顺序和�
           topic = '<yourTopicName>',
           `group.id` = '<yourGroupId>',
           ...,
-          `security.protocol`=SASL_PLAINTEXT,
-          `sasl.mechanism`=PLAIN,
+          `security.protocol`='SASL_PLAINTEXT',
+          `sasl.mechanism`='PLAIN',
           `sasl.jaas.config`='org.apache.kafka.common.security.plain.PlainLoginModule required username="<yourUserName>" password="<yourPassword>";'
         );
         ```
