@@ -17,11 +17,11 @@ keyword: [实时计算Flink版, 什么是阿里云实时计算Flink版]
 
 ## 产品架构
 
-![产品架构](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0543470061/p141022.png)
+![产品架构](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0543470061/p141022.png)
 
 ## 与Apache Flink对比
 
-![对比](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1716140061/p141885.png)
+![对比](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7219173161/p141885.png)
 
 ## 产品发展历史
 
@@ -42,7 +42,7 @@ keyword: [实时计算Flink版, 什么是阿里云实时计算Flink版]
         -   大规模部署：经过阿里巴巴双十一大规模场景下实践检验，稳定性和可靠性高。
     -   开发平台Bayes
 
-        ![开发平台](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3993588951/p141887.png)
+        ![开发平台](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3993588951/p141887.png)
 
         阿里巴巴自研的实时计算开发平台，提供如下功能：
 
@@ -57,7 +57,7 @@ keyword: [实时计算Flink版, 什么是阿里云实时计算Flink版]
 
     2019年至今为第二个发展阶段，阿里云实时计算Flink版以计算引擎VVR+开发平台VVP为基础，对外提供Flink全托管和Flink半托管商业化产品。
 
-    ![vvp+vvr](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4993588951/p141026.png)
+    ![vvp+vvr](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4993588951/p141026.png)
 
     -   计算引擎VVR（Ververica Runtime）
 
@@ -74,7 +74,7 @@ keyword: [实时计算Flink版, 什么是阿里云实时计算Flink版]
         -   完全兼容开源Flink，紧跟开源Flink版本更新。
     -   开发平台VVP（Ververica Platform）
 
-        ![VVP](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4993588951/p141886.png)
+        ![VVP](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6208763061/p141886.png)
 
         阿里巴巴和Apache Flink创始团队合力打造的实时计算开发平台，提供如下功能：
 
