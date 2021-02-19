@@ -35,8 +35,7 @@ CREATE TABLE print_table (
         2.  在**logs**页签，查看print数据结果。
     -   跳转到Flink UI界面查看：
         1.  在目标作业**作业总览**页签，单击**Flink UI**。
-        2.  在**Overview**页签，单击Sink节点拓扑图。
-        3.  单击**Task Managers**。
-        4.  单击**LOG**。
-        5.  在**logs**页签，查看print数据结果。
+        2.  单击**Task Managers**。
+        3.  单击**Path, ID**。
+        4.  在**logs**页签，查看print数据结果。
 
