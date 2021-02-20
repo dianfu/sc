@@ -53,7 +53,7 @@
 
 6.  上传JAR文件。
 
-    ![更新JAR](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0160160161/p224239.png)
+    ![更新JAR](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7518561161/p224239.png)
 
     您可以通过以下任何一种方式上传JAR文件：
 
@@ -62,7 +62,7 @@
     **说明：**
 
     -   您上传的新UDF JAR中，必须包含当前已经注册UDF的所有类，不能出现某个已注册UDF的类消失的情况。
-    -   只有重启作业或提交新作业时，才会使用新JAR文件中的代码。如果您引用该UDF JAR的作业正在运行，则依然会使用旧JAR文件。
+    -   只有重启作业或提交新作业时，才会使用新JAR文件中的代码。如果引用该UDF JAR的作业正在运行，则依然会使用旧JAR文件。
 7.  单击**修改**。
 
 
@@ -78,13 +78,13 @@
 
 4.  单击**Artifacts**页签。
 
-5.  在**UDF JAR**列表中，鼠标悬停在目标JAR名称上，单击![删除JAR](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5957179951/p164586.png)图标。
+5.  在**UDF JARs**列表中，鼠标悬停在目标JAR名称上，单击![删除JAR](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5957179951/p164586.png)图标。
 
     **说明：** 在删除JAR文件前，请确定其注册的UDF没有被作业或SQL文件引用。
 
 6.  选中**删除关联的JAR**。
 
-    如果您要删除该JAR文件，则需要删除该JAR注册的所有UDF，避免有脏数据残留。
+    如果您要删除该JAR文件，则需要删除该JAR中所有注册的UDF，避免有脏数据残留。
 
 7.  单击**确认**。
 
