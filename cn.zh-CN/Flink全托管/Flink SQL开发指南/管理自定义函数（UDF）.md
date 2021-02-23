@@ -4,7 +4,7 @@
 
 为了避免JAR依赖冲突，您需要注意以下几点：
 
--   Flink镜像和Pom依赖Flink版本请保持一致。
+-   Flink镜像的版本请与Pom依赖中Flink版本保持一致。
 -   请不要上传Runtime层的JAR，即在依赖中添加`<scope>provided</scope>`。
 -   其他第三方依赖请采用Shade方式打包，Shade打包详情参见[Apache Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/index.html)。
 
@@ -39,7 +39,7 @@
 
 ## 更新UDF JAR
 
-如果您的UDF JAR中，新增了UDF或已注册了UDF的类代码变更，您可以按照以下步骤更新UDF JAR。
+如果您的UDF JAR中，新增了UDF或已注册了UDF的代码变更，您可以按照以下步骤更新UDF JAR。
 
 1.  登录[实时计算控制台](https://realtime-compute.console.aliyun.com/console/cell?spm=a2c4g.11186623.2.16.1a8023a9J8TiPV)。
 
