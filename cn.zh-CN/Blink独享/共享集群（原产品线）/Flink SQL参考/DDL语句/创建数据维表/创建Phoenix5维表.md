@@ -32,8 +32,12 @@ create table US_POPULATION_DIM (
 |serverUrl|Phoenix5的Query Server地址： -   如果Phoenix5是在集群中创建的，则serverUrl是负载均衡服务的URL地址。
 -   如果Phoenix5是在单机中创建的，则serverUrl是单机的URL地址。
 
-|是|您需要在云数据库HBase实例中开启Hbase SQL服务，详情请参见[开启HBase SQL服务](t1856926.md#)。|
-|tableName|Phoenix5表名|是|无|
+|是|您需要在云数据库HBase实例中开启Hbase SQL服务，详情请参见[开启HBase SQL服务](t1856926.md#)。serverUrl格式为http://host:port，其中：
+
+-   host：Phoenix5服务的域名。
+-   port：Phoenix5服务的端口号，固定值为8765。 |
+|tableName|Phoenix5表名|是|Phoenix5表名格式为SchemaName.TableName，其中：-   SchemaName：模式名，可以为空，即不写模式名，仅写表名，表示使用数据库的默认模式。
+-   TableName：表名。 |
 
 ## CACHE参数
 
