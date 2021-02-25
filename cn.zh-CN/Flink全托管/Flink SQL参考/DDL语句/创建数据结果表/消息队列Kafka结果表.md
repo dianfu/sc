@@ -8,7 +8,7 @@ keyword: [消息队列Kafka, 结果表]
 
 ## 什么是消息队列Kafka
 
-消息队列Kafka版是阿里云提供的分布式、高吞吐、可扩展的消息队列服务。消息队列Kafka版广泛用于日志收集、监控数据聚合、流式数据处理、在线和离线分析等大数据领域。**Flink全托管**支持将其作为流式数据的输出。
+消息队列Kafka版是阿里云提供的分布式、高吞吐、可扩展的消息队列服务。消息队列Kafka版广泛用于日志收集、监控数据聚合、流式数据处理、在线和离线分析等大数据领域。
 
 ## DDL定义
 
@@ -36,9 +36,7 @@ create table kafka_sink(
 |properties.bootstrap.servers|Kafka Broker地址|是|STRING|格式为`host:port,host:port,host:port`，以英文逗号（,）分割。|
 |format|Flink Kafka Connector在反序列化来自Kafka的消息时使用的格式。|是|STRING|格式取值如下：-   csv
 -   json
--   avro
--   debezium-json
--   canal-json |
+-   avro |
 |sink.partitioner|从Flink分区到Kafka分区的映射模式。|否|STRING|映射模式取值如下：-   fixed：每个Flink分区对应至多一个Kafka分区。
 -   round-robin：Flink分区中的数据将被轮流分配至Kafka的各个分区。
 -   自定义FlinkKafkaPartitioner的子类：如果fixed和round-robin不满足您的需求，您可以自定义映射模式到FlinkKafkaPartitioner的子类。例如`org.mycompany.MyPartitioner`。 |
