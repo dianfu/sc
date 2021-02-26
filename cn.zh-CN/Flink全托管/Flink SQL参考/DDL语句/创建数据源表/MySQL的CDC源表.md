@@ -6,7 +6,10 @@ keyword: [MySQL的CDC, CDC]
 
 本文为您介绍MySQL的CDC（Change Data Capture）源表DDL定义、WITH参数、类型映射和代码示例。
 
-**说明：** 本文仅适用于VVP 2.3.0及以上版本。
+**说明：**
+
+-   本文仅适用于VVP 2.3.0及以上版本。
+-   不支持定义Watermark。
 
 ## 什么是MySQL的CDC源表
 
