@@ -171,7 +171,7 @@ CREATE FUNCTION parseUdtf AS 'com.alibaba.blink.sql.udtf.ParseUdtf';
 
 ## 上线和启动
 
-自定义聚合函数（UDAF）的上线和启动步骤，请参见[上线](/intl.zh-CN/独享模式/Flink SQL开发指南/作业开发/上线.md)和[启动](/intl.zh-CN/独享模式/Flink SQL开发指南/作业开发/启动.md)。
+自定义聚合函数（UDTF）的上线和启动步骤，请参见[上线](/intl.zh-CN/独享模式/Flink SQL开发指南/作业开发/上线.md)和[启动](/intl.zh-CN/独享模式/Flink SQL开发指南/作业开发/启动.md)。
 
 ## UDTF示例
 
