@@ -1,120 +1,171 @@
 ---
-keyword: [Flink全托管, 开发, DataStream, Table API]
+keyword: [Flink全托管, 开发, Python, 三方包, 依赖管理]
 ---
 
-# 作业开发
+# Python依赖管理
 
-本文为您介绍Flink全托管DataStream API、Table API和Python API作业开发的限制说明和开发方法。
+Flink支持用户在Python作业中使用自定义的Python虚拟环境(virtual environment)、第三方Python包、JAR包、数据文件等，本文为您介绍如何在Python作业中使用这些依赖。关于Flink Python作业依赖管理的更多详细信息，可以参见[Flink Python依赖管理](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/python/table-api-users-guide/dependency_management.html)。
 
-## DataStream API或Table API作业开发
+## 使用自定义的Python虚拟环境(virtual environment)
 
--   限制说明
+    Flink支持用户在Python作业中使用自定义的Python虚拟环境(virtual environment)，本文为您介绍如何在Python作业中使用自定义的Python虚拟环境(virtual environment)。**说明：** 当前只支持Python3.7的Python虚拟环境。
 
-    由于**Flink全托管**产品受部署环境、网络环境等因素的影响，所以开发**Flink全托管**DataStream或Table API作业，需要注意以下限制：
+    - 准备自定义Python虚拟环境
 
-    -   仅支持开源Flink V1.10和Flink V1.11版本。
-    -   仅支持JAR形式的作业提交和运行。
-    -   仅支持运行单个JAR形式的作业。
-    -   不支持在Main函数中读取本地配置。
-    -   **Flink全托管**运行环境使用的是JDK1.8，请使用JDK1.8进行作业开发。
-    -   仅支持开源Scala V2.11版本。
--   Connector使用
+    接下来介绍一下如何准备Python3.7的虚拟环境。
 
-    Maven中央库中已经放置了VVR Connector，您需要在Maven POM文件中添加您需要的Connector作为项目依赖，示例如下。
-
+    首先需要在本地准备如下脚本：
+    1. bulid.sh，其内容如下：
     ```
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba.ververica</groupId>
-            <artifactId>${connector.type}</artifactId>
-            <version>${connector.version}</version>
-        </dependency>
-    </dependencies>
+    #!/bin/bash
+    set -e -x
+    yum install -y zip wget
+
+    cd /root/
+    bash /build/setup-pyflink-virtual-env.sh
+    mv venv.zip /build/
     ```
 
-    每个Connector版本对应的Connector类型可能不同，建议您使用最新版本。Connector版本、VVR/Flink版本和Connector类型的对应关系如下表所示，具体可查看不同版本的新功能发布记录。
+    2. setup-pyflink-virtual-env.sh，其内容如下：
+    ```
+    set -e
+    # download miniconda.sh for Python3.7
+    wget "https://repo.continuum.io/miniconda/Miniconda3-py37_4.9.2-Linux-x86_64.sh" -O "miniconda.sh"
 
-    **说明：** 您需要在SNAPSHOT仓库（oss.sonatype.org）查找带SNAPSHOT的Connector版本， 在Maven中央库（search.maven.org ）上会查找不到。
+    # add the execution permission
+    chmod +x miniconda.sh
 
-    |Connector版本|VVR/Flink版本|Connector类型|
-    |-----------|-----------|-----------|
-    |1.11-vvr-2.1.3-SNAPSHOT|VVR 2.1.3（对应Flink 1.11.3）|    -   ververica-connector-common
-    -   ververica-connector-random
-    -   ververica-connector-datahub
-    -   ververica-connector-odps
-    -   ververica-connector-cloudhbase
-    -   ververica-connector-phoenix
-    -   ververica-connector-redis
-    -   ververica-connector-elasticsearch
-    -   ververica-connector-mongodb
-    -   ververica-connector-hologres
-    -   ververica-connector-jdbc
-    -   ververica-connector-ads
-    -   ververica-connector-adb-3.0
-    -   ververica-connector-rds
-    -   ververica-connector-ots
-    -   ververica-connector-elasticsearch6
-    -   ververica-connector-elasticsearch7
-    -   ververica-connector-kafka
-    -   ververica-connector-hadoop-shaded
-    -   ververica-connector-cloudhbase-shaded
-    -   ververica-connector-mysql
-    -   ververica-connector-postgres
-    -   ververica-connector-hive-2.3.6
-    -   ververica-connector-hive-3.1.2
-    -   ververica-connector-continuous-odps |
-    |1.11-vvr-2.1.2-SNAPSHOT|VVR 2.1.2（对应Flink 1.11.2）|    -   ververica-connector-common
-    -   ververica-connector-random
-    -   ververica-connector-datahub
-    -   ververica-connector-odps
-    -   ververica-connector-cloudhbase
-    -   ververica-connector-phoenix
-    -   ververica-connector-redis
-    -   ververica-connector-elasticsearch
-    -   ververica-connector-mongodb
-    -   ververica-connector-hologres
-    -   ververica-connector-jdbc
-    -   ververica-connector-ads
-    -   ververica-connector-adb-3.0
-    -   ververica-connector-rds
-    -   ververica-connector-ots
-    -   ververica-connector-elasticsearch6
-    -   ververica-connector-elasticsearch7
-    -   ververica-connector-kafka
-    -   ververica-connector-hadoop-shaded
-    -   ververica-connector-cloudhbase-shaded
-    -   ververica-connector-mysql
-    -   ververica-connector-postgres
-    -   ververica-connector-hive-2.3.6
-    -   ververica-connector-hive-3.1.2
-    -   ververica-connector-continuous-odps |
+    # create python virtual environment
+    ./miniconda.sh -b -p venv
 
--   作业开发
+    # activate the conda python virtual environment
+    source venv/bin/activate ""
 
-    您需要在线下完成作业开发后，再在**Flink全托管**控制台上提交作业到集群上运行。您可以参见以下文档开发**Flink全托管**产品业务代码：
+    # install PyFlink dependency
+    # update the PyFlink version if needed
+    pip install "apache-flink==1.12.1"
 
-    -   Flink Datastream和TableAPI Connector依赖，请参见[Connector依赖](http://oss.sonatype.org/)。
-    -   Apache Flink是什么，以及它的体系架构、应用程序和特性功能等，请参见[Apache Flink介绍](https://flink.apache.org/flink-architecture.html)。
-    -   Apache Flink V1.10业务代码开发，请参见[Flink DataStream API开发指南](https://ci.apache.org/projects/flink/flink-docs-release-1.10/dev/datastream_api.html)和[Flink Table API & SQL开发指南](https://ci.apache.org/projects/flink/flink-docs-release-1.10/dev/table/)。
-    -   Apache Flink的编码、Java语言、Scala语言、组件和格式等指南，请参见[代码风格和质量指南](https://flink.apache.org/contributing/code-style-and-quality-preamble.html)。
-    -   Apache Flink编码过程中遇到的问题及解决方法，请参见[常见问题](https://flink.apache.org/gettinghelp.html)。
-    为了避免JAR依赖冲突，您需要注意以下几点：
+    # deactivate the conda python virtual environment
+    conda deactivate
 
-    -   Flink镜像和Pom依赖Flink版本请保持一致。
-    -   请不要上传Runtime层的JAR，即在依赖中添加`<scope>provided</scope>`。
-    -   其他第三方依赖请采用Shade方式打包，Shade打包详情参见[Apache Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/index.html)。
-    Flink 依赖冲突问题，详情请参见[如何解决Flink依赖冲突问题？](/cn.zh-CN/Flink全托管/常见问题.md)
+    # remove the cached packages
+    rm -rf venv/pkgs
 
+    # package the prepared conda python virtual environment
+    zip -r venv.zip venv
+    ```
 
-## Python API作业开发
+    然后在命令行，执行如下命令：
+    ```
+    docker run -it --rm -v $PWD:/build  -w /build quay.io/pypa/manylinux2014_x86_64 ./build.sh
+    ```
 
--   限制说明
-    -   仅支持开源Flink V1.11版本。
-    -   Flink全托管集群已预装了Python版本为Python 3.7，且Python环境中已经预装了Pandas、NumPy、PyArrow等常用的Python库。因此需要您在Python 3.7版本编辑代码。
--   作业开发
+    该命令执行完之后，会生成一个名字为venv.zip的文件，即为Python3.7的虚拟环境。您也可以对上述脚本稍作修改，在虚拟环境中安装所需的Python三方包。
 
-    您需要在线下完成Python API作业开发后，再在**Flink全托管**控制台上提交作业到集群上运行。您可以参见以下文档开发**Flink全托管**产品业务代码：
+    - 在左侧导航栏，单击**资源上传**，上传生成的venv.zip。需要注意的是，**Flink全托管**产品限制可上传的最大文件大小为200MB，而Python虚拟环境的大小通常会超过该限制，需要通过OSS控制台进行文件上传。
 
-    -   Apache Flink V1.11业务代码开发，请参见[Flink Python Table API开发指南](https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/python/table-api-users-guide/intro_to_table_api.html)。
-    -   Apache Flink编码过程中遇到的问题及解决方法，请参见[常见问题](https://flink.apache.org/gettinghelp.html)。
+    - 在Python作业的**基础配置**页面，**Python Archives**项，选择所上传的venv.zip。
 
+    - 在Python作业的**高级配置**页面，**更多 Flink 配置**项，添加如下配置：
+    ```
+    python.executable: venv.zip/venv/bin/python
+    ```
+
+## 使用第三方Python包
+
+Flink支持用户在Python作业中使用第三方Python包，本文为您介绍如何在Python作业中使用第三方Python包。
+
+### 使用可直接import的第三方Python包
+
+    如果三方包是zip safe的，即不需要安装即可直接在作业中使用，则您可以Python作业中直接使用这些三方包。
+
+    - 在[PyPI](https://pypi.org/project/)三方库页面的Download files区域，单击文件名中包含cp37-cp37m-manylinux的包进行下载。
+
+    - 在左侧导航栏，单击**资源上传**，上传Python三方包。
+
+    - 在Python作业的**基础配置**页面，**Python Libraries**项，选择所上传的三方包即可。
+
+### 使用需要编译的第三方Python包
+
+    如果三方包是格式为tar.gz的压缩包，或从其他地方下载的源码包，且压缩包的根目录下存在setup.py文件，则这种类型的三方包，通常需要先编译才能使用。您需要先在与**Flink全托管**兼容的环境下将三方包编译，然后才可在Python作业中调用第三方包。
+
+    - 编译三方包
+
+    推荐使用quay.io/pypa/manylinux2014_x86_64镜像容器中的Python3.7（/opt/python/cp37-cp37m/bin/python3）来编译三方包，使用该容器编译生成的包兼容绝大多数linux环境，关于该镜像容器的更多信息，可以参考[manylinux文档](https://github.com/pypa/manylinux)。
+
+    接下来以opencv-python-headless三方包为例，介绍一下如何编译该三方包。
+    首先需要在本地准备如下脚本：
+    1. build.sh，其内容如下：
+    ```
+    #!/bin/bash
+    set -e -x
+    yum install -y zip
+
+    PYBIN=/opt/python/cp37-cp37m/bin
+
+    "${PYBIN}/pip" install --target __pypackages__ -r requirements.txt --no-deps
+    cd __pypackages__ && zip -r deps.zip . && mv deps.zip ../ && cd ..
+    rm -rf __pypackages__
+    ```
+
+    2. requirements.txt，其内容如下：
+    ```
+    opencv-python-headless
+    ```
+
+    然后在命令行，执行如下命令：
+
+    ```
+    docker run -it --rm -v $PWD:/build  -w /build quay.io/pypa/manylinux2014_x86_64 /bin/bash build.sh
+    ```
+
+    该命令执行完之后，会生成一个名字为deps.zip的文件，该文件中包含了编译之后的三方包opencv-python-headless。您也可以修改requirements.txt，安装其他所需的Python三方包。另外，requirements.txt文件中可以指定多个Python依赖。
+
+    该方案还适用于有较多Python依赖的场景，通过该方式，可以将所有的依赖及其递归依赖打包到一个文件中。
+
+    - 在左侧导航栏，单击**资源上传**，上传生成的deps.zip。
+
+    - 在Python作业的**基础配置**页面，**Python Libraries**项，选择所上传的deps.zip即可。
+
+## 使用JAR包
+
+    - 在左侧导航栏，单击**资源上传**，上传需要使用的JAR包。
+    - 在作业的**基础配置**页面，**附加依赖文件**项，选择需要使用的JAR包。
+    - 在作业的**高级配置**页面，**更多 Flink 配置**项，添加如下配置：
+
+      ```
+      # 假如需要依赖多个JAR包，且名字分别为jar1.jar和jar2.jar
+      pipeline.classpaths: 'file:///flink/usrlib/jar1.jar;file:///flink/usrlib/jar2.jar'
+      ```
+
+## 使用数据文件
+
+### 使用**Python Archives**选项
+
+    当数据文件的数量比较多时，您可以将数据文件打包成一个zip包，然后通过如下方式在Python作业中使用。
+
+    - 在左侧导航栏，单击**资源上传**，上传需要使用的数据文件的zip包。
+    - 在作业的**基础配置**页面，**Python Archives**项，选择需要使用的数据文件的zip包。
+    - 在Python作业中，通过如下方式，使用数据文件：
+
+      ```
+      # 假如数据文件所在压缩包为mydata.zip
+      def map():
+        with open("mydata.zip/mydata/data.txt") as f:
+        ...
+      ```
+
+### 使用**附加依赖文件**选项
+
+    当数据文件的数量比较少时，也可以通过如下方式在Python作业中使用。
+
+    - 在左侧导航栏，单击**资源上传**，上传需要使用的数据文件。
+    - 在作业的**基础配置**页面，**附加依赖文件**项，选择需要使用的数据文件。
+    - 在Python作业中，通过如下方式，使用数据文件：
+
+      ```
+      # 假如数据文件名为data.txt
+      def map():
+        with open("/flink/usrlib/data.txt") as f:
+        ...
+      ```
