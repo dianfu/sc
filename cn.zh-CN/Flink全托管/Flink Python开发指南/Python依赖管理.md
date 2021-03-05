@@ -133,10 +133,10 @@ docker run -it --rm -v $PWD:/build  -w /build quay.io/pypa/manylinux2014_x86_64 
 - 在作业的**基础配置**页面，**附加依赖文件**项，选择需要使用的JAR包。
 - 在作业的**高级配置**页面，**更多 Flink 配置**项，添加如下配置：
 
-    ```
-    # 假如需要依赖多个JAR包，且名字分别为jar1.jar和jar2.jar
-    pipeline.classpaths: 'file:///flink/usrlib/jar1.jar;file:///flink/usrlib/jar2.jar'
-    ```
+```
+# 假如需要依赖多个JAR包，且名字分别为jar1.jar和jar2.jar
+pipeline.classpaths: 'file:///flink/usrlib/jar1.jar;file:///flink/usrlib/jar2.jar'
+```
 
 ## 使用数据文件
 
@@ -148,12 +148,12 @@ docker run -it --rm -v $PWD:/build  -w /build quay.io/pypa/manylinux2014_x86_64 
 - 在作业的**基础配置**页面，**Python Archives**项，选择需要使用的数据文件的zip包。
 - 在Python作业中，通过如下方式，使用数据文件：
 
-    ```
-    # 假如数据文件所在压缩包为mydata.zip
-    def map():
-      with open("mydata.zip/mydata/data.txt") as f:
-      ...
-    ```
+```
+# 假如数据文件所在压缩包为mydata.zip
+def map():
+    with open("mydata.zip/mydata/data.txt") as f:
+    ...
+```
 
 ### 使用**附加依赖文件**选项
 
@@ -163,9 +163,9 @@ docker run -it --rm -v $PWD:/build  -w /build quay.io/pypa/manylinux2014_x86_64 
 - 在作业的**基础配置**页面，**附加依赖文件**项，选择需要使用的数据文件。
 - 在Python作业中，通过如下方式，使用数据文件：
 
-    ```
-    # 假如数据文件名为data.txt
-    def map():
-      with open("/flink/usrlib/data.txt") as f:
-      ...
-    ```
+```
+# 假如数据文件名为data.txt
+def map():
+    with open("/flink/usrlib/data.txt") as f:
+    ...
+```
